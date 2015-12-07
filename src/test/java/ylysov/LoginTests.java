@@ -1,6 +1,5 @@
 package ylysov;
 
-import Nhrytsko.WebDriver.PageNavigation;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -68,7 +67,7 @@ public class LoginTests {
 
     @AfterSuite
     public void tearDown(){
-        PageNavigation.tearDown(driver);
+        LoginNavigation.tearDown(driver);
     }
 
 }
