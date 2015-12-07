@@ -1,4 +1,4 @@
-package Nhrytsko.WebDriver;
+package Nhrytsko.WebDriver.Pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -21,8 +21,7 @@ public class MainPage {
     }
 
     public String getMainPageTitle(){
-        String title = driver.getTitle();
-        return title;
+        return driver.getTitle();
     }
 
 }
