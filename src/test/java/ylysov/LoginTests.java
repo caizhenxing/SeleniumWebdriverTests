@@ -42,6 +42,7 @@ public class LoginTests {
 
         login.fillLoginValues(InvalidEmailValue, InvalidPasswordValue).clickSubmitButton();
         login.findErrorMessage();
+        System.out.print("\n enterInvalidValues() -> Part executed");
     }
 
 
