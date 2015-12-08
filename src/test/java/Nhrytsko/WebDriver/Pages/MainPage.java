@@ -15,8 +15,8 @@ public class MainPage {
 
     private final String signInButtonLink = "icon-signin";
 
-    public void ClickSignInButton(WebDriver driver){
-        signInButton = driver.findElement(By.className(signInButtonLink));
+    public void ClickSignInButton(){
+        signInButton = this.driver.findElement(By.className(signInButtonLink));
         signInButton.click();
     }
 
