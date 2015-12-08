@@ -1,7 +1,6 @@
 package ovol.PageTemplates;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import ovol.Values.BrowserSets;
 
 /**
@@ -9,7 +8,7 @@ import ovol.Values.BrowserSets;
  */
 public class ZikPage {
     WebDriver browserDriver;
-    WebElement elementOnPage;
+
     private TabVlada tabVlada;
 
     private final String zikUrl = "http://www.zik.ua";
