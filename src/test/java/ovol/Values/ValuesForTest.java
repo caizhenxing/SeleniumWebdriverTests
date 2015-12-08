@@ -32,12 +32,12 @@ public class ValuesForTest {
     }
 
 
-    ValuesForTest gotValues = new ValuesForTest();
+    /*ValuesForTest gotValues = new ValuesForTest();
     String forZikUrl = gotValues.getZikUrl();
     String forTabVlada = gotValues.getTabVlada();
     String forCourseraUrl = gotValues.getCourseraUrl();
     String forCourseraSignUp = gotValues.getTabCourseraSignUp();
-    String forSignUpButtton = gotValues.getButtonSignUp();
+    String forSignUpButtton = gotValues.getButtonSignUp();*/
 
 
 
