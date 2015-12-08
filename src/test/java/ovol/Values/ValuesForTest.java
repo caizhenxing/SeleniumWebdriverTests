@@ -31,4 +31,14 @@ public class ValuesForTest {
         return buttonSignUp;
     }
 
+
+    ValuesForTest gotValues = new ValuesForTest();
+    String forZikUrl = gotValues.getZikUrl();
+    String forTabVlada = gotValues.getTabVlada();
+    String forCourseraUrl = gotValues.getCourseraUrl();
+    String forCourseraSignUp = gotValues.getTabCourseraSignUp();
+    String forSignUpButtton = gotValues.getButtonSignUp();
+
+
+
 }
