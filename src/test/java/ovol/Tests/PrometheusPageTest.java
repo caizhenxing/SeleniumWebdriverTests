@@ -23,6 +23,11 @@ public class PrometheusPageTest {
         prometheusPage.GoToSignIn().clickButton();
     }
 
+    @Test
+    public void textChecking(){
+        prometheusPage.GoToSignIn().checkWelcome();
+    }
+
 
 
 
