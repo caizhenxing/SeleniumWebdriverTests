@@ -1,19 +1,23 @@
 package Nhrytsko.WebDriver.Tests;
 
 import Nhrytsko.WebDriver.Pages.PageBase;
+import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
 public class TestBase {
     PageBase pages;
+    WebDriver driver;
 
     @BeforeSuite
     public void setUp(){
-        this.pages = new PageBase();
+        this.driver = RemoteBrowser.startWebDriver();
+        this.pages = new PageBase(this.driver);
     }
 
     @AfterSuite
     public void tearDown(){
-        this.pages.CloseBrowser();
+        RemoteBrowser.Quit(this.driver);
     }
 }

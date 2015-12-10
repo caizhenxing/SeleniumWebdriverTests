@@ -15,7 +15,6 @@ public class RemoteBrowser {
 
     private RemoteBrowser(){}
 
-
     //endregion
 
     //region Methods

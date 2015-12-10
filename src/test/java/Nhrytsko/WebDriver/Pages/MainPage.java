@@ -4,20 +4,21 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class MainPage {
+public class MainPage extends PageBase {
 
-    WebDriver driver;
-    WebElement signInButton;
+    private WebElement signInButton;
 
-    public MainPage (WebDriver driver){
-        this.driver = driver;
+    public MainPage(WebDriver driver) {
+        super(driver);
     }
 
-    private final String signInButtonLink = "icon-signin";
+    private WebElement getSignInButton(){
+        signInButton= this.driver.findElement(By.xpath("//*[@id=\'menu-main-menu-1\']/li[7]/a"));
+        return this.signInButton;
+    }
 
     public void ClickSignInButton(){
-        signInButton = this.driver.findElement(By.className(signInButtonLink));
-        signInButton.click();
+        getSignInButton().click();
     }
 
     public String getMainPageTitle(){

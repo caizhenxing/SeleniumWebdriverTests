@@ -1,9 +1,6 @@
 package Nhrytsko.WebDriver.Tests;
 
-import Nhrytsko.WebDriver.Pages.PageBase;
 import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 public class NavigationTests extends TestBase {
