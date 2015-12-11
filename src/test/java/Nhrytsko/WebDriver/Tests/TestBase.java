@@ -12,7 +12,7 @@ public class TestBase {
 
     @BeforeSuite
     public void setUp(){
-        this.driver = RemoteBrowser.startWebDriver();
+        this.driver = RemoteBrowser.getWebDriverInstance();
         this.pages = new PageBase(this.driver);
     }
 
