@@ -5,6 +5,8 @@ package ylysov.CGMAutomationFramework;
  */
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ylysov.CGMTests.LoginTests;
 
 public class PageBase {
@@ -36,9 +38,34 @@ public class PageBase {
 
     }
 
+    public MainPage goToMainPage(){
+
+        String ValidEmailValue = "g3his";
+        String ValidPasswordValue = "g3his";
+
+        LoginPage login =  goToLoginPage();
+        login.fillEmail(ValidEmailValue).fillPassword(ValidPasswordValue).login();
+        WebDriverWait wait = new WebDriverWait(driver, 15);
+        wait.until(ExpectedConditions.titleContains("CGM G3 - Clinical Information System"));
+
+//        goToLoginPage(). clickMenu().clickLandingPage();
+
+        return new MainPage(this.driver);
+    }
+
+
+
     public LandingPage goToLandingPage(){
-        LoginTests login = new LoginTests();
-        login.loginWithValidCredentials();
+
+        goToMainPage().clickMenu().clickLandingPage();
+//        String ValidEmailValue = "g3his";
+//        String ValidPasswordValue = "g3his";
+//
+//        LoginPage login =  goToLoginPage();
+//        login.fillEmail(ValidEmailValue).fillPassword(ValidPasswordValue).login();
+//        WebDriverWait wait = new WebDriverWait(driver, 15);
+//        wait.until(ExpectedConditions.titleContains("CGM G3 - Clinical Information System"));
+
         return new LandingPage(this.driver);
     }
 
