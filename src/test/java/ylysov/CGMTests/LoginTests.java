@@ -27,4 +27,6 @@ public class LoginTests extends TestOrigin {
         Assert.assertTrue(super.pages.isAtMainPage());
 
     }
+
+
 }

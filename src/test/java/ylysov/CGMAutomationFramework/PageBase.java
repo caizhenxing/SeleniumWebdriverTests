@@ -5,9 +5,11 @@ package ylysov.CGMAutomationFramework;
  */
 
 import org.openqa.selenium.WebDriver;
-
+import ylysov.CGMTests.LoginTests;
 
 public class PageBase {
+
+
     //region Fields
     private static final String loginPageUrl = "http://192.168.240.39:8080/shell-his-module/modules/login.html";
     WebDriver driver;
@@ -17,7 +19,6 @@ public class PageBase {
     //region Constructors
     public PageBase(){
         this.driver = BrowserDriver.startWebDriver();
-        this.loginPage = new LoginPage(this.driver);
     }
     //endregion
 
@@ -34,6 +35,26 @@ public class PageBase {
         return true;
 
     }
+
+    public LandingPage goToLandingPage(){
+        LoginTests login = new LoginTests();
+        login.loginWithValidCredentials();
+        return new LandingPage(this.driver);
+    }
+
+    public EpisodePage goToEpisodePage(){
+        String patientName = "Hauser Susi";
+        goToLandingPage().enterEpisode(patientName);
+        return new EpisodePage(this.driver);
+    }
+
+    public TimelinePage goToTimelinePage(){
+
+        goToEpisodePage().selectTimelineTab();
+
+        return new TimelinePage(this.driver);
+    }
+
 
     public void CloseBrowser(){
         BrowserDriver.Quit(this.driver);
