@@ -3,6 +3,8 @@ package adym;
 import org.apache.xpath.operations.String;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Created by adym on 08.12.2015.
@@ -32,6 +34,29 @@ public class firstProject {
         WebElement submitButton = driver.findElement(By.xpath("/html/body/div[1]/div[1]/section[2]/section/form/div[6]/button"));
 
         submitButton.click();
-         return;
+
+        WebDriverWait wait = new WebDriverWait(driver,100);
+        wait.until(ExpectedConditions.elementToBeClickable(By.className("nav-global-01")));
+
+
+        WebElement courseButton = driver.findElement(By.className("nav-global-01"));
+
+        courseButton.click();
+	/*
+	WebElement ViewOfTheCourse = driver.findElement(By.className("gdlr-feature-media-ux gdlr-ux"));
+	ViewOfTheCourse.getLocation();*/
+
+        WebElement AlgorCourse =driver.findElement(By.xpath("/html/body/div/div[3]/div[1]/div/section/div/div[10]/div[2]/div/div[2]/div[1]/div[1]/h3/a"));
+        AlgorCourse.click();
+
+/*
+        WebDriverWait wait2 = new WebDriverWait(driver,100);
+        wait2.until(ExpectedConditions.elementToBeClickable(By.className("primary")));
+
+        WebElement LoginDropdown =driver.findElement(By.className("primary"));
+        LoginDropdown.click();*/
+
     }
 }
+
+
