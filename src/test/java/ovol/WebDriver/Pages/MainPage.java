@@ -21,6 +21,7 @@ public class MainPage {
     private static final String loginButtonID = "btnLogin";
     private static final String validLoginName = "g3his";
     private static final String validPasswordValue = "g3his";
+    private static final String invalidLogValue = "4ebUraT0R";
 
 
     public MainPage (WebDriver webDriver) {
@@ -29,15 +30,28 @@ public class MainPage {
 
     }
 
+
+
     public static void fillUserField() {
         //webWaiter.until();
+
         loginField = webDriver.findElement(By.cssSelector(loginFieldId));
         loginField.sendKeys(validLoginName);
+    }
+    public static void fillInvalidUserField() {
+        //webWaiter.until();
+        loginField = webDriver.findElement(By.cssSelector(loginFieldId));
+        loginField.sendKeys(invalidLogValue);
     }
 
     public static void fillPasswordField(){
         passwordField = webDriver.findElement(By.cssSelector(passwordFieldId));
         passwordField.sendKeys(validPasswordValue);
+    }
+
+    public static void fillInvalidPasswordField(){
+        passwordField = webDriver.findElement(By.cssSelector(passwordFieldId));
+        passwordField.sendKeys(invalidLogValue);
     }
 
     public static void clickLoginButton(){
