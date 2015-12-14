@@ -10,13 +10,13 @@ public class TestBase {
     PageBase pages;
     WebDriver driver;
 
-    @BeforeSuite
+    @BeforeSuite (alwaysRun = true)
     public void setUp(){
         this.driver = RemoteBrowser.getWebDriverInstance();
         this.pages = new PageBase(this.driver);
     }
 
-    @AfterSuite
+    @AfterSuite (alwaysRun = true)
     public void tearDown(){
         RemoteBrowser.Quit(this.driver);
     }

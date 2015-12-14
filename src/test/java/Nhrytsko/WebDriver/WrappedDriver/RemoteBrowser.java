@@ -6,9 +6,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class RemoteBrowser {
 
     //region Fields
-
-
-
+    
     //endregion
 
     //region Constructors

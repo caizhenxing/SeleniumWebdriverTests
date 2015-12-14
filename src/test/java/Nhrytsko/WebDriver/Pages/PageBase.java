@@ -1,6 +1,7 @@
 package Nhrytsko.WebDriver.Pages;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 
 public class PageBase {
     //region Fields
@@ -20,7 +21,8 @@ public class PageBase {
 
     public MainPage goToMainPage(){
         this.driver.navigate().to(mainPageUrl);
-        return new MainPage(this.driver);
+        MainPage mainPage = PageFactory.initElements(this.driver, MainPage.class);
+        return mainPage;
     }
 
     //endregion

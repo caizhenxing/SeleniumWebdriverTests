@@ -12,7 +12,7 @@ public class NavigationTests extends TestBase {
         Assert.assertEquals(title, "Prometheus – масові безкоштовні онлайн-курси", "Page titles are not equal");
     }
 
-    @Test (groups = {"group1"})
+    @Test (groups = {"group2"})
     public void ClickSignInLink(){
         super.pages.goToMainPage().ClickSignInButton();
     }
