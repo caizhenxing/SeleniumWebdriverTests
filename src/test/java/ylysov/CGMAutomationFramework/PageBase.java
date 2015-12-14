@@ -19,8 +19,10 @@ public class PageBase {
     //endregion
 
     //region Constructors
-    public PageBase(){
-        this.driver = BrowserDriver.startWebDriver();
+    public PageBase(WebDriver driver){
+        {
+            this.driver = driver;
+        }
     }
     //endregion
 
@@ -35,7 +37,6 @@ public class PageBase {
         String mainPageTitle = driver.getTitle();
         if (mainPageTitle.contains("CGM G3 - Clinical Information System"));
         return true;
-
     }
 
     public void login() {
@@ -50,7 +51,7 @@ public class PageBase {
     public MainPage goToMainPage(){
         login();
 
-//        goToLoginPage(). clickMenu().clickLandingPage();
+
 
         return new MainPage(this.driver);
     }

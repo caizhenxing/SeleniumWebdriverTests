@@ -10,24 +10,24 @@ public class BrowserDriver {
 
     //region Fields
 
+    //endregion
+
     private static WebDriver driver;
 
-    //endregion
+
 
     //region Constructors
 
-    private BrowserDriver(){}
-
+    private static class SingletonHolder{
+        private static final WebDriver driverInstance = new FirefoxDriver();
+    }
 
     //endregion
 
     //region Methods
 
-    public static synchronized WebDriver startWebDriver(){
-        if (driver != null){
-            return driver;
-        }
-        return new FirefoxDriver();
+    public static WebDriver getWebDriverInstance(){
+        return SingletonHolder.driverInstance;
         /*String s = ConfigProvider.driverStartOption();
         if (s.equals("local")) {
 

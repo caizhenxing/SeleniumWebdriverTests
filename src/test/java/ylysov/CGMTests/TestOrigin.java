@@ -1,7 +1,9 @@
 package ylysov.CGMTests;
 
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+import ylysov.CGMAutomationFramework.BrowserDriver;
 import ylysov.CGMAutomationFramework.PageBase;
 
 /**
@@ -10,10 +12,12 @@ import ylysov.CGMAutomationFramework.PageBase;
 public class TestOrigin {
 
     PageBase pages;
+    WebDriver driver;
 
     @BeforeSuite
     public void setUp(){
-        this.pages = new PageBase();
+        this.driver = BrowserDriver.getWebDriverInstance();
+        this.pages = new PageBase(this.driver);
     }
 
     @AfterSuite

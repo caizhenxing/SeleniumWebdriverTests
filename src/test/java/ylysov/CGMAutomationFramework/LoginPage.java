@@ -3,6 +3,8 @@ package ylysov.CGMAutomationFramework;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
 
 /**
  * Created by ylysov on 10.12.2015.
@@ -10,8 +12,17 @@ import org.openqa.selenium.WebElement;
 public class LoginPage {
 
     WebDriver driver;
+
+//    @FindBy(xpath = "//input[@name='userName']")
+//    @CacheLookup
     WebElement emailInput;
+
+//    @FindBy(xpath = "//input[@name='password']")
+//    @CacheLookup
     WebElement passwordInput;
+
+//    @FindBy(id = "btnLogin")
+//    @CacheLookup
     WebElement loginButton;
 
     final String emailInputLink = "//input[@name='userName']";
@@ -32,7 +43,6 @@ public class LoginPage {
 //
 //    }
 
-
     public  LoginPage fillEmail(String s1) {
         emailInput = driver.findElement(By.xpath(emailInputLink));
         emailInput.sendKeys(s1);
@@ -44,12 +54,10 @@ public class LoginPage {
         passwordInput = driver.findElement(By.xpath(passwordInputLink));
         passwordInput.sendKeys(s2);
         return this;
-
     }
 
-
     public void login() {
-        loginButton = driver.findElement(By.id(loginButtonLink));
+        loginButton =   driver.findElement(By.id(loginButtonLink));
         loginButton.click();
     }
 }
