@@ -1,7 +1,10 @@
 package Nhrytsko.WebDriver.Tests;
 
+import Nhrytsko.WebDriver.WrappedDriver.ConfigProvider;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.io.IOException;
 
 public class NavigationTests extends TestBase {
 
@@ -13,7 +16,7 @@ public class NavigationTests extends TestBase {
     }
 
     @Test (groups = {"group2"})
-    public void ClickSignInLink(){
+    public void ClickSignInLink() throws IOException {
         super.pages.goToMainPage().ClickSignInButton();
     }
 }

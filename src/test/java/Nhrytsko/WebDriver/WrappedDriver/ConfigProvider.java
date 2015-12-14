@@ -1,36 +1,28 @@
 package Nhrytsko.WebDriver.WrappedDriver;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.Properties;
 
 public class ConfigProvider {
 
     static File configFile;
-    static FileReader reared;
-    static Properties config;
+    static Properties properties;
+    static FileInputStream inputStream;
 
-    private static Properties ConfigurationParameters(){
+    private static Properties ConfigurationParameters() throws IOException {
+        configFile = new File("TestConfiguration.properties");
+        properties = new Properties();
+        inputStream = new FileInputStream(configFile);
+        properties.load(inputStream);
 
-        try {
-            configFile = new File("TestConfiguration.properties");
-            reared = new FileReader(configFile);
-            config = new Properties();
-
-            config.load(reared);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return config;
+        return properties;
     }
 
-    static String userName(){
-         return ConfigurationParameters().getProperty("userName");
+    public static String getUserName() throws IOException {
+        return ConfigurationParameters().getProperty("userName");
     }
 
-    static String driverStartOption (){
+    public static String getDriverStartOption () throws IOException {
         return ConfigurationParameters().getProperty("driverStartOption");
     }
 }

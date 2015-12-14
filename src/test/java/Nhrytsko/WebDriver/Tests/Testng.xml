@@ -5,7 +5,7 @@
     <test name="mainPage">
         <groups>
             <run>
-                <exclude name="group2"/>
+                <exclude name="group1"/>
             </run>
         </groups>
 
