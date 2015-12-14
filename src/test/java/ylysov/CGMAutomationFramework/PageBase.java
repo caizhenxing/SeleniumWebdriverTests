@@ -38,15 +38,17 @@ public class PageBase {
 
     }
 
-    public MainPage goToMainPage(){
+    public void login() {
 
         String ValidEmailValue = "g3his";
         String ValidPasswordValue = "g3his";
 
-        LoginPage login =  goToLoginPage();
+        LoginPage login = goToLoginPage();
         login.fillEmail(ValidEmailValue).fillPassword(ValidPasswordValue).login();
-        WebDriverWait wait = new WebDriverWait(driver, 15);
-        wait.until(ExpectedConditions.titleContains("CGM G3 - Clinical Information System"));
+    }
+
+    public MainPage goToMainPage(){
+        login();
 
 //        goToLoginPage(). clickMenu().clickLandingPage();
 
@@ -58,13 +60,6 @@ public class PageBase {
     public LandingPage goToLandingPage(){
 
         goToMainPage().clickMenu().clickLandingPage();
-//        String ValidEmailValue = "g3his";
-//        String ValidPasswordValue = "g3his";
-//
-//        LoginPage login =  goToLoginPage();
-//        login.fillEmail(ValidEmailValue).fillPassword(ValidPasswordValue).login();
-//        WebDriverWait wait = new WebDriverWait(driver, 15);
-//        wait.until(ExpectedConditions.titleContains("CGM G3 - Clinical Information System"));
 
         return new LandingPage(this.driver);
     }

@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Created by ylysov on 11.12.2015.
@@ -11,8 +13,12 @@ import org.openqa.selenium.WebElement;
 public class MainPage {
 
     WebDriver driver;
-    WebElement menuDropdown;
+    WebElement menuList;
     WebElement landingPageOption;
+
+    final String menuListLink = "//a[@class='menu-link ng-binding']";
+    final String landingPageOptionLink = "//a[@class='menu-item ng-binding ng-scope cgm-truncation']";
+
 
     public MainPage (WebDriver driver){
         this.driver = driver;
@@ -25,20 +31,19 @@ public class MainPage {
 //
 //    }
 
-    final String menuDropdownInputLink = "/html/body/hx-feature-view-port/div/cgm-shell/div/cgm-shell-main-menu/div[1]/ul[1]/li/a";
     public MainPage clickMenu(){
-        menuDropdown = driver.findElement(By.xpath(menuDropdownInputLink));
-        menuDropdown.click();
-        return this;
+        WebDriverWait wait = new WebDriverWait(driver, 15);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(menuListLink)));
 
+        menuList = driver.findElement(By.xpath(menuListLink));
+        menuList.click();
+        return this;
     }
 
-    final String landingPageOptionLink = "/html/body/hx-feature-view-port/div/cgm-shell/div/cgm-shell-main-menu/div[1]/ul[1]/li/div/a[1]";
     public MainPage clickLandingPage(){
         landingPageOption = driver.findElement(By.xpath(landingPageOptionLink));
         landingPageOption.click();
         return this;
-
     }
 
 }

@@ -13,6 +13,10 @@ public class NavigationTests extends TestOrigin {
     }
 
     @Test
+    public void loginToApp(){ super.pages.login();
+    }
+
+    @Test
     public void navigateToMainPage(){
         super.pages.goToMainPage();
     }
