@@ -1,16 +1,15 @@
-package ovol.Tests;
+package ovol.WebDriver.Tests;
 
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-import ovol.PageTemplates.PrometheusPage;
+import ovol.WebDriver.Pages.PrometheusPage;
 
 /**
  * Created by ovo on 08.12.2015.
  */
 public class PrometheusPageTest {
-    WebDriver browserDriver;
+
     PrometheusPage prometheusPage;
 
     @BeforeSuite
@@ -24,10 +23,12 @@ public class PrometheusPageTest {
     }
 
     @Test
-    public void textChecking(){
+    /*public void textChecking(){
         prometheusPage.GoToSignIn().checkWelcome();
+    }*/
+    public void emptySubmitTest(){
+        prometheusPage.checkEmptySubmit();
     }
-
 
 
 

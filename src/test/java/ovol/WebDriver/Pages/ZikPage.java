@@ -1,7 +1,7 @@
-package ovol.PageTemplates;
+package ovol.WebDriver.Pages;
 
 import org.openqa.selenium.WebDriver;
-import ovol.Values.BrowserSets;
+import ovol.WebDriver.WrappedDriver.BrowserSets;
 
 /**
  * Created by ovo on 08.12.2015.

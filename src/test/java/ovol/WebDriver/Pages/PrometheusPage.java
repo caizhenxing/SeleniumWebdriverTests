@@ -1,7 +1,7 @@
-package ovol.PageTemplates;
+package ovol.WebDriver.Pages;
 
 import org.openqa.selenium.WebDriver;
-import ovol.Values.BrowserSets;
+import ovol.WebDriver.WrappedDriver.BrowserSets;
 
 /**
  * Created by ovo on 08.12.2015.
@@ -23,6 +23,10 @@ public class PrometheusPage {
 
     }
 
+    public void  checkEmptySubmit() {
+        prometheusRegisterPage.clickSubmitButton();
+
+    }
 
     public void CloseBrowser(){
         BrowserSets.BrowserShutDown(this.browserDriver);
