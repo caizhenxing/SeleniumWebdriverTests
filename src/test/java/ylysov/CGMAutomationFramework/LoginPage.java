@@ -14,6 +14,10 @@ public class LoginPage {
     WebElement passwordInput;
     WebElement loginButton;
 
+    final String emailInputLink = "//input[@name='userName']";
+    final String passwordInputLink = "//input[@name='password']";
+    final String loginButtonLink = "btnLogin";
+
     public LoginPage (WebDriver driver){
         this.driver = driver;
     }
@@ -29,16 +33,12 @@ public class LoginPage {
 //    }
 
 
-    final String emailInputLink = "/html/body/hx-include/div/div/div[2]/div/ng-include/form/div/div/div[2]/div[1]/div/div/input";
-
     public  LoginPage fillEmail(String s1) {
         emailInput = driver.findElement(By.xpath(emailInputLink));
         emailInput.sendKeys(s1);
         return this;
 
     }
-
-    final String passwordInputLink = "/html/body/hx-include/div/div/div[2]/div/ng-include/form/div/div/div[2]/div[2]/div/div/input";
 
     public  LoginPage fillPassword(String s2) {
         passwordInput = driver.findElement(By.xpath(passwordInputLink));
@@ -47,7 +47,6 @@ public class LoginPage {
 
     }
 
-    final String loginButtonLink = "btnLogin";
 
     public void login() {
         loginButton = driver.findElement(By.id(loginButtonLink));
