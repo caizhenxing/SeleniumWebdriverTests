@@ -1,14 +1,15 @@
-package ovol.WebDriver.Pages;
+package ovol.WebDriverTests.PagesTemplates;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import ovol.WebDriverTests.WrappedTestDriver.BrowserWrapper;
 
 /**
  * Created by ovo on 14.12.2015.
  */
-public class MainPage {
+public class TestMainPage extends TestBasePage {
     static WebDriver webDriver;
     static WebElement loginField;
     static WebElement passwordField;
@@ -24,12 +25,15 @@ public class MainPage {
     private static final String invalidLogValue = "4ebUraT0R";
 
 
-    public MainPage (WebDriver webDriver) {
+    public TestMainPage(BrowserWrapper browserWrapper) {
         this.webDriver = webDriver;
         webWaiter = new WebDriverWait(webDriver, 5);
 
     }
 
+    public TestMainPage() {
+
+    }
 
 
     public static void fillUserField() {

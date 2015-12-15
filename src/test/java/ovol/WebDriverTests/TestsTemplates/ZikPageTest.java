@@ -1,10 +1,10 @@
-package ovol.WebDriver.Tests;
+package ovol.WebDriverTests.TestsTemplates;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-import ovol.WebDriver.Pages.ZikPage;
+import ovol.WebDriverTests.PagesTemplates.ZikPage;
 
 /**
  * Created by ovo on 07.12.2015.

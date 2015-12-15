@@ -1,7 +1,7 @@
-package ovol.WebDriver.Pages;
+package ovol.WebDriverTests.PagesTemplates;
 
 import org.openqa.selenium.WebDriver;
-import ovol.WebDriver.WrappedDriver.BrowserSets;
+import ovol.WebDriverTests.WrappedTestDriver.BrowserWrapper;
 
 /**
  * Created by ovo on 08.12.2015.
@@ -12,7 +12,7 @@ public class PrometheusPage {
     private final String  prometheusUrl="http://www.prometheus.org.ua/";
 
     public PrometheusPage(){
-        this.browserDriver = BrowserSets.BrowserInit();
+        this.browserDriver = BrowserWrapper.BrowserInit();
         this.prometheusRegisterPage = new PrometheusRegisterPage(this.browserDriver);
 
     }
@@ -29,6 +29,6 @@ public class PrometheusPage {
     }
 
     public void CloseBrowser(){
-        BrowserSets.BrowserShutDown(this.browserDriver);
+        BrowserWrapper.BrowserShutDown(this.browserDriver);
     }
 }

@@ -1,4 +1,4 @@
-package ovol.WebDriver.WrappedDriver;
+package ovol.WebDriverTests.WrappedTestDriver;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -9,20 +9,22 @@ import java.net.UnknownHostException;
 /**
  * Created by ovo on 08.12.2015.
  */
-public class BrowserSets {
+public class BrowserWrapper {
 
     //<editor-fold desc="Values for browser">
-    private static WebDriver webDriver;
+    private static WebDriver webDriverInstance;
     static InetAddress inetAddress;
     private static final String pingUrl = "192.168.240.39";
     //</editor-fold>
 
+    private static class Singleton {
+        private static final WebDriver webDriverInstance = new FirefoxDriver();
+
+    }
+
     //<editor-fold desc="Warming up browser">
     public static WebDriver BrowserInit() {
-        if (webDriver != null) {
-            return webDriver;
-        }
-        return new FirefoxDriver();
+        return Singleton.webDriverInstance;
     }
     //</editor-fold>
 

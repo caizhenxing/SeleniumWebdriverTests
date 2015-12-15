@@ -1,4 +1,4 @@
-package ovol.WebDriver.Pages;
+package ovol.WebDriverTests.PagesTemplates;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

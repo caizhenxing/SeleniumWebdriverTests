@@ -1,7 +1,7 @@
-package ovol.WebDriver.Pages;
+package ovol.WebDriverTests.PagesTemplates;
 
 import org.openqa.selenium.WebDriver;
-import ovol.WebDriver.WrappedDriver.BrowserSets;
+import ovol.WebDriverTests.WrappedTestDriver.BrowserWrapper;
 
 /**
  * Created by ovo on 08.12.2015.
@@ -16,7 +16,7 @@ public class ZikPage {
 
 
     public  ZikPage() {
-        this.browserDriver = BrowserSets.BrowserInit();
+        this.browserDriver = BrowserWrapper.BrowserInit();
         this.tabVlada = new TabVlada(this.browserDriver);
     }
 
@@ -26,7 +26,7 @@ public class ZikPage {
     }
 
     public void KillBrowser(){
-        BrowserSets.BrowserShutDown(this.browserDriver);
+        BrowserWrapper.BrowserShutDown(this.browserDriver);
     }
 
 }

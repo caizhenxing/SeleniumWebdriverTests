@@ -1,4 +1,4 @@
-package ovol.WebDriver.WrappedDriver;
+package ovol.WebDriverTests.WrappedTestDriver;
 
 /**
  * Created by ovo on 07.12.2015.

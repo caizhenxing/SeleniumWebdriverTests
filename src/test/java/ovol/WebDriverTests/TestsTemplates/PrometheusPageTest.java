@@ -1,9 +1,9 @@
-package ovol.WebDriver.Tests;
+package ovol.WebDriverTests.TestsTemplates;
 
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-import ovol.WebDriver.Pages.PrometheusPage;
+import ovol.WebDriverTests.PagesTemplates.PrometheusPage;
 
 /**
  * Created by ovo on 08.12.2015.
