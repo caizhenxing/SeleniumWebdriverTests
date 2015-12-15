@@ -10,7 +10,7 @@
         </groups>
 
         <classes>
-            <class name="Nhrytsko.WebDriver.Tests.NavigationTests" />
+            <class name="npyshchyk.tests.CGMLoginTest" />
         </classes>
     </test>
 
