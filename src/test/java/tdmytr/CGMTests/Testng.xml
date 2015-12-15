@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="AllTanyasTests">
+    <test name="Admin_User_Can_Login">
+        <classes>
+            <class name="tdmytr.CGMTests.SmokeTests.LoginTests" />
+        </classes>
+    </test>
+    <test name="Cannot_Login_With_invalid_Credentials">
+        <classes>
+            <class name="tdmytr.CGMTests.LoginTests.AdvancedLoginTests" />
+        </classes>
+    </test>
+</suite>
