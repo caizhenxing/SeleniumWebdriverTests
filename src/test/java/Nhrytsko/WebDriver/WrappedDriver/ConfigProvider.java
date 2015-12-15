@@ -22,7 +22,15 @@ public class ConfigProvider {
         return ConfigurationParameters().getProperty("userName");
     }
 
+    public static String getUserPassword() throws IOException {
+        return ConfigurationParameters().getProperty("password");
+    }
+
     public static String getDriverStartOption () throws IOException {
         return ConfigurationParameters().getProperty("driverStartOption");
+    }
+
+    public static String getBaseURL() throws IOException{
+        return ConfigurationParameters().getProperty("130_VirtualMachineURL");
     }
 }

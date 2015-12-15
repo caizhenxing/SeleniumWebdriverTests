@@ -2,7 +2,7 @@
 
 <suite name="MainPageTEst">
 
-    <test name="mainPage">
+    <test name="loginPage">
         <groups>
             <run>
                 <exclude name="group1"/>

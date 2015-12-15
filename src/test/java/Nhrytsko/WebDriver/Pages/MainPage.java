@@ -1,6 +1,5 @@
 package Nhrytsko.WebDriver.Pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -8,20 +7,17 @@ import org.openqa.selenium.support.FindBy;
 
 public class MainPage extends PageBase {
 
-    @FindBy(xpath = "//*[@id=\'menu-main-menu-1\']/li[7]/a")
+    private WebDriver driver;
+
+    @FindBy(xpath = "/html/body/hx-feature-view-port/div/cgm-shell/div/cgm-shell-main-menu/div[1]/ul[1]/li/a")
     @CacheLookup
-    private WebElement signInButton;
+    private WebElement menuButton;
 
-    public MainPage(WebDriver driver) {
-        super(driver);
+    public MainPage(){
+        this.driver = super.driver;
     }
 
-    public void ClickSignInButton(){
-        this.signInButton.click();
+    public void clickMenuButton(){
+        this.menuButton.click();
     }
-
-    public String getMainPageTitle(){
-        return driver.getTitle();
-    }
-
 }
