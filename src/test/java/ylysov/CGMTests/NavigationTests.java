@@ -7,30 +7,25 @@ import org.testng.annotations.Test;
  */
 public class NavigationTests extends TestOrigin {
 
-    @Test
-    public void navigateToLoginPage(){
-        super.pages.goToLoginPage();
+    @Test(sequential = true)
+    public void test1navigateToLoginPage(){
+        pages.goToLoginPage();
     }
 
-    @Test
-    public void loginToApp(){ super.pages.login();
+    @Test(sequential = true)
+    public void test2loginToApp(){ pages.login();
     }
 
-    @Test
-    public void navigateToMainPage(){
-        super.pages.goToMainPage();
+    @Test(sequential = true)
+    public void test3navigateToLandingPage(){
+        pages.goToLandingPage();
     }
 
-    @Test
-    public void navigateToLandingPage(){
-        super.pages.goToLandingPage();
+    @Test(sequential = true)
+    public void test4navigateToEpisodePage(){
+        pages.goToEpisodePage();
     }
-
-    @Test
-    public void navigateToEpisodePage(){
-        super.pages.goToEpisodePage();
-    }
-
-    @Test
-    public void navigateToTimelinePage(){super.pages.goToTimelinePage(); }
+//
+//    @Test
+//    public void navigateToTimelinePage(){pages.goToTimelinePage(); }
 }

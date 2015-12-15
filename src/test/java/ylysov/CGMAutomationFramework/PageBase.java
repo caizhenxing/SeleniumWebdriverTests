@@ -4,8 +4,10 @@ package ylysov.CGMAutomationFramework;
  * Created by ylysov on 11.12.2015.
  */
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ylysov.CGMTests.LoginTests;
 
@@ -39,44 +41,38 @@ public class PageBase {
         return true;
     }
 
-    public void login() {
+    public MainPage login() {
 
         String ValidEmailValue = "g3his";
         String ValidPasswordValue = "g3his";
 
-        LoginPage login = goToLoginPage();
-        login.fillEmail(ValidEmailValue).fillPassword(ValidPasswordValue).login();
-    }
+        goToLoginPage().fillEmail(ValidEmailValue).fillPassword(ValidPasswordValue).login();
 
-    public MainPage goToMainPage(){
-        login();
-
-
+        WebDriverWait wait = new WebDriverWait(driver, 15);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[@class='menu-link ng-binding']")));
 
         return new MainPage(this.driver);
     }
 
+    public MainPage goToLandingPage(){
+        MainPage obj = new MainPage(driver);
+        obj.clickMenu().clickLandingPage();
+        return new MainPage(this.driver);
+    }
 
-
-    public LandingPage goToLandingPage(){
-
-        goToMainPage().clickMenu().clickLandingPage();
-
+    public LandingPage goToEpisodePage(){
+        String patientName = "Hauser Susi";
+        LandingPage obj2 = new LandingPage(driver);
+        obj2.enterEpisode(patientName);
         return new LandingPage(this.driver);
     }
 
-    public EpisodePage goToEpisodePage(){
-        String patientName = "Hauser Susi";
-        goToLandingPage().enterEpisode(patientName);
-        return new EpisodePage(this.driver);
-    }
-
-    public TimelinePage goToTimelinePage(){
-
-        goToEpisodePage().selectTimelineTab();
-
-        return new TimelinePage(this.driver);
-    }
+//    public TimelinePage goToTimelinePage(){
+//
+//        goToEpisodePage().selectTimelineTab();
+//
+//        return new TimelinePage(this.driver);
+//    }
 
 
     public void CloseBrowser(){

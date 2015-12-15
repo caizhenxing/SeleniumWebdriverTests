@@ -12,9 +12,9 @@ public class TimelineTests extends TestOrigin {
 
 //not working yet
 
-    @Test
-    public void navigateToTimelinePage(){
-        pages.goToTimelinePage();
-    }
+//    @Test
+//    public void navigateToTimelinePage(){
+//        pages.goToTimelinePage();
+//    }
 
 }
