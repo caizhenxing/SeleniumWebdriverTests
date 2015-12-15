@@ -3,6 +3,7 @@ package ylysov.CGMTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ylysov.CGMAutomationFramework.LoginPage;
+import ylysov.CGMAutomationFramework.MainPage;
 
 
 /**
@@ -28,5 +29,17 @@ public class LoginTests extends TestOrigin {
 
     }
 
+    @Test
+    public void loginWithInvalidCredentials(){
+
+        String InvalidEmailValue = "invalid";
+        String InvalidPasswordValue = "invalid";
+
+        LoginPage login =  super.pages.goToLoginPage();
+        login.fillEmail(InvalidEmailValue).fillPassword(InvalidPasswordValue).login();
+
+        Assert.assertFalse(super.pages.isAtMainPage());
+
+    }
 
 }
