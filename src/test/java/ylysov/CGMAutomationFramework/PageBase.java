@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import ylysov.CGMTests.LoginTests;
 
 public class PageBase {
@@ -17,7 +18,9 @@ public class PageBase {
     //region Fields
     private static final String loginPageUrl = "http://192.168.240.39:8080/shell-his-module/modules/login.html";
     WebDriver driver;
-    private LoginPage loginPage;
+
+
+
     //endregion
 
     //region Constructors
@@ -36,9 +39,13 @@ public class PageBase {
     }
 
     public Boolean isAtMainPage(){
+
         String mainPageTitle = driver.getTitle();
-        if (mainPageTitle.contains("CGM G3 - Clinical Information System"));
-        return true;
+        if (mainPageTitle.contains("CGM G3 - Clinical Information System"))
+        {return true;}
+        else {
+
+            return false;}
     }
 
     public MainPage login() {
@@ -62,17 +69,19 @@ public class PageBase {
 
     public LandingPage goToEpisodePage(){
         String patientName = "Hauser Susi";
+
         LandingPage obj2 = new LandingPage(driver);
         obj2.enterEpisode(patientName);
         return new LandingPage(this.driver);
     }
 
-//    public TimelinePage goToTimelinePage(){
-//
-//        goToEpisodePage().selectTimelineTab();
-//
-//        return new TimelinePage(this.driver);
-//    }
+    public EpisodePage goToTimelinePage(){
+
+        EpisodePage obj3 = new EpisodePage(driver);
+        obj3.selectTimelineTab();
+
+        return new EpisodePage(this.driver);
+    }
 
 
     public void CloseBrowser(){

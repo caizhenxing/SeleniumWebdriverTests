@@ -16,6 +16,7 @@ public class LandingPage {
     WebElement episodeInput;
     WebDriverWait wait;
 
+
     public LandingPage (WebDriver driver){
         this.driver = driver;
     }
@@ -24,11 +25,13 @@ public class LandingPage {
     final String episodeInputLink = "//cgm-search-field[@class='cgm-autocomplete cgm-search-field cgm-autocomplete-empty ng-valid']";
 
     public  LandingPage enterEpisode(String s1) {
-
         wait = new WebDriverWait(driver, 15);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(episodeInputLink)));
         episodeInput = driver.findElement(By.xpath(episodeInputLink));
-        episodeInput.sendKeys(s1, Keys.RETURN);
+
+        episodeInput.click();
+        episodeInput.sendKeys(s1);
+        episodeInput.sendKeys(Keys.RETURN);
         return this;
 
     }

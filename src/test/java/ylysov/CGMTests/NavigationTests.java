@@ -25,7 +25,8 @@ public class NavigationTests extends TestOrigin {
     public void test4navigateToEpisodePage(){
         pages.goToEpisodePage();
     }
-//
-//    @Test
-//    public void navigateToTimelinePage(){pages.goToTimelinePage(); }
+
+    @Test
+    public void test5navigateToTimelinePage(){
+        pages.goToTimelinePage(); }    //this test is not working correct
 }
