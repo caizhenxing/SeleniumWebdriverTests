@@ -75,7 +75,8 @@ public class PageBase {
         String patientName = "Hauser Susi";
 
         LandingPage obj2 = new LandingPage(driver);
-        obj2.enterEpisode(patientName);
+        obj2.enterEpisode(patientName).selectRandomSearchResult();    // option to select random result
+//        obj2.enterEpisode(patientName).selectTopSearchResult();     // option to select top result
         return new LandingPage(this.driver);
     }
 
