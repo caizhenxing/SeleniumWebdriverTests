@@ -13,11 +13,21 @@ public class MainPage extends PageBase {
     @CacheLookup
     private WebElement menuButton;
 
+    @FindBy(xpath = "/html/body/hx-feature-view-port/div/cgm-shell/div/cgm-shell-main-menu/div[1]/ul[1]/li/div/a")
+    @CacheLookup
+    private WebElement allFeaturesOption;
+
     public MainPage(){
         this.driver = super.driver;
     }
 
-    public void clickMenuButton(){
+    public MainPage clickMenuButton(){
         this.menuButton.click();
+        return this;
+    }
+
+    public MainPage selectAllFeaturesOption(){
+        this.allFeaturesOption.click();
+        return this;
     }
 }
