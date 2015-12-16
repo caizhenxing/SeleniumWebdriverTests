@@ -22,7 +22,7 @@ public class NavigationTests extends TestOrigin {
     }
 
     @Test(sequential = true)
-    public void test4navigateToEpisodePage(){
+    public void test4navigateToEpisodePage()throws InterruptedException{
         pages.goToEpisodePage();
     }
 

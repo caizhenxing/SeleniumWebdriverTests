@@ -38,7 +38,7 @@ public class LoginTests extends TestOrigin {
         LoginPage login =  super.pages.goToLoginPage();
         login.fillEmail(InvalidEmailValue).fillPassword(InvalidPasswordValue).login();
 
-        Assert.assertFalse(super.pages.isAtMainPage());
+        Assert.assertTrue(super.pages.isAtLoginPage());
 
     }
 

@@ -40,12 +40,16 @@ public class PageBase {
 
     public Boolean isAtMainPage(){
 
-        String mainPageTitle = driver.getTitle();
-        if (mainPageTitle.contains("CGM G3 - Clinical Information System"))
-        {return true;}
-        else {
+         String mainPageTitle = driver.getTitle();
+        if (mainPageTitle.contains("CGM G3 - Clinical Information System"));
+        return true;
+    }
 
-            return false;}
+    public Boolean isAtLoginPage(){
+
+        String mainPageTitle = driver.getTitle();
+        if (mainPageTitle.contains("Login"));
+        return true;
     }
 
     public MainPage login() {
@@ -67,7 +71,7 @@ public class PageBase {
         return new MainPage(this.driver);
     }
 
-    public LandingPage goToEpisodePage(){
+    public LandingPage goToEpisodePage() throws InterruptedException{
         String patientName = "Hauser Susi";
 
         LandingPage obj2 = new LandingPage(driver);
