@@ -9,7 +9,6 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 public class TestBase {
     PageBase pages;
@@ -25,8 +24,7 @@ public class TestBase {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        //this.pages.waiForElementToBeReady();
+        RemoteBrowser.implicitWait(10);
     }
 
     @AfterSuite (alwaysRun = true)

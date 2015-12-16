@@ -1,5 +1,6 @@
 package Nhrytsko.WebDriver.Pages;
 
+import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -26,14 +27,14 @@ class LoginPage extends PageBase {
     }
 
     public LoginPage enterUserName(String userName) {
-        //super.waiForElementToBeReady();
+        RemoteBrowser.waitForElement(this.userName);
         this.userName.click();
         this.userName.sendKeys(userName);
         return this;
     }
 
     public LoginPage enterUserPassword(String userPassword) {
-        //super.waiForElementToBeReady();
+        RemoteBrowser.waitForElement(this.userPassword);
         this.userPassword.click();
         this.userPassword.sendKeys(userPassword);
         return this;

@@ -1,6 +1,7 @@
 package Nhrytsko.WebDriver.Pages;
 
 import Nhrytsko.WebDriver.WrappedDriver.ConfigProvider;
+import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -50,10 +51,5 @@ public class PageBase {
         PageFactory.initElements(this.driver, loginPage);
         return loginPage;
     }
-
-   /* public void waiForElementToBeReady(){
-        this.driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-    }*/
-
     //endregion
 }
