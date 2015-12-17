@@ -1,11 +1,13 @@
 package Nhrytsko.WebDriver.WrappedDriver;
 
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class RemoteBrowser {
@@ -42,10 +44,14 @@ public class RemoteBrowser {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
+    public static void waitForAllElements(List<WebElement> elements) {
+        WebDriverWait wait = new WebDriverWait(getWebDriverInstance(), 10);
+        wait.until(ExpectedConditions.visibilityOfAllElements(elements));
+    }
+
     public static void implicitWait(long timeToWaitInSeconds){
         getWebDriverInstance().manage().timeouts().implicitlyWait(timeToWaitInSeconds, TimeUnit.SECONDS);
     }
-
     //endregion
 
 }

@@ -1,13 +1,10 @@
 package Nhrytsko.WebDriver.Pages;
 
 import Nhrytsko.WebDriver.WrappedDriver.ConfigProvider;
-import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 public class PageBase {
     //region Fields
@@ -15,6 +12,7 @@ public class PageBase {
     WebDriver driver;
     MainPage mainPage;
     LoginPage loginPage;
+    LandingPage landingPage;
 
     //endregion
 
@@ -51,5 +49,31 @@ public class PageBase {
         PageFactory.initElements(this.driver, loginPage);
         return loginPage;
     }
+
+    public MainPage goToLandingPage(){
+        this.mainPage = new MainPage();
+        PageFactory.initElements(this.driver, mainPage);
+        mainPage.clickMenuButton();
+        mainPage.clickLandingPageButton();
+        return mainPage;
+    }
+
+    public LandingPage goToEpisodePage(String patientName) throws InterruptedException{
+        this.landingPage = new LandingPage();
+        PageFactory.initElements(this.driver, landingPage);
+        landingPage.enterEpisode(patientName);
+        landingPage.selectTopSearchResult();
+//        landingPage.selectRandomSearchResult();
+        return landingPage;
+    }
+
+    public LandingPage InitializeLandingPage(){
+        this.landingPage = new LandingPage();
+        PageFactory.initElements(this.driver, landingPage);
+        return landingPage;
+    }
+
+
+
     //endregion
 }
