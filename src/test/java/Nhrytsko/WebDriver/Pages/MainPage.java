@@ -15,17 +15,19 @@ public class MainPage extends PageBase {
 
     @FindBy(xpath = "/html/body/hx-feature-view-port/div/cgm-shell/div/cgm-shell-main-menu/div[1]/ul[1]/li/div/a")
     @CacheLookup
-    private WebElement allFeatures;
+    private WebElement allFeaturesOption;
 
     public MainPage(){
         this.driver = super.driver;
     }
 
-    public void clickMenuButton(){
+    public MainPage clickMenuButton(){
         this.menuButton.click();
+        return this;
     }
 
-    public void selectAllFeatures() {
-        this.allFeatures.click();
+    public MainPage selectAllFeaturesOption() {
+        this.allFeaturesOption.click();
+        return this;
     }
 }
