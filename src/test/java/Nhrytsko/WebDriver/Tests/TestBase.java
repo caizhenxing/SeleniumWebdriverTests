@@ -13,7 +13,7 @@ import java.io.IOException;
 public class TestBase {
     PageBase pages;
     WebDriver driver;
-    MainPage mainPage;
+    public MainPage mainPage;
 
     @BeforeSuite (alwaysRun = true)
     public void setUp(){
