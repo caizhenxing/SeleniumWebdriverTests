@@ -8,7 +8,7 @@ public class NavigationTests extends TestBase {
 
     @Test(groups = {"group2"})
     public void NavigateToMainPage(){
-        super.mainPage.clickMenuButton().selectAllFeaturesOption();
+        super.mainPage.clickMenuButton();
     }
 
     @Test (groups = {"group2"})
