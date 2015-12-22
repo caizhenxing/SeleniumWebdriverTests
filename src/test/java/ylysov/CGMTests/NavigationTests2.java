@@ -36,7 +36,6 @@ public class NavigationTests2 extends TestBase {
         landingPage.enterEpisode(patientName);
         landingPage.selectTopSearchResult();
 
-
     }
 
 

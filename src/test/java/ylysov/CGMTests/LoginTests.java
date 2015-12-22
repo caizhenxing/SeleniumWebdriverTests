@@ -3,8 +3,6 @@ package ylysov.CGMTests;
 import Nhrytsko.WebDriver.Tests.TestBase;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import ylysov.CGMAutomationFramework.LoginPage;
-import ylysov.CGMAutomationFramework.MainPage;
 
 
 /**
