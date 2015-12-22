@@ -33,4 +33,19 @@ public class ConfigProvider {
     public static String getBaseURL() throws IOException{
         return ConfigurationParameters().getProperty("130_VirtualMachineURL");
     }
+    public static String getPingUrl() throws IOException{
+        return ConfigurationParameters().getProperty("pingUrl");
+    }
+    public static String getPageUrl() throws IOException{
+        return ConfigurationParameters().getProperty("pageUrl");
+    }
+    public static String getPatientData() throws IOException {
+        return ConfigurationParameters().getProperty("patient");
+    }
+    public static String getWrongName() throws IOException {
+        return ConfigurationParameters().getProperty("wrongName");
+    }
+    public static String getWrongPassword() throws IOException {
+        return ConfigurationParameters().getProperty("wrongPassword");
+    }
 }

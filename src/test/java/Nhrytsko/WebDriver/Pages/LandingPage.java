@@ -1,5 +1,6 @@
 package Nhrytsko.WebDriver.Pages;
 
+import Nhrytsko.WebDriver.WrappedDriver.ConfigProvider;
 import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,6 +8,7 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
@@ -25,6 +27,10 @@ public class LandingPage extends PageBase {
     @CacheLookup
     private List<WebElement> searchResults;
 
+    @FindBy(xpath = "//div[@class='search-screen']")
+    @CacheLookup
+    private List<WebElement> searchResults2;
+
     int resultsListSize;
     int selectFromList;
 
@@ -37,6 +43,15 @@ public class LandingPage extends PageBase {
         RemoteBrowser.waitForAllElements(searchResults);
         return this;
     }
+    //region Vol Search Patient
+    public LandingPage searchPatient() throws IOException {
+        RemoteBrowser.waitForElement(this.episodeInput);
+        episodeInput.click();
+        episodeInput.sendKeys(ConfigProvider.getPatientData());
+        RemoteBrowser.waitForAllElements(searchResults2);
+        return this;
+    }
+    //endregion
     public LandingPage selectTopSearchResult() {
         searchResults.get(0).click();
         return this;

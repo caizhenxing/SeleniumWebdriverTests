@@ -1,18 +1,20 @@
 package ovol.Tests;
 
+import Nhrytsko.WebDriver.Tests.TestBase;
 import org.testng.annotations.Test;
-import ovol.Wrapper.BrowserUsage;
+
+import java.io.IOException;
 
 /**
  * Created by ovo on 22.12.2015.
  */
-public class NavigateTest extends BaseTest {
+public class NavigateTest extends TestBase {
+    //<editor-fold desc="Valid login">
     @Test
-    public void Test()  {
-        BrowserUsage.driverImplicitWaiter(10);
-        this.mainPage.clickMenuButton();
-        this.mainPage.clickLandingPage();
+    public void Test() throws IOException {
+
 
     }
+    //</editor-fold>
 
 }

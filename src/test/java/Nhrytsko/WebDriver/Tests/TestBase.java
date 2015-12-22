@@ -1,5 +1,6 @@
 package Nhrytsko.WebDriver.Tests;
 
+import Nhrytsko.WebDriver.Pages.LandingPage;
 import Nhrytsko.WebDriver.Pages.MainPage;
 import Nhrytsko.WebDriver.Pages.PageBase;
 import Nhrytsko.WebDriver.WrappedDriver.ConfigProvider;
@@ -14,6 +15,7 @@ public class TestBase {
     PageBase pages;
     WebDriver driver;
     public MainPage mainPage;
+    LandingPage landingPage;
 
     @BeforeSuite (alwaysRun = true)
     public void setUp(){

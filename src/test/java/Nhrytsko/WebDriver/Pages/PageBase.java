@@ -9,7 +9,7 @@ import java.io.IOException;
 public class PageBase {
     //region Fields
 
-    WebDriver driver;
+    public WebDriver driver;
     MainPage mainPage;
     LoginPage loginPage;
     LandingPage landingPage;
