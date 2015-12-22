@@ -27,6 +27,7 @@ public class PageBase {
 
     //region Methods
 
+    //<editor-fold desc="Valid logging">
     public MainPage logInAs(String userName, String password){
 
         goToLoginPage()
@@ -37,8 +38,21 @@ public class PageBase {
                 PageFactory.initElements(this.driver, mainPage);
         return mainPage;
     }
+    //</editor-fold>
+    //<editor-fold desc="Invalid logging">
+    public MainPage logInAsWrong(String wrongName, String wrongPassword){
 
-    private LoginPage goToLoginPage(){
+        goToLoginPage()
+                .enterUserName(wrongName)
+                .enterUserPassword(wrongPassword)
+                .clickLoginButton();
+        this.mainPage = new MainPage();
+        PageFactory.initElements(this.driver, mainPage);
+        return mainPage;
+    }
+    //</editor-fold>
+
+    public LoginPage goToLoginPage(){
         try {
             this.driver.navigate().to(ConfigProvider.getBaseURL());
         } catch (IOException e) {
