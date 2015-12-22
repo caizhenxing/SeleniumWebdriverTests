@@ -2,6 +2,7 @@ package ylysov.CGMTests;
 
 import Nhrytsko.WebDriver.Pages.LandingPage;
 import Nhrytsko.WebDriver.Tests.TestBase;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 import org.testng.annotations.Test;
@@ -13,6 +14,7 @@ import org.testng.annotations.Test;
 public class NavigationTests2 extends TestBase {
 
     String patientName = "Hauser";
+    WebDriver driver;
 
 
     @Test(groups = {"group2"})
