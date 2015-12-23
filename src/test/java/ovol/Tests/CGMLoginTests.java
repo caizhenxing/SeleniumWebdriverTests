@@ -14,41 +14,57 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-
 import java.io.IOException;
 
 /**
  * Created by ovo on 22.12.2015.
  */
-public class CGMLoginTests extends TestBase{
+public class CGMLoginTests extends TestBase {
     PageBase pages;
     WebDriver driver;
     MainPage mainPage;
     LoginPage loginPage;
 
-    @FindBy (xpath = ("//button[@type='submit']"))
+    @FindBy(xpath = "//button[@type='submit']")
     @CacheLookup
     private WebElement logLogo;
 
-    @BeforeSuite
+    @FindBy(xpath = "//div[contains(@ng-bind-html,'options.message')]")
+    @CacheLookup
+    private WebElement warningMessage;
+
+
+    @BeforeSuite(alwaysRun = true)
     public void setUp() {
         this.driver = RemoteBrowser.getWebDriverInstance();
         this.pages = new PageBase(this.driver);
 
     }
-    @Test
-    public void goToPage(){
-        pages.goToLoginPage();
-        RemoteBrowser.implicitWait(10);
-    }
-    @Test
+
+    @Test(priority = 0)
     public void tryToValidLogin() throws IOException {
         pages.logInAs(ConfigProvider.getUserName(), ConfigProvider.getUserPassword());
+        pages.goToUserButton();
+        pages.logOut();
+
+    }
+    @Test(priority = 1)
+    public void tryToInvalidLogin() throws IOException {
+        pages.logInAsWrong(ConfigProvider.getWrongName(), ConfigProvider.getWrongPassword());
+       // Assert.assertTrue(warningMessage.isDisplayed(), "Message is displayed");
+
+
     }
 
-    @AfterSuite (alwaysRun = true)
-    public void tearDown(){
+    @AfterSuite(alwaysRun = true)
+    public void tearDown() {
         RemoteBrowser.Quit(this.driver);
     }
+
+
+
+
+
+
 
 }

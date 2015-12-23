@@ -1,5 +1,6 @@
 package Nhrytsko.WebDriver.Pages;
 
+import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -17,6 +18,14 @@ public class MainPage extends PageBase {
     @CacheLookup
     private WebElement landingPageButton;
 
+    @FindBy(xpath = "//a[@class='ng-binding']")
+    @CacheLookup
+    private WebElement userButton;
+
+    @FindBy(xpath = ("//a[contains(.,'                   Logout               ')]"))
+    @CacheLookup
+    private WebElement toLogOut;
+
     public MainPage(){
         this.driver = super.driver;
     }
@@ -27,6 +36,14 @@ public class MainPage extends PageBase {
 
     public void clickLandingPageButton(){
         this.landingPageButton.click();
+    }
+    public void clickUserButton(){
+        RemoteBrowser.waitForElement(userButton);
+        this.userButton.click();
+    }
+    public void clickLogOut(){
+        RemoteBrowser.waitForElement(toLogOut);
+        this.toLogOut.click();
     }
 
 }
