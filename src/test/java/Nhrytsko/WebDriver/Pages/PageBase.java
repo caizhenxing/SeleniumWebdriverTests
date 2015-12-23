@@ -2,6 +2,9 @@ package Nhrytsko.WebDriver.Pages;
 
 import Nhrytsko.WebDriver.WrappedDriver.ConfigProvider;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
@@ -15,6 +18,9 @@ public class PageBase {
     LandingPage landingPage;
 
     //endregion
+    @FindBy (xpath = "//div[@class='message-text ng-binding']")
+    @CacheLookup
+    private WebElement warningMessage;
 
     //region Constructors
     public PageBase() {}
@@ -42,6 +48,8 @@ public class PageBase {
     //<editor-fold desc="Invalid logging">
     public MainPage logInAsWrong(String wrongName, String wrongPassword){
 
+
+
         goToLoginPage()
                 .enterUserName(wrongName)
                 .enterUserPassword(wrongPassword)
@@ -62,6 +70,21 @@ public class PageBase {
         this.loginPage = new LoginPage();
         PageFactory.initElements(this.driver, loginPage);
         return loginPage;
+    }
+
+    public MainPage logOut(){
+        this.mainPage = new MainPage();
+        PageFactory.initElements(this.driver, mainPage);
+        mainPage.clickLogOut();
+        return mainPage;
+
+    }
+    public MainPage goToUserButton(){
+        this.mainPage = new MainPage();
+        PageFactory.initElements(this.driver, mainPage);
+        mainPage.clickUserButton();
+        return mainPage;
+
     }
 
     public MainPage goToLandingPage(){
