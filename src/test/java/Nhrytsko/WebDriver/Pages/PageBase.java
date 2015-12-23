@@ -1,20 +1,18 @@
 package Nhrytsko.WebDriver.Pages;
 
 import Nhrytsko.WebDriver.WrappedDriver.ConfigProvider;
-import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 public class PageBase {
     //region Fields
 
-    WebDriver driver;
+    public WebDriver driver;
     MainPage mainPage;
     LoginPage loginPage;
+    LandingPage landingPage;
 
     //endregion
 
@@ -29,6 +27,7 @@ public class PageBase {
 
     //region Methods
 
+    //<editor-fold desc="Valid logging">
     public MainPage logInAs(String userName, String password){
 
         goToLoginPage()
@@ -39,8 +38,21 @@ public class PageBase {
                 PageFactory.initElements(this.driver, mainPage);
         return mainPage;
     }
+    //</editor-fold>
+    //<editor-fold desc="Invalid logging">
+    public MainPage logInAsWrong(String wrongName, String wrongPassword){
 
-    private LoginPage goToLoginPage(){
+        goToLoginPage()
+                .enterUserName(wrongName)
+                .enterUserPassword(wrongPassword)
+                .clickLoginButton();
+        this.mainPage = new MainPage();
+        PageFactory.initElements(this.driver, mainPage);
+        return mainPage;
+    }
+    //</editor-fold>
+
+    public LoginPage goToLoginPage(){
         try {
             this.driver.navigate().to(ConfigProvider.getBaseURL());
         } catch (IOException e) {
@@ -51,5 +63,31 @@ public class PageBase {
         PageFactory.initElements(this.driver, loginPage);
         return loginPage;
     }
+
+    public MainPage goToLandingPage(){
+        this.mainPage = new MainPage();
+        PageFactory.initElements(this.driver, mainPage);
+        mainPage.clickMenuButton();
+        mainPage.clickLandingPageButton();
+        return mainPage;
+    }
+
+    public LandingPage goToEpisodePage(String patientName) throws InterruptedException{
+        this.landingPage = new LandingPage();
+        PageFactory.initElements(this.driver, landingPage);
+        landingPage.enterEpisode(patientName);
+        landingPage.selectTopSearchResult();
+//        landingPage.selectRandomSearchResult();
+        return landingPage;
+    }
+
+    public LandingPage InitializeLandingPage(){
+        this.landingPage = new LandingPage();
+        PageFactory.initElements(this.driver, landingPage);
+        return landingPage;
+    }
+
+
+
     //endregion
 }

@@ -9,25 +9,24 @@ public class MainPage extends PageBase {
 
     private WebDriver driver;
 
-    @FindBy(xpath = "/html/body/hx-feature-view-port/div/cgm-shell/div/cgm-shell-main-menu/div[1]/ul[1]/li/a")
+    @FindBy(xpath = "//a[@class='menu-link ng-binding']")
     @CacheLookup
     private WebElement menuButton;
 
-    @FindBy(xpath = "/html/body/hx-feature-view-port/div/cgm-shell/div/cgm-shell-main-menu/div[1]/ul[1]/li/div/a")
+    @FindBy(xpath = "//a[@class='menu-item ng-binding ng-scope cgm-truncation']")
     @CacheLookup
-    private WebElement allFeaturesOption;
+    private WebElement landingPageButton;
 
     public MainPage(){
         this.driver = super.driver;
     }
 
-    public MainPage clickMenuButton(){
+    public void clickMenuButton(){
         this.menuButton.click();
-        return this;
     }
 
-    public MainPage selectAllFeaturesOption(){
-        this.allFeaturesOption.click();
-        return this;
+    public void clickLandingPageButton(){
+        this.landingPageButton.click();
     }
+
 }
