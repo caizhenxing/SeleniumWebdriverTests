@@ -1,14 +1,14 @@
 package ylysov.CGMTests;
 
+import Nhrytsko.WebDriver.Tests.TestBase;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-import ylysov.CGMAutomationFramework.PageBase;
-import ylysov.CGMAutomationFramework.TimelinePage;
+
 
 /**
  * Created by ylysov on 11.12.2015.
  */
-public class TimelineTests extends TestOrigin {
+public class TimelineTests extends TestBase {
 
 //not working yet
 
