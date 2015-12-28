@@ -18,13 +18,7 @@ public class MainPageTests extends TestBase {
     @BeforeClass
     public void testClassSetup(){
         this.loginPage = new LoginPage(super.driver);
-
-        try {
-            super.pages.logInAs(ConfigProvider.getValidUserName(), ConfigProvider.getValidUserPassword());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        super.pages.logInAs(ConfigProvider.getValidUserName(), ConfigProvider.getValidUserPassword());
         this.mainPage = new MainPage(super.driver);
 
         RemoteBrowser.implicitWait(10);

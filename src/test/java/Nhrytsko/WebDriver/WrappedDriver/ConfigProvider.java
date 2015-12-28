@@ -18,12 +18,24 @@ public class ConfigProvider {
         return properties;
     }
 
-    public static String getValidUserName() throws IOException {
-        return ConfigurationParameters().getProperty("userName");
+    public static String getValidUserName() {
+        try {
+            return ConfigurationParameters().getProperty("userName");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
-    public static String getValidUserPassword() throws IOException {
-        return ConfigurationParameters().getProperty("password");
+    public static String getValidUserPassword() {
+        try {
+            return ConfigurationParameters().getProperty("password");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     public static String getDriverStartOption () throws IOException {
@@ -42,11 +54,23 @@ public class ConfigProvider {
     public static String getPatientData() throws IOException {
         return ConfigurationParameters().getProperty("patient");
     }
-    public static String getInvalidUserName() throws IOException {
-        return ConfigurationParameters().getProperty("wrongName");
+    public static String getInvalidUserName(){
+        try {
+            return ConfigurationParameters().getProperty("wrongName");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
-    public static String getInvalidUserPassword() throws IOException {
-        return ConfigurationParameters().getProperty("wrongPassword");
+    public static String getInvalidUserPassword() {
+        try {
+            return ConfigurationParameters().getProperty("wrongPassword");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     public static String getPatientName() throws IOException {

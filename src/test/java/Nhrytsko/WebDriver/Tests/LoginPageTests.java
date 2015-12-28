@@ -21,11 +21,7 @@ public class LoginPageTests extends TestBase {
 
     @Test (groups = {"group2"})
     public void userCannotLogInWithInvalidCredentials() throws InterruptedException {
-        try {
             super.pages.logInAs(ConfigProvider.getInvalidUserName(), ConfigProvider.getInvalidUserPassword());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         String warningMessage = this.loginPage.getWarningMessage();
 
