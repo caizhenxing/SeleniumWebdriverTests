@@ -32,12 +32,8 @@ public class NavigationTests2 extends TestBase2 {
     @Test
     public void t1LogIn() {
         this.loginPage = new LoginPage(driver);  //!!!!!!!
-        try {
         loginPage.enterUserName(ConfigProvider.getValidUserName());
         loginPage.enterUserPassword(ConfigProvider.getValidUserPassword());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         loginPage.clickLoginButton();
        }
 
@@ -52,11 +48,7 @@ public class NavigationTests2 extends TestBase2 {
     @Test
     public void t3NavigateToEpisodePage() {
         this.landingPage = new LandingPage(driver);
-        try {
         landingPage.enterEpisode(ConfigProvider.getPatientName());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         landingPage.selectTopSearchResult();
     }
 

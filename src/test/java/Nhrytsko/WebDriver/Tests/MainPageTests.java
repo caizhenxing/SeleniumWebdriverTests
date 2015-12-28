@@ -8,8 +8,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-
 public class MainPageTests extends TestBase {
 
     MainPage mainPage;
@@ -21,7 +19,7 @@ public class MainPageTests extends TestBase {
         super.pages.logInAs(ConfigProvider.getValidUserName(), ConfigProvider.getValidUserPassword());
         this.mainPage = new MainPage(super.driver);
 
-        RemoteBrowser.implicitWait(10);
+        RemoteBrowser.implicitWait(ConfigProvider.getPageLoadTimeout());
     }
 
     @Test(groups = {"group2"})

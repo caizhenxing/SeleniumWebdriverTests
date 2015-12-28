@@ -35,11 +35,7 @@ public class PageBase {
     }
 
     public LoginPage goToLoginPage(){
-        try {
-            this.driver.navigate().to(ConfigProvider.getBaseURL());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.driver.navigate().to(ConfigProvider.getBaseURL());
         return new LoginPage(RemoteBrowser.webDriverInstance());
     }
 

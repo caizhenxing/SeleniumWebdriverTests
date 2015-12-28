@@ -2,13 +2,10 @@ package Nhrytsko.WebDriver.Tests;
 
 import Nhrytsko.WebDriver.Pages.LoginPage;
 import Nhrytsko.WebDriver.Pages.PageBase;
-import Nhrytsko.WebDriver.WrappedDriver.ConfigProvider;
 import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
-
-import java.io.IOException;
 
 public class TestBase {
     PageBase pages;

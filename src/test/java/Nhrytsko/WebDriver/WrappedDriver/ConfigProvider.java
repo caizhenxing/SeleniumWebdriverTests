@@ -38,42 +38,97 @@ public class ConfigProvider {
         return null;
     }
 
-    public static String getDriverStartOption () throws IOException {
-        return ConfigurationParameters().getProperty("driverStartOption");
+    public static String getDriverStartOption () {
+        try {
+            return ConfigurationParameters().getProperty("driverStartOption");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    public static String getBaseURL() throws IOException{
-        return ConfigurationParameters().getProperty("130_VirtualMachineURL");
+    public static long getPageLoadTimeout(){
+        try{
+            long pageLoadTimeout = Long.parseLong(ConfigurationParameters().getProperty("pageLoadTimeout"));
+            return pageLoadTimeout;
     }
-    public static String getPingUrl() throws IOException{
-        return ConfigurationParameters().getProperty("pingUrl");
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        return -1;
     }
-    public static String getPageUrl() throws IOException{
-        return ConfigurationParameters().getProperty("pageUrl");
+
+    public static long getThreadSleepTimeout(){
+        try{
+            long pageLoadTimeout = Long.parseLong(ConfigurationParameters().getProperty("threadSleepTimeout"));
+            return pageLoadTimeout;
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        return -1;
     }
-    public static String getPatientData() throws IOException {
-        return ConfigurationParameters().getProperty("patient");
+
+    public static String getBaseURL() {
+        try {
+            return ConfigurationParameters().getProperty("130_VirtualMachineURL");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
+
+    public static String getPingUrl() {
+        try {
+            return ConfigurationParameters().getProperty("pingUrl");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String getPageUrl() {
+        try {
+            return ConfigurationParameters().getProperty("pageUrl");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String getPatientData() {
+        try {
+            return ConfigurationParameters().getProperty("patient");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static String getInvalidUserName(){
         try {
             return ConfigurationParameters().getProperty("wrongName");
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return null;
     }
+
     public static String getInvalidUserPassword() {
         try {
             return ConfigurationParameters().getProperty("wrongPassword");
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return null;
     }
 
-    public static String getPatientName() throws IOException {
-        return ConfigurationParameters().getProperty("patientName");
+    public static String getPatientName() {
+        try {
+            return ConfigurationParameters().getProperty("patientName");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

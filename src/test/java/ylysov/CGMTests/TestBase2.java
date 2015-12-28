@@ -25,7 +25,7 @@ public class TestBase2 {
 
     @BeforeSuite(alwaysRun = true)
     public  void InitializeBrowser(){
-        this.driver = RemoteBrowser.getWebDriverInstance();
+        this.driver = RemoteBrowser.webDriverInstance();
         this.driver.navigate().to(StartPageURL);
     }
 

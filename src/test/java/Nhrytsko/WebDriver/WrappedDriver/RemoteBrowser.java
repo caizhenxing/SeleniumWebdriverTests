@@ -42,12 +42,12 @@ public class RemoteBrowser {
     }
 
     public static void waitForElement(WebElement element){
-        WebDriverWait wait = new WebDriverWait(webDriverInstance(), 30);
+        WebDriverWait wait = new WebDriverWait(webDriverInstance(), ConfigProvider.getPageLoadTimeout());
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
     public static void waitForAllElements(List<WebElement> elements) {
-        WebDriverWait wait = new WebDriverWait(webDriverInstance(), 30);
+        WebDriverWait wait = new WebDriverWait(webDriverInstance(), ConfigProvider.getPageLoadTimeout());
         wait.until(ExpectedConditions.visibilityOfAllElements(elements));
     }
 
@@ -64,10 +64,10 @@ public class RemoteBrowser {
             }
         };
 
-        WebDriverWait wait = new WebDriverWait(webDriverInstance(), 30);
+        WebDriverWait wait = new WebDriverWait(webDriverInstance(), ConfigProvider.getPageLoadTimeout());
         wait.until(pageLoadCondition);}
         catch (Exception e) {
-            implicitWait(30);
+            implicitWait(ConfigProvider.getPageLoadTimeout());
         }
     }
 
@@ -82,7 +82,7 @@ public class RemoteBrowser {
                         .executeScript("return jQuery.active ==0");
                 if (ajaxIsComplete) break;
                 try{
-                    Thread.sleep(100);
+                    Thread.sleep(ConfigProvider.getThreadSleepTimeout());
                 }
                 catch (InterruptedException e){}
         }
