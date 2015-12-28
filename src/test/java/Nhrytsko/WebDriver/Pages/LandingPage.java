@@ -2,6 +2,7 @@ package Nhrytsko.WebDriver.Pages;
 
 import Nhrytsko.WebDriver.WrappedDriver.ConfigProvider;
 import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
+import com.gargoylesoftware.htmlunit.ElementNotFoundException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -30,16 +31,16 @@ public class LandingPage extends PageBase {
     int resultsListSize;
     int selectFromList;
 
-    public LandingPage(WebDriver driver){
+    public LandingPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(super.driver, this);
     }
-
     public LandingPage enterEpisode(String patientName) {
         RemoteBrowser.waitForElement(this.episodeInput);
         episodeInput.click();
         episodeInput.sendKeys(patientName);
-        RemoteBrowser.waitForAllElements(searchResults);
+       //        RemoteBrowser.waitForAllElements(searchResults);
+        RemoteBrowser.implicitWait(10);
         return this;
     }
     //region Vol Search Patient
