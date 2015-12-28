@@ -40,7 +40,7 @@ public class RemoteBrowser {
     }
 
     public static void waitForElement(WebElement element){
-        WebDriverWait wait = new WebDriverWait(getWebDriverInstance(), 10);
+        WebDriverWait wait = new WebDriverWait(getWebDriverInstance(), 30);
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 

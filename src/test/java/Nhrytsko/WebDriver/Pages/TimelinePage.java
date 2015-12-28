@@ -7,12 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
-/**
- * Created by ylysov on 22.12.2015.
- */
 public class TimelinePage  extends PageBase {
-
-    private WebDriver driver;
 
     @FindBy(xpath = "//span[contains(.,'Medications')]")
     @CacheLookup
@@ -38,7 +33,9 @@ public class TimelinePage  extends PageBase {
     @CacheLookup
     private WebElement drugHeader;
 
-    public TimelinePage() { this.driver = super.driver; }
+    public TimelinePage(WebDriver driver) {
+        super(driver);
+    }
 
     public TimelinePage clickMedicationsButton(){
         RemoteBrowser.waitForElement(this.medicationsButton);

@@ -5,10 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage extends PageBase {
-
-    private WebDriver driver;
 
     @FindBy(xpath = "/html/body/hx-include/div/div/div[2]/div/ng-include/form/div/div/div[2]/div[1]/div/div/input")
     @CacheLookup
@@ -22,10 +21,17 @@ public class LoginPage extends PageBase {
     @CacheLookup
     private WebElement loginButton;
 
-    public LoginPage() {
-        this.driver = super.driver;
+    //endregion
+    @FindBy (xpath = "//div[@class='message-toast message-toast-neutral']")
+    @CacheLookup
+    private WebElement warningMessage;
+
+    public LoginPage (WebDriver driver){
+        super(driver);
+        PageFactory.initElements(RemoteBrowser.getWebDriverInstance(), this);
     }
 
+    //region Methods
     public LoginPage enterUserName(String userName) {
         RemoteBrowser.waitForElement(this.userName);
         this.userName.click();
@@ -44,4 +50,16 @@ public class LoginPage extends PageBase {
         this.loginButton.click();
         return this;
     }
+
+    public boolean logInButtonIsDisplayed() {
+        RemoteBrowser.waitForElement(this.loginButton);
+        return this.loginButton.isDisplayed();
+    }
+
+    public String getWarningMessage() throws InterruptedException {
+        Thread.sleep(1000);
+        RemoteBrowser.waitForElement(this.warningMessage);
+        return this.warningMessage.getText();
+    }
+    //endregion
 }

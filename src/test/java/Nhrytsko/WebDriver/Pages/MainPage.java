@@ -5,16 +5,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class MainPage extends PageBase {
 
-    private WebDriver driver;
-
+    //region Fields
     @FindBy(xpath = "//a[@class='menu-link ng-binding']")
     @CacheLookup
     private WebElement menuButton;
 
-    @FindBy(xpath = "//a[@class='menu-item ng-binding ng-scope cgm-truncation']")
+    @FindBy(xpath = "//a[contains(.,'Landing Page')]")
     @CacheLookup
     private WebElement landingPageButton;
 
@@ -24,26 +24,33 @@ public class MainPage extends PageBase {
 
     @FindBy(xpath = ("//a[contains(.,'                   Logout               ')]"))
     @CacheLookup
-    private WebElement toLogOut;
+    private WebElement logOutButton;
 
-    public MainPage(){
-        this.driver = super.driver;
+    public MainPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(RemoteBrowser.getWebDriverInstance(), this);
+    }
+    //endregion
+
+    //region Methods
+    public boolean menuButtonIsDisplayed(){
+        return this.menuButton.isDisplayed();
     }
 
-    public void clickMenuButton(){
-        this.menuButton.click();
-    }
-
-    public void clickLandingPageButton(){
+    public LandingPage clickLandingPageButton(){
         this.landingPageButton.click();
+        return new LandingPage(RemoteBrowser.getWebDriverInstance());
     }
-    public void clickUserButton(){
+
+    public MainPage clickUserButton(){
         RemoteBrowser.waitForElement(userButton);
         this.userButton.click();
+        return this;
     }
-    public void clickLogOut(){
-        RemoteBrowser.waitForElement(toLogOut);
-        this.toLogOut.click();
+    public LoginPage clickLogOut(){
+        RemoteBrowser.waitForElement(this.logOutButton);
+        this.logOutButton.click();
+        return new LoginPage(RemoteBrowser.getWebDriverInstance());
     }
-
+    //endregion
 }

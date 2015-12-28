@@ -18,11 +18,11 @@ public class ConfigProvider {
         return properties;
     }
 
-    public static String getUserName() throws IOException {
+    public static String getValidUserName() throws IOException {
         return ConfigurationParameters().getProperty("userName");
     }
 
-    public static String getUserPassword() throws IOException {
+    public static String getValidUserPassword() throws IOException {
         return ConfigurationParameters().getProperty("password");
     }
 
@@ -42,10 +42,10 @@ public class ConfigProvider {
     public static String getPatientData() throws IOException {
         return ConfigurationParameters().getProperty("patient");
     }
-    public static String getWrongName() throws IOException {
+    public static String getInvalidUserName() throws IOException {
         return ConfigurationParameters().getProperty("wrongName");
     }
-    public static String getWrongPassword() throws IOException {
+    public static String getInvalidUserPassword() throws IOException {
         return ConfigurationParameters().getProperty("wrongPassword");
     }
 }

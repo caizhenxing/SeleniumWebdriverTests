@@ -1,19 +1,16 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="MainPageTEst">
+<suite name="MainPageTest">
 
     <test name="loginPage">
         <groups>
             <run>
-                <exclude name="group1"/>
             </run>
         </groups>
 
         <classes>
-            <class name="npyshchyk.tests.CGMLoginTest" />
+            <class name="Nhrytsko.WebDriver.Tests.MainPageTests" />
+            <class name="Nhrytsko.WebDriver.Tests.LoginPageTests" />
         </classes>
     </test>
-
-
-
 </suite>
