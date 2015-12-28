@@ -1,45 +1,77 @@
 package ylysov.CGMTests;
 
-import Nhrytsko.WebDriver.Pages.LandingPage;
-import Nhrytsko.WebDriver.Pages.MainPage;
+import Nhrytsko.WebDriver.Pages.*;
 import Nhrytsko.WebDriver.Tests.TestBase;
+import Nhrytsko.WebDriver.WrappedDriver.ConfigProvider;
 import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class NavigationTests2 extends TestBase {
+import java.io.IOException;
 
-    String patientName = "Hauser";
-    WebDriver driver;
+/**
+ * Created by ylysov on 16.12.2015.
+ */
+public class NavigationTests2 extends TestBase2 {
 
+    LoginPage loginPage;
+    MainPage mainPage;
+    LandingPage landingPage;
+    EpisodePage episodePage;
+    TimelinePage timelinePage;
 
+    @Test
+    public void t1LogIn() {
+        this.loginPage = new LoginPage(driver);  //!!!!!!!
+        try {
+        loginPage.enterUserName(ConfigProvider.getValidUserName());
+        loginPage.enterUserPassword(ConfigProvider.getValidUserPassword());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        loginPage.clickLoginButton();
+       }
 
-    @Test(groups = {"group2"})
-    public void t1NavigateToLandingPage(){
-        //super.mainPage.clickMenuButton();
-        //super.pages.mainPage.clickLandingPageButton();
+    @Test
+    public void t2NavigateToLandingPage() {
+        this.mainPage = new MainPage(driver);
+        mainPage.clickMenuButton();
+        mainPage.clickLandingPageButton();
     }
 
 
-    @Test(groups = {"group2"})
-    public void t2NavigateToEpisodePage() {
-        patientName = "Hauser";
-//        super.landingPage.InitializeLandingPage();              // Я думаю так воно б мало працювати, але на жаль не працює
-//        super.landingPage.enterEpisode(patientName);
-//        super.landingPage.selectTopSearchResult();
-
-        LandingPage landingPage = new LandingPage(RemoteBrowser.getWebDriverInstance());              //Так працює, але хочу щоб ініціалізація проходила в PageBase
-        PageFactory.initElements(this.driver, landingPage);
-        landingPage.enterEpisode(patientName);
+    @Test
+    public void t3NavigateToEpisodePage() {
+        this.landingPage = new LandingPage(driver);
+        try {
+        landingPage.enterEpisode(ConfigProvider.getPatientName());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         landingPage.selectTopSearchResult();
-
     }
 
+    @Test
+    public void t4NavigateToTimelinePage() {
+        this.episodePage = new EpisodePage(driver);
+        episodePage.selectTimelineTab();
+    }
 
-//    @Test (groups = {"group2"})
-//    public void ClickSignInLink() throws IOException {
-//    }
-
+    @Test
+    public void t5OnTimelinePage() {
+        this.timelinePage = new TimelinePage(driver);
+        timelinePage.clickMedicationsButton();
+        timelinePage.clickAddNewMedication();
+        timelinePage.selectStandardMedication();
+    }
 }
+

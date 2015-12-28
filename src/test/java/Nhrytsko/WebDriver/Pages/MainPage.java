@@ -37,6 +37,12 @@ public class MainPage extends PageBase {
         return this.menuButton.isDisplayed();
     }
 
+    public MainPage clickMenuButton(){                       // ylysov  added this method 28.12.2015
+        RemoteBrowser.waitForElement(menuButton);
+        this.menuButton.click();
+        return this;
+    }
+
     public LandingPage clickLandingPageButton(){
         this.landingPageButton.click();
         return new LandingPage(RemoteBrowser.getWebDriverInstance());

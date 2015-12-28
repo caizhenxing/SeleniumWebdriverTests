@@ -48,4 +48,8 @@ public class ConfigProvider {
     public static String getInvalidUserPassword() throws IOException {
         return ConfigurationParameters().getProperty("wrongPassword");
     }
+
+    public static String getPatientName() throws IOException {
+        return ConfigurationParameters().getProperty("patientName");
+    }
 }
