@@ -40,7 +40,7 @@ public class PageBase {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return new LoginPage(RemoteBrowser.getWebDriverInstance());
+        return new LoginPage(RemoteBrowser.webDriverInstance());
     }
 
     //endregion

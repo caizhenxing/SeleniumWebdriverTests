@@ -28,7 +28,7 @@ public class CGMLoginTest extends TestBase{
     // should be removed
     @BeforeSuite(alwaysRun = true)
     public void setUp(){
-        this.driver = RemoteBrowser.getWebDriverInstance();
+        this.driver = RemoteBrowser.webDriverInstance();
         this.pages = new PageBase(this.driver);
     }
 

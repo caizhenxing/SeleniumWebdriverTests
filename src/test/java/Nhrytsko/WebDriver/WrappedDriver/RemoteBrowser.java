@@ -1,9 +1,11 @@
 package Nhrytsko.WebDriver.WrappedDriver;
 
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -25,7 +27,7 @@ public class RemoteBrowser {
 
     //region Methods
 
-    public static WebDriver getWebDriverInstance(){
+    public static WebDriver webDriverInstance(){
         return SingletonHolder.driverInstance;
         /*String s = ConfigProvider.driverStartOption();
         if (s.equals("local")) {
@@ -40,18 +42,51 @@ public class RemoteBrowser {
     }
 
     public static void waitForElement(WebElement element){
-        WebDriverWait wait = new WebDriverWait(getWebDriverInstance(), 30);
+        WebDriverWait wait = new WebDriverWait(webDriverInstance(), 30);
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
     public static void waitForAllElements(List<WebElement> elements) {
-        WebDriverWait wait = new WebDriverWait(getWebDriverInstance(), 10);
+        WebDriverWait wait = new WebDriverWait(webDriverInstance(), 30);
         wait.until(ExpectedConditions.visibilityOfAllElements(elements));
     }
 
     public static void implicitWait(long timeToWaitInSeconds){
-        getWebDriverInstance().manage().timeouts().implicitlyWait(timeToWaitInSeconds, TimeUnit.SECONDS);
+        webDriverInstance().manage().timeouts().implicitlyWait(timeToWaitInSeconds, TimeUnit.SECONDS);
+    }
+
+    public static void waitForDocumentToBeReady(){
+        try{
+        ExpectedCondition<Boolean> pageLoadCondition = new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver driver) {
+                return ((JavascriptExecutor)webDriverInstance())
+                        .executeScript("return document.readyState").equals("complete");
+            }
+        };
+
+        WebDriverWait wait = new WebDriverWait(webDriverInstance(), 30);
+        wait.until(pageLoadCondition);}
+        catch (Exception e) {
+            implicitWait(30);
+        }
+    }
+
+    public static void waitForAjax() {
+        Boolean isJqueryUsed = (Boolean)((JavascriptExecutor)webDriverInstance())
+                .executeScript("return (typeof(jQuery) != 'undefined')");
+        if (isJqueryUsed){
+            while (true){
+
+                //JavaScript test to verify jQuery is active or not
+                Boolean ajaxIsComplete = (Boolean)((JavascriptExecutor)webDriverInstance())
+                        .executeScript("return jQuery.active ==0");
+                if (ajaxIsComplete) break;
+                try{
+                    Thread.sleep(100);
+                }
+                catch (InterruptedException e){}
+        }
+        }
     }
     //endregion
-
 }

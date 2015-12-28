@@ -28,7 +28,7 @@ public class LoginPage extends PageBase {
 
     public LoginPage (WebDriver driver){
         super(driver);
-        PageFactory.initElements(RemoteBrowser.getWebDriverInstance(), this);
+        PageFactory.initElements(RemoteBrowser.webDriverInstance(), this);
     }
 
     //region Methods

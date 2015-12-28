@@ -3,7 +3,6 @@ package Nhrytsko.WebDriver.Tests;
 import Nhrytsko.WebDriver.Pages.LoginPage;
 import Nhrytsko.WebDriver.Pages.MainPage;
 import Nhrytsko.WebDriver.WrappedDriver.ConfigProvider;
-import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -17,7 +16,7 @@ public class LoginPageTests extends TestBase {
 
     @BeforeClass
     public void testClassSetup(){
-        this.loginPage = new LoginPage(RemoteBrowser.getWebDriverInstance());
+        this.loginPage = new LoginPage(super.driver);
     }
 
     @Test (groups = {"group2"})
@@ -28,8 +27,8 @@ public class LoginPageTests extends TestBase {
             e.printStackTrace();
         }
 
-        String a = this.loginPage.getWarningMessage();
+        String warningMessage = this.loginPage.getWarningMessage();
 
-        Assert.assertEquals(a, "Login failed - Invalid user name or bad password.", "Messages are not equal");
+        Assert.assertEquals(warningMessage, "Login failed - Invalid user name or bad password.", "Messages are not equal");
     }
 }

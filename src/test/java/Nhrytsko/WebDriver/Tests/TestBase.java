@@ -18,12 +18,12 @@ public class TestBase {
 
     @BeforeSuite (alwaysRun = true)
     public void setUp(){
-        this.driver = RemoteBrowser.getWebDriverInstance();
+        this.driver = RemoteBrowser.webDriverInstance();
         this.pages = new PageBase(this.driver);
     }
 
     @AfterSuite (alwaysRun = true)
     public void tearDown(){
-        RemoteBrowser.Quit(this.driver);
+        RemoteBrowser.webDriverInstance().quit();
     }
 }

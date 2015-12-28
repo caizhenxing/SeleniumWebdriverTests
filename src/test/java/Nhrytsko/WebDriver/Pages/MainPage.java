@@ -28,7 +28,7 @@ public class MainPage extends PageBase {
 
     public MainPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(RemoteBrowser.getWebDriverInstance(), this);
+        PageFactory.initElements(RemoteBrowser.webDriverInstance(), this);
     }
     //endregion
 
@@ -45,7 +45,7 @@ public class MainPage extends PageBase {
 
     public LandingPage clickLandingPageButton(){
         this.landingPageButton.click();
-        return new LandingPage(RemoteBrowser.getWebDriverInstance());
+        return new LandingPage(RemoteBrowser.webDriverInstance());
     }
 
     public MainPage clickUserButton(){
@@ -56,7 +56,7 @@ public class MainPage extends PageBase {
     public LoginPage clickLogOut(){
         RemoteBrowser.waitForElement(this.logOutButton);
         this.logOutButton.click();
-        return new LoginPage(RemoteBrowser.getWebDriverInstance());
+        return new LoginPage(RemoteBrowser.webDriverInstance());
     }
     //endregion
 }
