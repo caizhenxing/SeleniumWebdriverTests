@@ -36,6 +36,7 @@ public class PageBase {
 
     public LoginPage goToLoginPage(){
         this.driver.navigate().to(ConfigProvider.getBaseURL());
+        RemoteBrowser.waitForDocumentToBeReady();
         return new LoginPage(RemoteBrowser.webDriverInstance());
     }
 

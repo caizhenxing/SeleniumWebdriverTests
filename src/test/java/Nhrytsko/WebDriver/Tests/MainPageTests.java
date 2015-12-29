@@ -3,7 +3,6 @@ package Nhrytsko.WebDriver.Tests;
 import Nhrytsko.WebDriver.Pages.LoginPage;
 import Nhrytsko.WebDriver.Pages.MainPage;
 import Nhrytsko.WebDriver.WrappedDriver.ConfigProvider;
-import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -18,8 +17,6 @@ public class MainPageTests extends TestBase {
         this.loginPage = new LoginPage(super.driver);
         super.pages.logInAs(ConfigProvider.getValidUserName(), ConfigProvider.getValidUserPassword());
         this.mainPage = new MainPage(super.driver);
-
-        RemoteBrowser.implicitWait(ConfigProvider.getPageLoadTimeout());
     }
 
     @Test(groups = {"group2"})
