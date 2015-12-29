@@ -2,13 +2,12 @@ package Nhrytsko.WebDriver.Pages;
 
 import Nhrytsko.WebDriver.WrappedDriver.ConfigProvider;
 import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
-import com.gargoylesoftware.htmlunit.ElementNotFoundException;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 
 import java.io.IOException;
 import java.util.List;
@@ -24,9 +23,11 @@ public class LandingPage extends PageBase {
     @CacheLookup
     private List<WebElement> searchResults;
 
-    @FindBy(xpath = "//div[@class='search-screen']")
+    @FindBy(xpath = "//ul[@class='select2-results']")
     @CacheLookup
-    private List<WebElement> searchResults2;
+   // private ArrayList<WebElement> searchResults2;
+    private List<WebElement> searchResults3;
+
 
     int resultsListSize;
     int selectFromList;
@@ -48,7 +49,7 @@ public class LandingPage extends PageBase {
         RemoteBrowser.waitForElement(this.episodeInput);
         episodeInput.click();
         episodeInput.sendKeys(ConfigProvider.getPatientData());
-        RemoteBrowser.waitForAllElements(searchResults2);
+        RemoteBrowser.waitForAllElements(searchResults3);
         return this;
     }
     //endregion
@@ -61,6 +62,25 @@ public class LandingPage extends PageBase {
         Random generator = new Random();
         selectFromList = generator.nextInt(resultsListSize);
         this.searchResults.get(selectFromList).click();
+        return this;
+    }
+    public LandingPage selectExactResult() throws IOException {
+        int i = 1 ;
+        for(WebElement webElementLiList : searchResults3) {
+            if (!(i <= searchResults3.size())) break;
+            WebElement webElementLi = webElementLiList.findElement(By.xpath("//li[@class='select2-results-dept-0 " +
+                    "select2-result select2-result-selectable'][" + i + "]"));
+            String text = webElementLi.getText();
+            if (text.equalsIgnoreCase(ConfigProvider.getPatientEpisode())) {
+                System.out.println("Search String :: " + text);
+                webElementLi.click();
+                break;
+            }
+
+            i++;
+            System.out.println(searchResults3);
+
+        }
         return this;
     }
 
