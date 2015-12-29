@@ -3,11 +3,6 @@ package Nhrytsko.WebDriver.Pages;
 import Nhrytsko.WebDriver.WrappedDriver.ConfigProvider;
 import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
-import org.openqa.selenium.support.FindBy;
-
-import java.io.IOException;
 
 public class PageBase {
     //region Fields
@@ -33,9 +28,23 @@ public class PageBase {
                 .clickLoginButton();
         return this.mainPage;
     }
+    public MainPage logInAs39(String userName, String password){
+        goToLoginPage39()
+                .enterUserName(userName)
+                .enterUserPassword(password)
+                .clickLoginButton();
+        return this.mainPage;
+    }
+
 
     public LoginPage goToLoginPage(){
         this.driver.navigate().to(ConfigProvider.getBaseURL());
+        RemoteBrowser.waitForDocumentToBeReady();
+        return new LoginPage(RemoteBrowser.webDriverInstance());
+    }
+
+    public LoginPage goToLoginPage39(){
+        this.driver.navigate().to(ConfigProvider.getPageUrl());
         RemoteBrowser.waitForDocumentToBeReady();
         return new LoginPage(RemoteBrowser.webDriverInstance());
     }

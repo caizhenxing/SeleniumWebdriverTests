@@ -8,10 +8,9 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
 public class TestBase {
-    PageBase pages;
-    WebDriver driver;
-
-    LoginPage loginPage;
+    public PageBase pages;
+    public WebDriver driver;
+    public LoginPage loginPage;
 
     @BeforeSuite (alwaysRun = true)
     public void setUp(){

@@ -89,7 +89,7 @@ public class ConfigProvider {
 
     public static String getPageUrl() {
         try {
-            return ConfigurationParameters().getProperty("pageUrl");
+            return ConfigurationParameters().getProperty("39_VirtualMachineURL");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -126,6 +126,14 @@ public class ConfigProvider {
     public static String getPatientName() {
         try {
             return ConfigurationParameters().getProperty("patientName");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public static String getPatientEpisode() {
+        try {
+            return ConfigurationParameters().getProperty("patientEpisode");
         } catch (IOException e) {
             e.printStackTrace();
         }
