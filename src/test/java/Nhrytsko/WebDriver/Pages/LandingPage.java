@@ -25,7 +25,7 @@ public class LandingPage extends PageBase {
 
     @FindBy(xpath = "//ul[@class='select2-results']")
     @CacheLookup
-   // private ArrayList<WebElement> searchResults2;
+
     private List<WebElement> searchResults3;
 
 
@@ -66,19 +66,24 @@ public class LandingPage extends PageBase {
     }
     public LandingPage selectExactResult() throws IOException {
         int i = 1 ;
-        for(WebElement webElementLiList : searchResults3) {
-            if (!(i <= searchResults3.size())) break;
-            WebElement webElementLi = webElementLiList.findElement(By.xpath("//li[@class='select2-results-dept-0 " +
-                    "select2-result select2-result-selectable'][" + i + "]"));
-            String text = webElementLi.getText();
+        List<WebElement> webElements =driver.findElements(By.xpath("//li[@class='select2-results-dept-0 " +
+                "select2-result select2-result-selectable']"));
+
+        for(WebElement webElementList : webElements) {
+            if (!(i <=webElements.size())) break;
+           WebElement webElement =webElementList.findElement(By.xpath("//li[@class='select2-results-dept-0 " +
+                    "select2-result select2-result-selectable']["+i+"]"));
+
+           RemoteBrowser.implicitWait(5);
+           String text = webElement.getText();
             if (text.equalsIgnoreCase(ConfigProvider.getPatientEpisode())) {
-                System.out.println("Search String :: " + text);
-                webElementLi.click();
-                break;
-            }
+                webElement.click();
+               }
+            else { System.out.println("No matches");}
+            PageFactory.initElements(this.driver, webElement);
 
             i++;
-            System.out.println(searchResults3);
+
 
         }
         return this;

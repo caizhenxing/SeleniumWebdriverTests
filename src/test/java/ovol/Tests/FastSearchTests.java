@@ -3,6 +3,7 @@ package ovol.Tests;
 import Nhrytsko.WebDriver.Pages.*;
 import Nhrytsko.WebDriver.Tests.TestBase;
 import Nhrytsko.WebDriver.WrappedDriver.ConfigProvider;
+import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -31,7 +32,9 @@ public class FastSearchTests extends TestBase{
         loginPage.logInAs39(ConfigProvider.getValidUserName(),ConfigProvider.getValidUserPassword());
         mainPage.clickMenuButton().clickLandingPageButton();
         landingPage.searchPatient();
+        RemoteBrowser.implicitWait(5);
         landingPage.selectExactResult();
+
 
     }
 }
