@@ -1,9 +1,5 @@
 package ylysov.CGMTests;
 
-/**
- * Created by ylysov on 28.12.2015.
- */
-
 import org.openqa.selenium.WebDriver;
 
 import java.net.MalformedURLException;

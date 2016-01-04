@@ -1,6 +1,8 @@
 package Nhrytsko.WebDriver.Pages;
 
 import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -9,30 +11,26 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage extends PageBase {
 
-    @FindBy(xpath = "/html/body/hx-include/div/div/div[2]/div/ng-include/form/div/div/div[2]/div[1]/div/div/input")
-    @CacheLookup
-    private WebElement userName;
+    private WebElement userName = super.driver.findElement(By.xpath("//input[@ng-model='loginData.userName']"));
 
-    @FindBy(xpath = "/html/body/hx-include/div/div/div[2]/div/ng-include/form/div/div/div[2]/div[2]/div/div/input")
-    @CacheLookup
-    private WebElement userPassword;
+    private WebElement userPassword = super.driver.findElement(By.xpath("//input[@cgm-label='Password']"));
 
-    @FindBy(id = "btnLogin")
-    @CacheLookup
-    private WebElement loginButton;
+    private WebElement loginButton = super.driver.findElement(By.id("btnLogin"));
 
-    //endregion
-    @FindBy (xpath = "//div[@class='message-toast message-toast-neutral']")
-    @CacheLookup
-    private WebElement warningMessage;
-
-    public LoginPage (WebDriver driver){
+    public LoginPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(RemoteBrowser.webDriverInstance(), this);
+    }
+
+    public PageBase logInAs(String userName, String password){
+                enterUserName(userName)
+                .enterUserPassword(password)
+                .clickLoginButton();
+        return new PageBase(super.driver);
     }
 
     //region Methods
     public LoginPage enterUserName(String userName) {
+        RemoteBrowser.waitForAjax();
         RemoteBrowser.waitForElement(this.userName);
         this.userName.click();
         this.userName.sendKeys(userName);
@@ -40,13 +38,14 @@ public class LoginPage extends PageBase {
     }
 
     public LoginPage enterUserPassword(String userPassword) {
+        RemoteBrowser.waitForAjax();
         RemoteBrowser.waitForElement(this.userPassword);
         this.userPassword.click();
         this.userPassword.sendKeys(userPassword);
         return this;
     }
 
-    public LoginPage clickLoginButton(){
+    public LoginPage clickLoginButton() {
         this.loginButton.click();
         return this;
     }
@@ -56,10 +55,13 @@ public class LoginPage extends PageBase {
         return this.loginButton.isDisplayed();
     }
 
-    public String getWarningMessage() throws InterruptedException {
-        Thread.sleep(1000);
-        RemoteBrowser.waitForElement(this.warningMessage);
-        return this.warningMessage.getText();
+    public String getWarningMessage(){
+        RemoteBrowser.waitForAjax();
+        WebElement warningMessage = super.driver.findElement(By.xpath("//div[@class='message-text ng-binding']"));
+        RemoteBrowser.waitForElement(warningMessage);
+
+        return warningMessage.getText();
     }
-    //endregion
+
+//endregion
 }

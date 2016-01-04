@@ -16,6 +16,7 @@ public class TestBase {
     public void setUp(){
         this.driver = RemoteBrowser.webDriverInstance();
         this.pages = new PageBase(this.driver);
+        this.pages.goToLoginPage();
     }
 
     @AfterSuite (alwaysRun = true)

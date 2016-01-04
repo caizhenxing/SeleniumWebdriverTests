@@ -1,6 +1,7 @@
 package Nhrytsko.WebDriver.Pages;
 
 import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -10,25 +11,16 @@ import org.openqa.selenium.support.PageFactory;
 public class MainPage extends PageBase {
 
     //region Fields
-    @FindBy(xpath = "//a[@class='menu-link ng-binding']")
-    @CacheLookup
-    private WebElement menuButton;
+    private WebElement menuButton = super.driver.findElement(By.xpath("//a[@class='menu-link ng-binding']"));
 
-    @FindBy(xpath = "//a[contains(.,'Landing Page')]")
-    @CacheLookup
-    private WebElement landingPageButton;
+    private WebElement landingPageButton = super.driver.findElement(By.xpath("//a[contains(.,'Landing Page')]"));
 
-    @FindBy(xpath = "//a[@class='ng-binding']")
-    @CacheLookup
-    private WebElement userButton;
+    private WebElement userButton = super.driver.findElement(By.xpath("//a[@class='ng-binding']"));
 
-    @FindBy(xpath = ("//a[contains(.,'                   Logout               ')]"))
-    @CacheLookup
-    private WebElement logOutButton;
+    private WebElement logOutButton = super.driver.findElement(By.xpath("//a[contains(.,'                   Logout               ')]"));
 
     public MainPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(RemoteBrowser.webDriverInstance(), this);
     }
     //endregion
 

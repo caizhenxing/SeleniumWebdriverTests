@@ -40,14 +40,14 @@ public class CGMLoginTests extends TestBase {
 
     @Test(priority = 0)
     public void tryToValidLogin() throws IOException {
-       super.pages.logInAs39(ConfigProvider.getValidUserName(), ConfigProvider.getValidUserPassword());
+       //super.pages.logInAs39(ConfigProvider.getValidUserName(), ConfigProvider.getValidUserPassword());
        mainPage.clickUserButton();
        mainPage.clickLogOut();
 
     }
     @Test(priority = 1)
     public void tryToInvalidLogin() throws IOException, InterruptedException {
-        super.pages.logInAs39(ConfigProvider.getInvalidUserName(), ConfigProvider.getInvalidUserPassword());
+        //super.pages.logInAs39(ConfigProvider.getInvalidUserName(), ConfigProvider.getInvalidUserPassword());
         String warningMessage =this.loginPage.getWarningMessage();
         Assert.assertEquals(warningMessage, "Login failed - Invalid user name or bad password.", "Message isn't displayed");
 
