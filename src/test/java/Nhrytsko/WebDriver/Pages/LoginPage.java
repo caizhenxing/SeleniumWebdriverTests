@@ -5,12 +5,8 @@ import Nhrytsko.WebDriver.WrappedDriver.CustomWebelements.Input;
 import Nhrytsko.WebDriver.WrappedDriver.CustomWebelements.SearchCriteria;
 import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage extends PageBase {
 
@@ -33,16 +29,12 @@ public class LoginPage extends PageBase {
 
     //region Methods
     public LoginPage enterUserName(String userName) {
-        //RemoteBrowser.waitForAjax();
-        //RemoteBrowser.waitForElement(this.userName);
         this.userName.click();
         this.userName.sendKeys(userName);
         return this;
     }
 
     public LoginPage enterUserPassword(String userPassword) {
-        //RemoteBrowser.waitForAjax();
-        //RemoteBrowser.waitForElement(this.userPassword);
         this.userPassword.click();
         this.userPassword.sendKeys(userPassword);
         return this;
