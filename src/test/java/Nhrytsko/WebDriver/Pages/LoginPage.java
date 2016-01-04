@@ -1,5 +1,8 @@
 package Nhrytsko.WebDriver.Pages;
 
+import Nhrytsko.WebDriver.WrappedDriver.CustomWebelements.Button;
+import Nhrytsko.WebDriver.WrappedDriver.CustomWebelements.Input;
+import Nhrytsko.WebDriver.WrappedDriver.CustomWebelements.SearchCriteria;
 import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -11,11 +14,11 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage extends PageBase {
 
-    private WebElement userName = super.driver.findElement(By.xpath("//input[@ng-model='loginData.userName']"));
+    private WebElement userName = new Input(SearchCriteria.Xpath, "//input[@ng-model='loginData.userName']");
 
-    private WebElement userPassword = super.driver.findElement(By.xpath("//input[@cgm-label='Password']"));
+    private WebElement userPassword = new Input(SearchCriteria.Xpath, "//input[@cgm-label='Password']");
 
-    private WebElement loginButton = super.driver.findElement(By.id("btnLogin"));
+    private WebElement loginButton = new Button(SearchCriteria.Id, "btnLogin");
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -30,16 +33,16 @@ public class LoginPage extends PageBase {
 
     //region Methods
     public LoginPage enterUserName(String userName) {
-        RemoteBrowser.waitForAjax();
-        RemoteBrowser.waitForElement(this.userName);
+        //RemoteBrowser.waitForAjax();
+        //RemoteBrowser.waitForElement(this.userName);
         this.userName.click();
         this.userName.sendKeys(userName);
         return this;
     }
 
     public LoginPage enterUserPassword(String userPassword) {
-        RemoteBrowser.waitForAjax();
-        RemoteBrowser.waitForElement(this.userPassword);
+        //RemoteBrowser.waitForAjax();
+        //RemoteBrowser.waitForElement(this.userPassword);
         this.userPassword.click();
         this.userPassword.sendKeys(userPassword);
         return this;
