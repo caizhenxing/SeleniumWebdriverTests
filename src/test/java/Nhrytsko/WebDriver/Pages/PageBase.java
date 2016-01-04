@@ -32,5 +32,13 @@ public class PageBase {
         return new LoginPage(RemoteBrowser.webDriverInstance());
     }
 
+    public LoginPage proceedWithLoginPage(){
+        return new LoginPage(this.driver);
+    }
+
+    public MainPage proceedWithMainPage(){
+        return new MainPage(this.driver);
+    }
+
     //endregion
 }
