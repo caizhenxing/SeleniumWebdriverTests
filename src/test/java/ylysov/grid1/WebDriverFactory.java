@@ -95,21 +95,15 @@ public class WebDriverFactory {
         String browserType = capabilities.getBrowserName();
         if (browserType.equals("firefox"))
             return new FirefoxDriver(capabilities);
-        if (browserType.startsWith("internet explorer")) ;
-//        {
-//            System.setProperty("webdriver.ie.driver", "D:\\JavaProject\\SeleniumWebdriverTests\\src\\seleniumGridFiles\\IEDriverServer.exe"); //my changes
-//
-//            //    System.setProperty("webdriver.ie.driver", "D:\\driver\\IEDriverServer.exe"); //my changes
-//            // System.setProperty("webdriver.ie.driver", "D:\\JavaProject\\SeleniumWebdriverTests\\src\\seleniumGridFiles\\IEDriverServer.exe");
-//        }
-        return new InternetExplorerDriver(capabilities);
-// if (browserType.equals("chrome"));
-// { System.setProperty("webdriver.ie.driver", "D:\\driver\\IEDriverServer.exe");}
-// return new ChromeDriver(capabilities);
-// if (browserType.equals("opera"))
-// return new OperaDriver(capabilities);
-// throw new Error("Unrecognized browser type: " + browserType); // need to uncomment later
+        if (browserType.startsWith("internet explorer"))
+            return new InternetExplorerDriver(capabilities);
+        if (browserType.equals("chrome"))
+            return new ChromeDriver(capabilities);
+        if (browserType.equals("opera"))
+            return new OperaDriver(capabilities);
+        throw new Error("Unrecognized browser type: " + browserType);
     }
+
     static {
         Runtime.getRuntime().addShutdownHook(new Thread() {
             public void run() {
