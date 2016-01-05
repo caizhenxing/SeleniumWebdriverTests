@@ -3,13 +3,13 @@
     <test name="Test In FireFox" >
         <parameter name="browser" value="FF" />
         <classes>
-            <class name="ylysov.grid1.ParallelTestsForGrid" />
+            <class name="ylysov.grid1.CGMTestsForGrid2" />
         </classes>
     </test>
     <test name="Test In Internet Explorer" >
         <parameter name="browser" value="IE"></parameter>
         <classes>
-            <class name="ylysov.grid1.ParallelTestsForGrid"></class>
+            <class name="ylysov.grid1.CGMTestsForGrid2"></class>
         </classes>
     </test>
 </suite> 
