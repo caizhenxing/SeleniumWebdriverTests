@@ -7,6 +7,7 @@ import Nhrytsko.WebDriver.Pages.MainPage;
 import Nhrytsko.WebDriver.Pages.PageBase;
 import Nhrytsko.WebDriver.Tests.TestBase;
 import Nhrytsko.WebDriver.WrappedDriver.ConfigProvider;
+import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -34,20 +35,22 @@ public class CGMLoginTests extends TestBase {
     @BeforeClass(alwaysRun = true)
     public void warmUp() {
         this.loginPage = new LoginPage(super.driver);
-        this.mainPage = new MainPage(super.driver);
+        this.mainPage = this.loginPage.logInAs(ConfigProvider.getValidUserName(), ConfigProvider.getValidUserPassword())
+                .proceedWithMainPage();
 
     }
 
     @Test(priority = 0)
     public void tryToValidLogin() throws IOException {
-       //super.pages.logInAs39(ConfigProvider.getValidUserName(), ConfigProvider.getValidUserPassword());
+       RemoteBrowser.waitForAjax();
        mainPage.clickUserButton();
-       //mainPage.clickLogOut();
+       mainPage.clickLogOut();
 
     }
     @Test(priority = 1)
     public void tryToInvalidLogin() throws IOException, InterruptedException {
-        //super.pages.logInAs39(ConfigProvider.getInvalidUserName(), ConfigProvider.getInvalidUserPassword());
+        loginPage.logInAs(ConfigProvider.getInvalidUserName(), ConfigProvider.getInvalidUserPassword());
+        RemoteBrowser.waitForAjax();
         String warningMessage =this.loginPage.getWarningMessage();
         Assert.assertEquals(warningMessage, "Login failed - Invalid user name or bad password.", "Message isn't displayed");
 

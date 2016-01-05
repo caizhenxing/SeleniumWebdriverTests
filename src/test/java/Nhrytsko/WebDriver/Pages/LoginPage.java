@@ -24,8 +24,10 @@ public class LoginPage extends PageBase {
                 enterUserName(userName)
                 .enterUserPassword(password)
                 .clickLoginButton();
+
         return new PageBase(super.driver);
     }
+
 
     //region Methods
     public LoginPage enterUserName(String userName) {

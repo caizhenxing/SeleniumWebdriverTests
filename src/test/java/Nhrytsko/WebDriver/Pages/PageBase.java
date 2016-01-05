@@ -3,11 +3,6 @@ package Nhrytsko.WebDriver.Pages;
 import Nhrytsko.WebDriver.WrappedDriver.ConfigProvider;
 import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
-import org.openqa.selenium.support.FindBy;
-
-import java.io.IOException;
 
 public class PageBase {
     //region Fields
@@ -41,6 +36,26 @@ public class PageBase {
         RemoteBrowser.waitForAjax();
         RemoteBrowser.implicitWait(10);
         return new MainPage(RemoteBrowser.webDriverInstance());
+    }
+
+    public AllFeaturesPage proceedAllFeaturesPage(){
+        RemoteBrowser.waitForDocumentToBeReady();
+        RemoteBrowser.waitForAjax();
+        RemoteBrowser.implicitWait(10);
+        return new AllFeaturesPage((RemoteBrowser.webDriverInstance()));
+    }
+    public LandingPage proceedWithLandingPage(){
+        RemoteBrowser.waitForDocumentToBeReady();
+        RemoteBrowser.waitForAjax();
+        RemoteBrowser.implicitWait(10);
+        return new LandingPage((RemoteBrowser.webDriverInstance()));
+    }
+
+    public EpisodePage proceedWithEpisodePage(){
+        RemoteBrowser.waitForDocumentToBeReady();
+        RemoteBrowser.waitForAjax();
+        RemoteBrowser.implicitWait(10);
+        return new EpisodePage((RemoteBrowser.webDriverInstance()));
     }
 
     //endregion

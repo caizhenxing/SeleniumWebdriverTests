@@ -3,7 +3,7 @@ package ovol.Tests;
 import Nhrytsko.WebDriver.Pages.*;
 import Nhrytsko.WebDriver.Tests.TestBase;
 import Nhrytsko.WebDriver.WrappedDriver.ConfigProvider;
-import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -13,27 +13,27 @@ import java.io.IOException;
  * Created by ovo on 28.12.2015.
  */
 public class FastSearchTests extends TestBase{
+    PageBase pageBase;
     LoginPage loginPage;
     MainPage mainPage;
+    AllFeaturesPage allFeaturesPage;
     LandingPage landingPage;
     EpisodePage episodePage;
     TimelinePage timelinePage;
 
     @BeforeClass(alwaysRun = true)
-    public void warmUpTest() {
+    public void warmUpTest() throws IOException {
         this.loginPage = new LoginPage(super.driver);
-        this.mainPage= new MainPage(super.driver);
-        this.landingPage = new LandingPage(super.driver);
-        this.episodePage = new EpisodePage(super.driver);
-        this.timelinePage = new TimelinePage(super.driver);
+        this.mainPage = this.loginPage.logInAs(ConfigProvider.getValidUserName(),ConfigProvider.getValidUserPassword())
+                .proceedWithMainPage();
+        this.allFeaturesPage = this.mainPage.clickMenuButton().clickAllFeaturesButton().proceedAllFeaturesPage();
+        this.landingPage = this.allFeaturesPage.clickLandingPageButton().proceedWithLandingPage();
+       // this.episodePage = this.landingPage.searchPatient().selectExactResult().proceedWithEpisodePage();
+
         }
     @Test(priority = 0)
     public void goToHafner() throws IOException {
-        //loginPage.logInAs39(ConfigProvider.getValidUserName(),ConfigProvider.getValidUserPassword());
-        //mainPage.clickMenuButton().clickLandingPageButton();
-        landingPage.searchPatient();
-        RemoteBrowser.implicitWait(5);
-        landingPage.selectExactResult();
+        Assert.assertTrue(landingPage.labelEpisodeIsDisplayed(), "Not displayed");
 
 
     }
