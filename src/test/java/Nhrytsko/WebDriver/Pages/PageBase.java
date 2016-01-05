@@ -33,11 +33,14 @@ public class PageBase {
     }
 
     public LoginPage proceedWithLoginPage(){
-        return new LoginPage(this.driver);
+        return new LoginPage(RemoteBrowser.webDriverInstance());
     }
 
     public MainPage proceedWithMainPage(){
-        return new MainPage(this.driver);
+        RemoteBrowser.waitForDocumentToBeReady();
+        RemoteBrowser.waitForAjax();
+        RemoteBrowser.implicitWait(10);
+        return new MainPage(RemoteBrowser.webDriverInstance());
     }
 
     //endregion

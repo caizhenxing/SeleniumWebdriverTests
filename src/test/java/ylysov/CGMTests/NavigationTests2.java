@@ -41,7 +41,7 @@ public class NavigationTests2 extends TestBase2 {
     public void t2NavigateToLandingPage() {
         this.mainPage = new MainPage(driver);
         mainPage.clickMenuButton();
-        mainPage.clickLandingPageButton();
+        //mainPage.clickLandingPageButton();
     }
 
 

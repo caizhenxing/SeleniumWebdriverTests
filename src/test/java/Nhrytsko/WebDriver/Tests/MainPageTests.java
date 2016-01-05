@@ -9,14 +9,13 @@ import org.testng.annotations.Test;
 
 public class MainPageTests extends TestBase {
 
-    MainPage mainPage;
     LoginPage loginPage;
+    MainPage mainPage;
 
     @BeforeClass
     public void testClassSetup(){
         this.loginPage = new LoginPage(super.driver);
-        this.loginPage.logInAs(ConfigProvider.getValidUserName(), ConfigProvider.getValidUserPassword());
-        this.mainPage = new MainPage(super.driver);
+        this.mainPage = this.loginPage.logInAs(ConfigProvider.getValidUserName(), ConfigProvider.getValidUserPassword()).proceedWithMainPage();
     }
 
     @Test(groups = {"group2"})
