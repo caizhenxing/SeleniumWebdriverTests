@@ -1,16 +1,14 @@
-package ylysov.CGMTests;
+package ylysov.ParallelTests;
 
 import ylysov.Pages.LoginPage;
 import ylysov.Pages.MainPage;
 import Nhrytsko.WebDriver.WrappedDriver.ConfigProvider;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-
 /**
  * Created by ylysov on 29.12.2015.
  */
-public class TestsFromFactory extends TestBaseFactory{
+public class TestsParallel extends TestBaseForParallel {
     LoginPage loginPage;
     MainPage mainPage;
 

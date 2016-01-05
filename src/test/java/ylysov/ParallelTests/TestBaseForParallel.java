@@ -1,22 +1,16 @@
-package ylysov.CGMTests;
+package ylysov.ParallelTests;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.*;
+import ylysov.ParallelTests.WebDriverFactory;
 
 /**
  * Created by ylysov on 28.12.2015.
  */
-public class TestBaseFactory {
+public class TestBaseForParallel {
 
     WebDriver driver;
     String StartPageURL = "http://192.168.240.39:8080/shell-his-module/modules/login.html";
-//
-//        @BeforeMethod                                  //proposed annotation to use with DriverFactory
-//        public void startBrowser() {
-//           driver = WebDriverFactory.getDriver(DesiredCapabilities.firefox());
-//            //    driver = WebDriverFactory.getDriver(DesiredCapabilities.internetExplorer());
-//            driver.navigate().to(StartPageURL); }
-
 
     @BeforeClass
     //parameter value will retrieved from testng.xml file's <parameter> tag.

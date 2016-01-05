@@ -1,4 +1,4 @@
-package ylysov.CGMTests;
+package ylysov.ParallelTests;
 
 import org.openqa.selenium.WebDriver;
 
