@@ -29,12 +29,14 @@ public class LoginPage extends PageBase {
 
     //region Methods
     public LoginPage enterUserName(String userName) {
+        this.userName.clear();
         this.userName.click();
         this.userName.sendKeys(userName);
         return this;
     }
 
     public LoginPage enterUserPassword(String userPassword) {
+        this.userPassword.clear();
         this.userPassword.click();
         this.userPassword.sendKeys(userPassword);
         return this;
@@ -46,7 +48,6 @@ public class LoginPage extends PageBase {
     }
 
     public boolean logInButtonIsDisplayed() {
-        RemoteBrowser.waitForElement(this.loginButton);
         return this.loginButton.isDisplayed();
     }
 

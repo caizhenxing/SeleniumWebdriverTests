@@ -14,7 +14,6 @@ public class PageElement implements WebElement{
         By search = SelectorConverter.getSearchCriteria(criteria, searchText);
 
        this.element = findElement(search);
-        RemoteBrowser.waitForElement(this.element);
     }
 
     public void click() {
@@ -66,6 +65,7 @@ public class PageElement implements WebElement{
         RemoteBrowser.waitForAjax();
         element = RemoteBrowser.webDriverInstance().findElement(by);
 
+        RemoteBrowser.waitForElement(element);
         return element;
     }
 

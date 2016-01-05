@@ -30,7 +30,7 @@ public class FastSearchTests extends TestBase{
     @Test(priority = 0)
     public void goToHafner() throws IOException {
         //loginPage.logInAs39(ConfigProvider.getValidUserName(),ConfigProvider.getValidUserPassword());
-        mainPage.clickMenuButton().clickLandingPageButton();
+        //mainPage.clickMenuButton().clickLandingPageButton();
         landingPage.searchPatient();
         RemoteBrowser.implicitWait(5);
         landingPage.selectExactResult();

@@ -42,7 +42,7 @@ public class CGMLoginTests extends TestBase {
     public void tryToValidLogin() throws IOException {
        //super.pages.logInAs39(ConfigProvider.getValidUserName(), ConfigProvider.getValidUserPassword());
        mainPage.clickUserButton();
-       mainPage.clickLogOut();
+       //mainPage.clickLogOut();
 
     }
     @Test(priority = 1)
