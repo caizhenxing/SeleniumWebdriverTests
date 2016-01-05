@@ -15,7 +15,7 @@ public class SeleniumGrid {
         ProcessBuilder pb = new ProcessBuilder(projectDir + "StartGrid.bat");
         pb.directory(new File(projectDir));
         Process p = pb.start();
-        Thread.sleep(2000);
+        Thread.sleep(3000);
     }
 
 }
