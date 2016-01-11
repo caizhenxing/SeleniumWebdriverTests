@@ -14,7 +14,7 @@ public class MainPageTests extends TestBase {
 
     @BeforeClass
     public void testClassSetup(){
-        this.loginPage = new LoginPage(super.driver);
+        this.loginPage = new LoginPage();
         this.mainPage = this.loginPage.logInAs(ConfigProvider.getValidUserName(), ConfigProvider.getValidUserPassword()).proceedWithMainPage();
     }
 

@@ -4,16 +4,13 @@ import ylysov.Pages.MainPage;
 import Nhrytsko.WebDriver.WrappedDriver.ConfigProvider;
 import org.testng.annotations.Test;
 
-/**
- * Created by ylysov on 29.12.2015.
- */
 public class CGMTestsForGrid2 extends TestBaseForGrid {
 
         LoginPage loginPage;
         MainPage mainPage;
     @Test
     public void t1LogIn() {
-        this.loginPage = new LoginPage(driver); //!!!!!!!
+        this.loginPage = new LoginPage(); //!!!!!!!
         loginPage.enterUserName(ConfigProvider.getValidUserName());
         loginPage.enterUserPassword(ConfigProvider.getValidUserPassword());
         loginPage.clickLoginButton();
@@ -21,7 +18,7 @@ public class CGMTestsForGrid2 extends TestBaseForGrid {
 
     @Test
         public void t2NavigateToLandingPage() {
-            this.mainPage = new MainPage(driver);
+            this.mainPage = new MainPage();
             mainPage.clickMenuButton();
             mainPage.clickLandingPageButton();
         }

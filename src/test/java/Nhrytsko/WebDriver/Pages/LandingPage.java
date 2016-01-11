@@ -3,9 +3,8 @@ package Nhrytsko.WebDriver.Pages;
 import Nhrytsko.WebDriver.WrappedDriver.ConfigProvider;
 import Nhrytsko.WebDriver.WrappedDriver.CustomWebelements.Label;
 import Nhrytsko.WebDriver.WrappedDriver.CustomWebelements.SearchCriteria;
-import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
+import Nhrytsko.WebDriver.WrappedDriver.RB;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
@@ -29,24 +28,20 @@ public class LandingPage extends PageBase {
     int selectFromList;
     int webElements;
 
-    public LandingPage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(super.driver, this);
-    }
     public LandingPage enterEpisode(String patientName) {
-        RemoteBrowser.waitForElement(this.episodeInput);
+        RB.waitForElement(this.episodeInput);
         episodeInput.click();
         episodeInput.sendKeys(patientName);
        //        RemoteBrowser.waitForAllElements(searchResults);
-        RemoteBrowser.implicitWait(10);
+        RB.implicitWait(10);
         return this;
     }
     //region Vol Search Patient
     public LandingPage searchPatient() throws IOException {
-        RemoteBrowser.waitForElement(this.episodeInput);
+        RB.waitForElement(this.episodeInput);
         episodeInput.click();
         episodeInput.sendKeys(ConfigProvider.getPatientData());
-        RemoteBrowser.waitForAllElements(searchResults);
+        RB.waitForAllElements(searchResults);
         return this;
     }
     //endregion
@@ -84,7 +79,7 @@ public class LandingPage extends PageBase {
 
 
         }
-        return new EpisodePage(super.driver);
+        return new EpisodePage();
     }
 
     public boolean searchInputIsDisplayed(){

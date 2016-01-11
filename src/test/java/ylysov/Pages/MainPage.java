@@ -2,12 +2,9 @@ package ylysov.Pages;
 
 import Nhrytsko.WebDriver.Pages.LandingPage;
 import Nhrytsko.WebDriver.Pages.PageBase;
-import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import ylysov.grid1.WebDriverFactory;
 
 public class MainPage extends PageBase {
@@ -29,10 +26,6 @@ public class MainPage extends PageBase {
     @CacheLookup
     private WebElement logOutButton;
 
-    public MainPage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(driver, this);
-    }
     //endregion
 
     //region Methods
@@ -48,7 +41,7 @@ public class MainPage extends PageBase {
 
     public LandingPage clickLandingPageButton(){
         this.landingPageButton.click();
-        return new LandingPage(driver);
+        return new LandingPage();
     }
 
     public MainPage clickUserButton(){
@@ -59,7 +52,7 @@ public class MainPage extends PageBase {
     public LoginPage clickLogOut(){
         WebDriverFactory.waitForElement(this.logOutButton);
         this.logOutButton.click();
-        return new LoginPage(driver);
+        return new LoginPage();
     }
     //endregion
 }

@@ -2,7 +2,7 @@ package npyshchyk.tests;
 
 import Nhrytsko.WebDriver.Pages.PageBase;
 import Nhrytsko.WebDriver.Tests.TestBase;
-import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
+import Nhrytsko.WebDriver.WrappedDriver.RB;
 import npyshchyk.pages.CGMLoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,10 +11,6 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-
-/**
- * Created by nmyrosh on 14.12.2015.
- */
 public class CGMLoginTest extends TestBase{
 
     public String stringURL = "http://192.168.241.130:8080/shell-his-module/modules/login.html?mainApplicationPath=index.html";
@@ -28,8 +24,7 @@ public class CGMLoginTest extends TestBase{
     // should be removed
     @BeforeSuite(alwaysRun = true)
     public void setUp(){
-        this.driver = RemoteBrowser.webDriverInstance();
-        this.pages = new PageBase(this.driver);
+        this.pages = new PageBase();
     }
 
     // navigation to Log In Page
@@ -43,7 +38,7 @@ public class CGMLoginTest extends TestBase{
     // Log In with invalid credentials
     @Test
     public void loginFailed(){
-        this.loginPage = new CGMLoginPage(this.driver);
+        this.loginPage = new CGMLoginPage();
         CGMLoginPage.login(this.driver,incorrectUserName);
 
         Assert.assertTrue(driver.findElement(By.xpath("//button[@type='submit']")).isDisplayed(), "Log In is incorrect! Test is passed!!!!!!!!");
@@ -60,6 +55,6 @@ public class CGMLoginTest extends TestBase{
     // should be removed
     @AfterSuite (alwaysRun = true)
     public void tearDown(){
-        RemoteBrowser.Quit(this.driver);
+        RB.getInstance().quit();
     }
 }

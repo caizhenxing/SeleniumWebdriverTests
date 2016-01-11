@@ -1,7 +1,7 @@
 package Nhrytsko.WebDriver.Pages;
 
 import Nhrytsko.WebDriver.WrappedDriver.ConfigProvider;
-import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
+import Nhrytsko.WebDriver.WrappedDriver.RB;
 import org.openqa.selenium.WebDriver;
 
 public class PageBase {
@@ -10,52 +10,48 @@ public class PageBase {
     public WebDriver driver;
     public MainPage mainPage;
 
-    //region Constructors
-
-    public PageBase(WebDriver driver) {
-        this.driver = driver;
-    }
-
-    //endregion
-
     //region Methods
 
+    public static void startBrowser(){
+        RB.getInstance().startBrowser();
+    }
+
     public LoginPage goToLoginPage(){
-        this.driver.navigate().to(ConfigProvider.getBaseURL());
-        RemoteBrowser.waitForDocumentToBeReady();
-        RemoteBrowser.waitForAjax();
-        return new LoginPage(RemoteBrowser.webDriverInstance());
+        RB.getInstance().navigate(ConfigProvider.getBaseURL());
+        RB.waitForDocumentToBeReady();
+        RB.waitForAjax();
+        return new LoginPage();
     }
 
     public LoginPage proceedWithLoginPage(){
-        return new LoginPage(RemoteBrowser.webDriverInstance());
+        return new LoginPage();
     }
 
     public MainPage proceedWithMainPage(){
-        RemoteBrowser.waitForDocumentToBeReady();
-        RemoteBrowser.waitForAjax();
-        RemoteBrowser.implicitWait(10);
-        return new MainPage(RemoteBrowser.webDriverInstance());
+        RB.waitForDocumentToBeReady();
+        RB.waitForAjax();
+        RB.implicitWait(10);
+        return new MainPage();
     }
 
     public AllFeaturesPage proceedAllFeaturesPage(){
-        RemoteBrowser.waitForDocumentToBeReady();
-        RemoteBrowser.waitForAjax();
-        RemoteBrowser.implicitWait(10);
-        return new AllFeaturesPage((RemoteBrowser.webDriverInstance()));
+        RB.waitForDocumentToBeReady();
+        RB.waitForAjax();
+        RB.implicitWait(10);
+        return new AllFeaturesPage();
     }
     public LandingPage proceedWithLandingPage(){
-        RemoteBrowser.waitForDocumentToBeReady();
-        RemoteBrowser.waitForAjax();
-        RemoteBrowser.implicitWait(10);
-        return new LandingPage((RemoteBrowser.webDriverInstance()));
+        RB.waitForDocumentToBeReady();
+        RB.waitForAjax();
+        RB.implicitWait(10);
+        return new LandingPage();
     }
 
     public EpisodePage proceedWithEpisodePage(){
-        RemoteBrowser.waitForDocumentToBeReady();
-        RemoteBrowser.waitForAjax();
-        RemoteBrowser.implicitWait(10);
-        return new EpisodePage((RemoteBrowser.webDriverInstance()));
+        RB.waitForDocumentToBeReady();
+        RB.waitForAjax();
+        RB.implicitWait(10);
+        return new EpisodePage();
     }
 
     //endregion

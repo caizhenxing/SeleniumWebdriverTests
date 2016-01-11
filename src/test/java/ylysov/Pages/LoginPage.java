@@ -1,12 +1,9 @@
 package ylysov.Pages;
 
 import Nhrytsko.WebDriver.Pages.PageBase;
-import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import ylysov.grid1.WebDriverFactory;
 
 public class LoginPage extends PageBase {
@@ -27,11 +24,6 @@ public class LoginPage extends PageBase {
     @FindBy (xpath = "//div[@class='message-toast message-toast-neutral']")
     @CacheLookup
     private WebElement warningMessage;
-
-    public LoginPage (WebDriver driver){
-        super(driver);
-        PageFactory.initElements(driver, this);
-    }
 
     //region Methods
     public LoginPage enterUserName(String userName) {

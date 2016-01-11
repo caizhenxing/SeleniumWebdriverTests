@@ -7,7 +7,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class LoginPageTests extends TestBase {
+public class LoginPageTestSuite extends TestBase {
 
     MainPage mainPage;
     LoginPage loginPage;
@@ -22,7 +22,7 @@ public class LoginPageTests extends TestBase {
 
     @BeforeClass
     public void testClassSetup(){
-        this.loginPage = new LoginPage(super.driver);
+        this.loginPage = new LoginPage();
     }
 
     @Test (groups = {"group2"}, dataProvider = "data-provider")

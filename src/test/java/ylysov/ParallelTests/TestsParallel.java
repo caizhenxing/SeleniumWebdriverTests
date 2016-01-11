@@ -5,9 +5,7 @@ import ylysov.Pages.MainPage;
 import Nhrytsko.WebDriver.WrappedDriver.ConfigProvider;
 import org.testng.annotations.Test;
 
-/**
- * Created by ylysov on 29.12.2015.
- */
+
 public class TestsParallel extends TestBaseForParallel {
     LoginPage loginPage;
     MainPage mainPage;
@@ -15,7 +13,7 @@ public class TestsParallel extends TestBaseForParallel {
 
     @Test
     public void t1LogIn() {
-        this.loginPage = new LoginPage(driver);  //!!!!!!!
+        this.loginPage = new LoginPage();  //!!!!!!!
 //        try {
             loginPage.enterUserName(ConfigProvider.getValidUserName());
             loginPage.enterUserPassword(ConfigProvider.getValidUserPassword());
@@ -27,7 +25,7 @@ public class TestsParallel extends TestBaseForParallel {
 
     @Test
     public void t2NavigateToLandingPage() {
-        this.mainPage = new MainPage(driver);
+        this.mainPage = new MainPage();
         mainPage.clickMenuButton();
         mainPage.clickLandingPageButton();
     }

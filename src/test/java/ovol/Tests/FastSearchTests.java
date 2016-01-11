@@ -9,9 +9,6 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-/**
- * Created by ovo on 28.12.2015.
- */
 public class FastSearchTests extends TestBase{
     PageBase pageBase;
     LoginPage loginPage;
@@ -23,7 +20,7 @@ public class FastSearchTests extends TestBase{
 
     @BeforeClass(alwaysRun = true)
     public void warmUpTest() throws IOException {
-        this.loginPage = new LoginPage(super.driver);
+        this.loginPage = new LoginPage();
         this.mainPage = this.loginPage.logInAs(ConfigProvider.getValidUserName(),ConfigProvider.getValidUserPassword())
                 .proceedWithMainPage();
         this.allFeaturesPage = this.mainPage.clickMenuButton().clickAllFeaturesButton().proceedAllFeaturesPage();

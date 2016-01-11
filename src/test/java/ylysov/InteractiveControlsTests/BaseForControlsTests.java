@@ -1,14 +1,11 @@
 package ylysov.InteractiveControlsTests;
 
 import Nhrytsko.WebDriver.Pages.PageBase;
-import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
+import Nhrytsko.WebDriver.WrappedDriver.RB;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
-/**
- * Created by ylysov on 22.12.2015.
- */
 public class BaseForControlsTests {
 
     PageBase pages;
@@ -17,12 +14,11 @@ public class BaseForControlsTests {
 
     @BeforeSuite(alwaysRun = true)
     public void InitializeBrowser(){
-        this.driver = RemoteBrowser.webDriverInstance();
         this.driver.navigate().to(StartPageURL);
     }
 
     @AfterSuite(alwaysRun = true)
     public void tearDown(){
-        RemoteBrowser.Quit(this.driver);
+        RB.getInstance().quit();
     }
 }

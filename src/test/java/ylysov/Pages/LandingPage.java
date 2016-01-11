@@ -2,12 +2,9 @@ package ylysov.Pages;
 
 import Nhrytsko.WebDriver.Pages.PageBase;
 import Nhrytsko.WebDriver.WrappedDriver.ConfigProvider;
-import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import ylysov.grid1.WebDriverFactory;
 
 import java.io.IOException;
@@ -31,10 +28,6 @@ public class LandingPage extends PageBase {
     int resultsListSize;
     int selectFromList;
 
-    public LandingPage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(super.driver, this);
-    }
     public LandingPage enterEpisode(String patientName) {
         WebDriverFactory.waitForElement(this.episodeInput);
         episodeInput.click();

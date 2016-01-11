@@ -3,9 +3,8 @@ package Nhrytsko.WebDriver.Pages;
 import Nhrytsko.WebDriver.WrappedDriver.CustomWebelements.Button;
 import Nhrytsko.WebDriver.WrappedDriver.CustomWebelements.Input;
 import Nhrytsko.WebDriver.WrappedDriver.CustomWebelements.SearchCriteria;
-import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
+import Nhrytsko.WebDriver.WrappedDriver.RB;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class LoginPage extends PageBase {
@@ -16,16 +15,12 @@ public class LoginPage extends PageBase {
 
     private WebElement loginButton = new Button(SearchCriteria.Id, "btnLogin");
 
-    public LoginPage(WebDriver driver) {
-        super(driver);
-    }
-
     public PageBase logInAs(String userName, String password){
                 enterUserName(userName)
                 .enterUserPassword(password)
                 .clickLoginButton();
 
-        return new PageBase(super.driver);
+        return new PageBase();
     }
 
 
@@ -54,9 +49,9 @@ public class LoginPage extends PageBase {
     }
 
     public String getWarningMessage(){
-        RemoteBrowser.waitForAjax();
-        WebElement warningMessage = super.driver.findElement(By.xpath("//div[@class='message-text ng-binding']"));
-        RemoteBrowser.waitForElement(warningMessage);
+        RB.waitForAjax();
+        WebElement warningMessage = RB.getInstance().findElement(By.xpath("//div[@class='message-text ng-binding']"));
+        RB.waitForElement(warningMessage);
 
         return warningMessage.getText();
     }

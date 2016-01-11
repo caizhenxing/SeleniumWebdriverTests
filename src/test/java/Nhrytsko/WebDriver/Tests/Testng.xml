@@ -1,16 +1,14 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="MainPageTest">
-
+<suite name="SmokeTests" parallel="classes" thread-count="2" verbose="2">
     <test name="loginPage">
         <groups>
             <run>
             </run>
         </groups>
-
         <classes>
             <class name="Nhrytsko.WebDriver.Tests.MainPageTests" />
-            <class name="Nhrytsko.WebDriver.Tests.LoginPageTests" />
+            <class name="Nhrytsko.WebDriver.Tests.LoginPageTestSuite"/>
         </classes>
     </test>
 </suite>

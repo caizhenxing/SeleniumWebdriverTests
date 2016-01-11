@@ -1,6 +1,7 @@
 package Nhrytsko.WebDriver.WrappedDriver;
 
 import java.io.*;
+import java.net.URL;
 import java.util.Properties;
 
 public class ConfigProvider {
@@ -69,9 +70,10 @@ public class ConfigProvider {
         return -1;
     }
 
-    public static String getBaseURL() {
+    public static URL getBaseURL() {
         try {
-            return ConfigurationParameters().getProperty("130_VirtualMachineURL");
+            URL url = new URL (ConfigurationParameters().getProperty("130_VirtualMachineURL"));
+            return url;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -134,6 +136,33 @@ public class ConfigProvider {
     public static String getPatientEpisode() {
         try {
             return ConfigurationParameters().getProperty("patientEpisode");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String getDriverBrowserVersion(){
+        try {
+            return ConfigurationParameters().getProperty("driverBrowserVersion");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String getRemoteSeleniumServerName(){
+        try {
+            return ConfigurationParameters().getProperty("remoteSeleniumServerName");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String getRemoteSeleniumServerPort(){
+        try {
+            return ConfigurationParameters().getProperty("remoteSeleniumServerPort");
         } catch (IOException e) {
             e.printStackTrace();
         }

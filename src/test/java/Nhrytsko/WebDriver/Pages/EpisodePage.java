@@ -1,14 +1,9 @@
 package Nhrytsko.WebDriver.Pages;
 
-import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import Nhrytsko.WebDriver.WrappedDriver.RB;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class EpisodePage extends PageBase {
 
@@ -16,13 +11,8 @@ public class EpisodePage extends PageBase {
     @CacheLookup
     private WebElement timelineTab;
 
-    public EpisodePage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(super.driver, this);
-    }
-
     public EpisodePage selectTimelineTab(){
-        RemoteBrowser.waitForElement(this.timelineTab);
+        RB.waitForElement(this.timelineTab);
         timelineTab.click();
         return this;
     }
