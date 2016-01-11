@@ -22,16 +22,6 @@ public class RemoteBrowser {
     private WebDriver webDriver;
     WebDriverWait wait;
 
-   /* public static RemoteBrowser getInstance(){
-        if (instance == null){
-            instance = new RemoteBrowser();
-            instance.startWebDriver();
-            return instance;
-        }
-
-        return instance;
-    }*/
-
     public static RemoteBrowser getInstance() {
 
         RemoteBrowser driverInstance = instance;
