@@ -2,6 +2,7 @@ package Nhrytsko.WebDriver.Pages;
 
 import Nhrytsko.WebDriver.WrappedDriver.CustomWebelements.Button;
 import Nhrytsko.WebDriver.WrappedDriver.CustomWebelements.Input;
+import Nhrytsko.WebDriver.WrappedDriver.CustomWebelements.PageElement;
 import Nhrytsko.WebDriver.WrappedDriver.CustomWebelements.SearchCriteria;
 import Nhrytsko.WebDriver.WrappedDriver.RB;
 import org.openqa.selenium.By;
@@ -9,11 +10,11 @@ import org.openqa.selenium.WebElement;
 
 public class LoginPage extends PageBase {
 
-    private WebElement userName = new Input(SearchCriteria.Xpath, "//input[@ng-model='loginData.userName']");
+    private PageElement userName = new Input(SearchCriteria.Xpath, "//input[@ng-model='loginData.userName']");
 
-    private WebElement userPassword = new Input(SearchCriteria.Xpath, "//input[@cgm-label='Password']");
+    private PageElement userPassword = new Input(SearchCriteria.Xpath, "//input[@cgm-label='Password']");
 
-    private WebElement loginButton = new Button(SearchCriteria.Id, "btnLogin");
+    private PageElement loginButton = new Button(SearchCriteria.Id, "btnLogin");
 
     public PageBase logInAs(String userName, String password){
                 enterUserName(userName)
