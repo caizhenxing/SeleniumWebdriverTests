@@ -7,7 +7,7 @@ import Nhrytsko.WebDriver.Pages.MainPage;
 import Nhrytsko.WebDriver.Pages.PageBase;
 import Nhrytsko.WebDriver.Tests.TestBase;
 import Nhrytsko.WebDriver.WrappedDriver.ConfigProvider;
-import Nhrytsko.WebDriver.WrappedDriver.RB;
+import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -42,7 +42,7 @@ public class CGMLoginTests extends TestBase {
 
     @Test(priority = 0)
     public void tryToValidLogin() throws IOException {
-       RB.waitForAjax();
+       RemoteBrowser.waitForAjax();
        mainPage.clickUserButton();
        mainPage.clickLogOut();
 
@@ -50,7 +50,7 @@ public class CGMLoginTests extends TestBase {
     @Test(priority = 1)
     public void tryToInvalidLogin() throws IOException, InterruptedException {
         loginPage.logInAs(ConfigProvider.getInvalidUserName(), ConfigProvider.getInvalidUserPassword());
-        RB.waitForAjax();
+        RemoteBrowser.waitForAjax();
         String warningMessage =this.loginPage.getWarningMessage();
         Assert.assertEquals(warningMessage, "Login failed - Invalid user name or bad password.", "Message isn't displayed");
 

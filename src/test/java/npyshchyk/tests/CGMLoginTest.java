@@ -2,7 +2,7 @@ package npyshchyk.tests;
 
 import Nhrytsko.WebDriver.Pages.PageBase;
 import Nhrytsko.WebDriver.Tests.TestBase;
-import Nhrytsko.WebDriver.WrappedDriver.RB;
+import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
 import npyshchyk.pages.CGMLoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -55,6 +55,6 @@ public class CGMLoginTest extends TestBase{
     // should be removed
     @AfterSuite (alwaysRun = true)
     public void tearDown(){
-        RB.getInstance().quit();
+        RemoteBrowser.getInstance().quit();
     }
 }

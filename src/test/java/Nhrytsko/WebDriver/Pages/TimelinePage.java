@@ -1,6 +1,6 @@
 package Nhrytsko.WebDriver.Pages;
 
-import Nhrytsko.WebDriver.WrappedDriver.RB;
+import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
 import com.gargoylesoftware.htmlunit.ElementNotFoundException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -33,22 +33,22 @@ public class TimelinePage  extends PageBase {
     private WebElement drugHeader;
 
     public TimelinePage clickMedicationsButton(){
-        RB.waitForElement(this.medicationsButton);
+        RemoteBrowser.waitForElement(this.medicationsButton);
         medicationsButton.click();
         return this;
     }
 
     public TimelinePage clickAddNewMedication(){
-        RB.waitForElement(this.addNewMedication);
+        RemoteBrowser.waitForElement(this.addNewMedication);
         addNewMedication.click();
         return this;
     }
 
     public TimelinePage selectStandardMedication(){
         try {
-            RB.waitForElement(this.standardMedication);
+            RemoteBrowser.waitForElement(this.standardMedication);
             standardMedication.click();
-            RB.waitForElement(this.drugHeader);
+            RemoteBrowser.waitForElement(this.drugHeader);
         }
         catch (ElementNotFoundException e) {System.out.println("Service not found");}
         return this;
@@ -56,9 +56,9 @@ public class TimelinePage  extends PageBase {
 
     public TimelinePage selectInjectionMedication(){
         try {
-            RB.waitForElement(this.injectionMedication);
+            RemoteBrowser.waitForElement(this.injectionMedication);
             injectionMedication.click();
-            RB.waitForElement(this.drugHeader);
+            RemoteBrowser.waitForElement(this.drugHeader);
         }
         catch (ElementNotFoundException e) {System.out.println("Service not found");}
         return this;
@@ -66,9 +66,9 @@ public class TimelinePage  extends PageBase {
 
     public TimelinePage selectInfusionMedication(){
         try {
-            RB.waitForElement(this.infusionMedication);
+            RemoteBrowser.waitForElement(this.infusionMedication);
             infusionMedication.click();
-            RB.waitForElement(this.drugHeader);
+            RemoteBrowser.waitForElement(this.drugHeader);
         }
         catch (ElementNotFoundException e) {System.out.println("Service not found");}
         return this;

@@ -4,7 +4,7 @@ import Nhrytsko.WebDriver.WrappedDriver.CustomWebelements.Button;
 import Nhrytsko.WebDriver.WrappedDriver.CustomWebelements.Input;
 import Nhrytsko.WebDriver.WrappedDriver.CustomWebelements.PageElement;
 import Nhrytsko.WebDriver.WrappedDriver.CustomWebelements.SearchCriteria;
-import Nhrytsko.WebDriver.WrappedDriver.RB;
+import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -50,9 +50,9 @@ public class LoginPage extends PageBase {
     }
 
     public String getWarningMessage(){
-        RB.waitForAjax();
-        WebElement warningMessage = RB.getInstance().findElement(By.xpath("//div[@class='message-text ng-binding']"));
-        RB.waitForElement(warningMessage);
+        RemoteBrowser.waitForAjax();
+        WebElement warningMessage = RemoteBrowser.getInstance().findElement(By.xpath("//div[@class='message-text ng-binding']"));
+        RemoteBrowser.waitForElement(warningMessage);
 
         return warningMessage.getText();
     }

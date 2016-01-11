@@ -3,7 +3,7 @@ package Nhrytsko.WebDriver.Pages;
 import Nhrytsko.WebDriver.WrappedDriver.ConfigProvider;
 import Nhrytsko.WebDriver.WrappedDriver.CustomWebelements.Label;
 import Nhrytsko.WebDriver.WrappedDriver.CustomWebelements.SearchCriteria;
-import Nhrytsko.WebDriver.WrappedDriver.RB;
+import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -29,19 +29,19 @@ public class LandingPage extends PageBase {
     int webElements;
 
     public LandingPage enterEpisode(String patientName) {
-        RB.waitForElement(this.episodeInput);
+        RemoteBrowser.waitForElement(this.episodeInput);
         episodeInput.click();
         episodeInput.sendKeys(patientName);
        //        RemoteBrowser.waitForAllElements(searchResults);
-        RB.implicitWait(10);
+        RemoteBrowser.implicitWait(10);
         return this;
     }
     //region Vol Search Patient
     public LandingPage searchPatient() throws IOException {
-        RB.waitForElement(this.episodeInput);
+        RemoteBrowser.waitForElement(this.episodeInput);
         episodeInput.click();
         episodeInput.sendKeys(ConfigProvider.getPatientData());
-        RB.waitForAllElements(searchResults);
+        RemoteBrowser.waitForAllElements(searchResults);
         return this;
     }
     //endregion

@@ -17,14 +17,14 @@ import java.net.URL;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class RB {
-    private static volatile RB instance;
+public class RemoteBrowser {
+    private static volatile RemoteBrowser instance;
     private WebDriver webDriver;
     WebDriverWait wait;
 
-   /* public static RB getInstance(){
+   /* public static RemoteBrowser getInstance(){
         if (instance == null){
-            instance = new RB();
+            instance = new RemoteBrowser();
             instance.startWebDriver();
             return instance;
         }
@@ -32,15 +32,15 @@ public class RB {
         return instance;
     }*/
 
-    public static RB getInstance() {
+    public static RemoteBrowser getInstance() {
 
-        RB driverInstance = instance;
+        RemoteBrowser driverInstance = instance;
 
         if (driverInstance == null) {
-            synchronized (RB.class) {
+            synchronized (RemoteBrowser.class) {
                 driverInstance = instance;
                 if (driverInstance == null) {
-                    instance = driverInstance = new RB();
+                    instance = driverInstance = new RemoteBrowser();
                 }
             }
         }

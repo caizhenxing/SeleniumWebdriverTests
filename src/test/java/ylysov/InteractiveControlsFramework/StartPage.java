@@ -1,6 +1,6 @@
 package ylysov.InteractiveControlsFramework;
 
-import Nhrytsko.WebDriver.WrappedDriver.RB;
+import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -19,7 +19,7 @@ public class StartPage {
    public StartPage(){this.driver = driver ;}
 
     public StartPage selectDropdownList(){
-        RB.waitForElement(dropdownList);
+        RemoteBrowser.waitForElement(dropdownList);
         dropdownList.click();
         return this;
     }

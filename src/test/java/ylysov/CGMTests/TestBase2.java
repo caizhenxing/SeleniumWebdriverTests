@@ -3,7 +3,7 @@ package ylysov.CGMTests;
 import Nhrytsko.WebDriver.Pages.LandingPage;
 import Nhrytsko.WebDriver.Pages.MainPage;
 import Nhrytsko.WebDriver.Pages.PageBase;
-import Nhrytsko.WebDriver.WrappedDriver.RB;
+import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
@@ -23,7 +23,8 @@ public class TestBase2 {
     }
 
     @AfterSuite(alwaysRun = true)
-    public void tearDown(){RB.getInstance().quit();
+    public void tearDown(){
+        RemoteBrowser.getInstance().quit();
     }
 }
 

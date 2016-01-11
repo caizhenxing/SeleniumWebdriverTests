@@ -1,6 +1,6 @@
 package Nhrytsko.WebDriver.WrappedDriver.CustomWebelements;
 
-import Nhrytsko.WebDriver.WrappedDriver.RB;
+import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
 import org.openqa.selenium.*;
 
 import java.util.List;
@@ -24,7 +24,7 @@ public class PageElement implements WebElement{
     }
 
     public void jsClick(){
-        RB.getInstance().jsClick(this.element);
+        RemoteBrowser.getInstance().jsClick(this.element);
     }
 
     public void submit() {
@@ -60,19 +60,19 @@ public class PageElement implements WebElement{
     }
 
     public List<WebElement> findElements(By by) {
-        RB.waitForDocumentToBeReady();
-        RB.waitForAjax();
-        webElementList = RB.getInstance().findElements(by);
+        RemoteBrowser.waitForDocumentToBeReady();
+        RemoteBrowser.waitForAjax();
+        webElementList = RemoteBrowser.getInstance().findElements(by);
 
         return webElementList;
     }
 
     public WebElement findElement(By by) {
-        RB.waitForDocumentToBeReady();
-        RB.waitForAjax();
-        element = RB.getInstance().findElement(by);
+        RemoteBrowser.waitForDocumentToBeReady();
+        RemoteBrowser.waitForAjax();
+        element = RemoteBrowser.getInstance().findElement(by);
 
-        RB.waitForElement(element);
+        RemoteBrowser.waitForElement(element);
         return element;
     }
 

@@ -1,7 +1,7 @@
 package ylysov.InteractiveControlsTests;
 
 import Nhrytsko.WebDriver.Pages.PageBase;
-import Nhrytsko.WebDriver.WrappedDriver.RB;
+import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
@@ -19,6 +19,6 @@ public class BaseForControlsTests {
 
     @AfterSuite(alwaysRun = true)
     public void tearDown(){
-        RB.getInstance().quit();
+        RemoteBrowser.getInstance().quit();
     }
 }
