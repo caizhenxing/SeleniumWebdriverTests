@@ -50,6 +50,7 @@ public class RemoteBrowser {
     }
 
     public void startBrowser(){
+        RemoteBrowser.setCapabilities(ConfigProvider.getDriverHub(), ConfigProvider.getDriverBrowserVersion());
         getWebDriver();
     }
 
