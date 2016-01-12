@@ -1,14 +1,12 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="SmokeTests" parallel="classes" thread-count="2" verbose="2">
-    <test name="loginPage">
-        <groups>
-            <run>
-            </run>
-        </groups>
+<suite name="SmokeTests" parallel="tests">
+    <test name="loginPageTests">
+        <parameter name="hub" value="localhost" />
+        <parameter name="browserName" value="Chrome" />
         <classes>
-            <class name="Nhrytsko.WebDriver.Tests.MainPageTests" />
-            <class name="Nhrytsko.WebDriver.Tests.LoginPageTestSuite"/>
+            <class name="Nhrytsko.WebDriver.Tests.LoginPageTestSuite" />
+            <class name="Nhrytsko.WebDriver.Tests.MainPageTestSuite" />
         </classes>
     </test>
 </suite>

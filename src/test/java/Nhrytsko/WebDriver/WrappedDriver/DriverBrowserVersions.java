@@ -1,7 +1,7 @@
 package Nhrytsko.WebDriver.WrappedDriver;
 
 public enum DriverBrowserVersions {
-    Internet_Explorer,
+    IE,
     Firefox,
     Chrome
 }

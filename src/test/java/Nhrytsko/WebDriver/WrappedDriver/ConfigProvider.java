@@ -39,15 +39,6 @@ public class ConfigProvider {
         return null;
     }
 
-    public static String getDriverHub() {
-        try {
-            return ConfigurationParameters().getProperty("driverStartOption");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     public static long getPageLoadTimeout(){
         try{
             long pageLoadTimeout = Long.parseLong(ConfigurationParameters().getProperty("pageLoadTimeout"));
@@ -133,6 +124,7 @@ public class ConfigProvider {
         }
         return null;
     }
+
     public static String getPatientEpisode() {
         try {
             return ConfigurationParameters().getProperty("patientEpisode");
@@ -142,30 +134,30 @@ public class ConfigProvider {
         return null;
     }
 
-    public static String getDriverBrowserVersion(){
-        try {
-            return ConfigurationParameters().getProperty("driverBrowserVersion");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+    private static String getSolutionfolderPath(){
+        String a = System.getProperty("user.dir");
+        return a;
     }
 
-    public static String getRemoteSeleniumServerName(){
+    public static void setChromeDriverPath() {
+        String chromeDriverPath = null;
         try {
-            return ConfigurationParameters().getProperty("remoteSeleniumServerName");
+            chromeDriverPath = getSolutionfolderPath()+
+                    ConfigurationParameters().getProperty("chromeDriverPath");
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        System.setProperty("webdriver.chrome.driver", chromeDriverPath);
     }
 
-    public static String getRemoteSeleniumServerPort(){
+    public static void setIEDriverPath() {
+        String ieDriverPath = null;
         try {
-            return ConfigurationParameters().getProperty("remoteSeleniumServerPort");
+            ieDriverPath = getSolutionfolderPath()+
+                    ConfigurationParameters().getProperty("ieDriverPath");
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        System.setProperty("webdriver.ie.driver", ieDriverPath);
     }
 }

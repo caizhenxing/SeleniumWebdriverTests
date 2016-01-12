@@ -7,7 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class MainPageTests extends TestBase {
+public class MainPageTestSuite extends TestBase {
 
     LoginPage loginPage;
     MainPage mainPage;

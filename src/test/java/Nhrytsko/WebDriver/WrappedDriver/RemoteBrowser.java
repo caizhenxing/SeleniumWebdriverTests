@@ -18,6 +18,7 @@ import java.util.concurrent.TimeUnit;
 public class RemoteBrowser {
     private static volatile RemoteBrowser instance;
     private WebDriver webDriver;
+
     private static String browserName;
     private static String machine;
     private static int count = 0;
@@ -49,21 +50,42 @@ public class RemoteBrowser {
         jse.executeScript("arguments[0].click();", element);
     }
 
-    public void startBrowser(){
-        RemoteBrowser.setCapabilities(ConfigProvider.getDriverHub(), ConfigProvider.getDriverBrowserVersion());
+    public void startBrowser(String hub, String browserName){
+        RemoteBrowser.setCapabilities(hub, browserName);
         getWebDriver();
+        webDriver.manage().window().maximize();
     }
 
     private WebDriver getWebDriver(){
         count++;
 
+        // 1. WebDriver instance is not created yet
         if (webDriver != null){
             return webDriver;
         }
 
+        // 2. Different flavour of WebDriver is required
         String newKey = machine + ": " + browserName;
         if (!newKey.equals(key)){
+            quit();
+            key = newKey;
+            return newWebDriver();
     }
+        // 3. Browser is dead
+        try {
+            webDriver.getCurrentUrl();
+        } catch (Throwable t){
+            t.printStackTrace();
+            return newWebDriver();
+        }
+
+        // 4. It's time to restart
+        if (count >= restartFrequency){
+            quit();
+            return newWebDriver();
+        }
+
+        //5. Use existing WebDriver instance
         return newWebDriver();
     }
 
@@ -88,7 +110,7 @@ public class RemoteBrowser {
         DriverBrowserVersions browserVersions = DriverBrowserVersions.valueOf(browserName);
 
         switch (browserVersions){
-            case Internet_Explorer: webDriver = new InternetExplorerDriver();break;
+            case IE: webDriver = new InternetExplorerDriver();break;
             case Firefox: webDriver = new FirefoxDriver();break;
             case Chrome: webDriver = new ChromeDriver();break;
         }
@@ -102,7 +124,7 @@ public class RemoteBrowser {
 
                 try {
                     switch (browserVersions){
-                        case Internet_Explorer: webDriver = new RemoteWebDriver(new URL(machine), DesiredCapabilities.internetExplorer());
+                        case IE: webDriver = new RemoteWebDriver(new URL(machine), DesiredCapabilities.internetExplorer());
                         case Chrome: webDriver = new RemoteWebDriver(new URL(machine), DesiredCapabilities.chrome());
                         case Firefox: webDriver = new RemoteWebDriver(new URL(machine), DesiredCapabilities.firefox());
                     }

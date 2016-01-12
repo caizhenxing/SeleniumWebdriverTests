@@ -7,7 +7,7 @@ public class URLBuilder {
 
     public static URL getRemoteSeleniumServerUrl() {
         try {
-            return new URL(String.format("%1:%2/", ConfigProvider.getRemoteSeleniumServerName(), ConfigProvider.getRemoteSeleniumServerPort()));
+            return new URL(String.format("%1$:%2$/", "a", "b"));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

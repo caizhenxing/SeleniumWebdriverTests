@@ -1,15 +1,16 @@
 package Nhrytsko.WebDriver.Tests;
 
 import Nhrytsko.WebDriver.Pages.LoginPage;
-import Nhrytsko.WebDriver.Pages.MainPage;
+import Nhrytsko.WebDriver.Pages.PageBase;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class LoginPageTestSuite extends TestBase {
 
-    MainPage mainPage;
+    PageBase pages;
     LoginPage loginPage;
 
     @DataProvider(name = "data-provider", parallel = false)
@@ -21,7 +22,11 @@ public class LoginPageTestSuite extends TestBase {
     }
 
     @BeforeClass
-    public void testClassSetup(){
+    @Parameters(value = {"hub", "browserName"})
+    public void testClassSetup(String hub, String browserName){
+        PageBase.startBrowser(hub, browserName);
+        this.pages = new PageBase();
+        this.pages.goToLoginPage();
         this.loginPage = new LoginPage();
     }
 

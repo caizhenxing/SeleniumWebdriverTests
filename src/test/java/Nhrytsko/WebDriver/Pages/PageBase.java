@@ -12,8 +12,8 @@ public class PageBase {
 
     //region Methods
 
-    public static void startBrowser(){
-        RemoteBrowser.getInstance().startBrowser();
+    public static void startBrowser(String hub, String browserName){
+        RemoteBrowser.getInstance().startBrowser(hub, browserName);
     }
 
     public LoginPage goToLoginPage(){
