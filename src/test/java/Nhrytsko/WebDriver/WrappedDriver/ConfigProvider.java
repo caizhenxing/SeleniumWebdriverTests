@@ -39,7 +39,7 @@ public class ConfigProvider {
         return null;
     }
 
-    public static String getDriverStartOption () {
+    public static String getDriverHub() {
         try {
             return ConfigurationParameters().getProperty("driverStartOption");
         } catch (IOException e) {
