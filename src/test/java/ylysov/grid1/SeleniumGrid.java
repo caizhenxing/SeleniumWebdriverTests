@@ -17,5 +17,4 @@ public class SeleniumGrid {
         Process p = pb.start();
         Thread.sleep(3000);
     }
-
 }
