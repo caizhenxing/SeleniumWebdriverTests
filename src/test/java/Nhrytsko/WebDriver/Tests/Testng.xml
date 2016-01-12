@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="SmokeTests" parallel="tests">
-    <test name="loginPageTests">
+    <test name="mainPageTests">
         <parameter name="hub" value="localhost" />
         <parameter name="browserName" value="Chrome" />
         <classes>
