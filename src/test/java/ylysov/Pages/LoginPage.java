@@ -1,12 +1,14 @@
 package ylysov.Pages;
 
-import Nhrytsko.WebDriver.Pages.PageBase;
+import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import ylysov.grid1.WebDriverFactory;
 
-public class LoginPage extends PageBase {
+public class LoginPage extends PageBase2 {
 
     @FindBy(xpath = "/html/body/hx-include/div/div/div[2]/div/ng-include/form/div/div/div[2]/div[1]/div/div/input")
     @CacheLookup
@@ -25,9 +27,14 @@ public class LoginPage extends PageBase {
     @CacheLookup
     private WebElement warningMessage;
 
+    public LoginPage (WebDriver driver){
+        super(driver);
+        PageFactory.initElements(super.driver, this);
+    }
+
     //region Methods
     public LoginPage enterUserName(String userName) {
-        WebDriverFactory.waitForElement(this.userName);
+       WebDriverFactory.waitForElement(this.userName);
         this.userName.click();
         this.userName.sendKeys(userName);
         return this;
@@ -46,13 +53,13 @@ public class LoginPage extends PageBase {
     }
 
     public boolean logInButtonIsDisplayed() {
-        WebDriverFactory.waitForElement(this.loginButton);
+        RemoteBrowser.waitForElement(this.loginButton);
         return this.loginButton.isDisplayed();
     }
 
     public String getWarningMessage() throws InterruptedException {
         Thread.sleep(1000);
-        WebDriverFactory.waitForElement(this.warningMessage);
+        RemoteBrowser.waitForElement(this.warningMessage);
         return this.warningMessage.getText();
     }
     //endregion

@@ -13,7 +13,7 @@ public class TestsParallel extends TestBaseForParallel {
 
     @Test
     public void t1LogIn() {
-        this.loginPage = new LoginPage();  //!!!!!!!
+        this.loginPage = new LoginPage(driver);  //!!!!!!!
 //        try {
             loginPage.enterUserName(ConfigProvider.getValidUserName());
             loginPage.enterUserPassword(ConfigProvider.getValidUserPassword());
@@ -25,7 +25,7 @@ public class TestsParallel extends TestBaseForParallel {
 
     @Test
     public void t2NavigateToLandingPage() {
-        this.mainPage = new MainPage();
+        this.mainPage = new MainPage(driver);
         mainPage.clickMenuButton();
         mainPage.clickLandingPageButton();
     }

@@ -1,17 +1,18 @@
 package ylysov.Pages;
 
-import Nhrytsko.WebDriver.Pages.PageBase;
 import Nhrytsko.WebDriver.WrappedDriver.ConfigProvider;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import ylysov.grid1.WebDriverFactory;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
-public class LandingPage extends PageBase {
+public class LandingPage extends PageBase2 {
 
     @FindBy(xpath = "//cgm-search-field[@class='cgm-autocomplete cgm-search-field cgm-autocomplete-empty ng-valid']")
     @CacheLookup
@@ -28,12 +29,16 @@ public class LandingPage extends PageBase {
     int resultsListSize;
     int selectFromList;
 
+    public LandingPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(super.driver, this);
+    }
     public LandingPage enterEpisode(String patientName) {
         WebDriverFactory.waitForElement(this.episodeInput);
         episodeInput.click();
         episodeInput.sendKeys(patientName);
-//        WebDriverFactory.waitForAllElements(searchResults);
-        WebDriverFactory.implicitWait(20);
+       //        RemoteBrowser.waitForAllElements(searchResults);
+        WebDriverFactory.implicitWait(10);
         return this;
     }
     //region Vol Search Patient
@@ -47,7 +52,6 @@ public class LandingPage extends PageBase {
     //endregion
     public LandingPage selectTopSearchResult() {
         searchResults.get(0).click();
-        WebDriverFactory.implicitWait(20);
         return this;
     }
     public LandingPage selectRandomSearchResult(){
