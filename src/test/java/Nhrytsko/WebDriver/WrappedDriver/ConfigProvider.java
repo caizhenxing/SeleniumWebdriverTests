@@ -134,15 +134,25 @@ public class ConfigProvider {
         return null;
     }
 
-    private static String getSolutionfolderPath(){
-        String a = System.getProperty("user.dir");
-        return a;
+    private static String getSolutionFolderPath(){
+        String folderPath = System.getProperty("user.dir");
+        return folderPath;
+    }
+
+    public static String getSeleniumGridPath(){
+        String seleniumGridPath = getSolutionFolderPath() + "\\src\\seleniumGridFiles\\";
+        return seleniumGridPath;
+    }
+
+    public static String getGridBatPath(){
+        String gridBatPath = getSeleniumGridPath() + "StartGrid.bat";
+        return gridBatPath;
     }
 
     public static void setChromeDriverPath() {
         String chromeDriverPath = null;
         try {
-            chromeDriverPath = getSolutionfolderPath()+
+            chromeDriverPath = getSolutionFolderPath()+
                     ConfigurationParameters().getProperty("chromeDriverPath");
         } catch (IOException e) {
             e.printStackTrace();
@@ -153,11 +163,15 @@ public class ConfigProvider {
     public static void setIEDriverPath() {
         String ieDriverPath = null;
         try {
-            ieDriverPath = getSolutionfolderPath()+
+            ieDriverPath = getSolutionFolderPath()+
                     ConfigurationParameters().getProperty("ieDriverPath");
         } catch (IOException e) {
             e.printStackTrace();
         }
         System.setProperty("webdriver.ie.driver", ieDriverPath);
+    }
+
+    public static String getDefaultHubURL() {
+        return System.getProperty("defaultHubURL");
     }
 }

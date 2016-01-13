@@ -13,6 +13,7 @@ public class TestBase {
     public void setUp(){
         ConfigProvider.setChromeDriverPath();
         ConfigProvider.setIEDriverPath();
+        RemoteBrowser.getInstance().startSeleniumGrid();
     }
 
     @AfterSuite(alwaysRun = true)

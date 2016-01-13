@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
@@ -20,10 +22,11 @@ public class RemoteBrowser {
     private static WebDriver webDriver;
 
     private static String browserName;
-    private static String machine;
+    private static String hub;
     private static int count = 0;
     private static int restartFrequency = Integer.MAX_VALUE;
     private static String key = null;
+    private static String defaultHub = ConfigProvider.getDefaultHubURL();
 
     public static RemoteBrowser getInstance() {
 
@@ -49,7 +52,7 @@ public class RemoteBrowser {
         }
 
         // 2. Different flavour of WebDriver is required
-        String newKey = machine + ": " + browserName;
+        String newKey = hub + ": " + browserName;
         if (!newKey.equals(key)){
             quit();
             key = newKey;
@@ -75,7 +78,7 @@ public class RemoteBrowser {
 
     private static void setCapabilities(String hub, String browserVersion){
         browserName = browserVersion;
-        machine = hub;
+        RemoteBrowser.hub = hub;
     }
 
     public void jsClick(WebElement element){
@@ -89,11 +92,34 @@ public class RemoteBrowser {
         webDriver.manage().window().maximize();
     }
 
+    public void startSeleniumGrid (){
+        System.out.println("SeleniumGrid is started form: " + ConfigProvider.getSeleniumGridPath());
+
+        ProcessBuilder pb = new ProcessBuilder(ConfigProvider.getGridBatPath());
+        pb.directory(new File(ConfigProvider.getSeleniumGridPath()));
+        try {
+            Process p = pb.start();
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void setDefaultHub(String newDefaultHub) {
+        defaultHub = newDefaultHub;
+    }
+
+    public static void setRestartFrequency(int newRestartFrequency){
+        restartFrequency = newRestartFrequency;
+    }
+
     private WebDriver newWebDriver(){
 
-        webDriver = (machine.equalsIgnoreCase("localhost"))? startLocalWebDriver(): startRemoteWebDriver();
+        webDriver = (hub.equalsIgnoreCase("localhost"))? startLocalWebDriver(): startRemoteWebDriver();
 
-        key = machine + ": " + browserName;
+        key = hub + ": " + browserName;
         count = 0;
         return webDriver;
         }
@@ -132,9 +158,9 @@ public class RemoteBrowser {
 
                 try {
                     switch (browserVersions){
-                        case IE: webDriver = new RemoteWebDriver(new URL(machine), DesiredCapabilities.internetExplorer());
-                        case Chrome: webDriver = new RemoteWebDriver(new URL(machine), DesiredCapabilities.chrome());
-                        case Firefox: webDriver = new RemoteWebDriver(new URL(machine), DesiredCapabilities.firefox());
+                        case IE: webDriver = new RemoteWebDriver(new URL(hub), DesiredCapabilities.internetExplorer());
+                        case Chrome: webDriver = new RemoteWebDriver(new URL(hub), DesiredCapabilities.chrome());
+                        case Firefox: webDriver = new RemoteWebDriver(new URL(hub), DesiredCapabilities.firefox());
                     }
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
