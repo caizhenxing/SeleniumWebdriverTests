@@ -33,6 +33,12 @@ public class TestBaseForGrid {
             driver = WebDriverFactory.getDriver(DesiredCapabilities.internetExplorer());
             driverName = "internet explorer";
         }
+         else if (browser.equals("Chrome"))
+         { // If value Is CRM then webdriver will open chrome Browser.
+             System.out.println("Test Starts Running In Internet Explorer.");
+             driver = WebDriverFactory.getDriver(DesiredCapabilities.chrome());
+
+         }
         driver.manage().window().maximize();
         driver.navigate().to(StartPageURL);
     }

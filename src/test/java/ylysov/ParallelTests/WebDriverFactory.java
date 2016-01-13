@@ -111,12 +111,12 @@ public class WebDriverFactory {
             return new FirefoxDriver(capabilities);
         if (browserType.startsWith("internet explorer")) ;
         {
-            System.setProperty("webdriver.ie.driver", "D:\\driver\\IEDriverServer.exe");           //my changes
+            System.setProperty("webdriver.ie.driver", "D:\\JavaProject\\SeleniumWebdriverTests\\IEDriver\\IEDriverServer.exe");           //my changes
         }
 
         return new InternetExplorerDriver(capabilities);
 //        if (browserType.equals("chrome"));
-//        {  System.setProperty("webdriver.ie.driver", "D:\\driver\\IEDriverServer.exe");}
+//        {  System.setProperty("webdriver.ie.driver", "D:\JavaProject\SeleniumWebdriverTests\IEDriver\IEDriverServer.exe");}
 //            return new ChromeDriver(capabilities);
 //        if (browserType.equals("opera"))
 //            return new OperaDriver(capabilities);

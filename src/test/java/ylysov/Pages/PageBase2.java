@@ -1,7 +1,6 @@
 package ylysov.Pages;
 
 import Nhrytsko.WebDriver.WrappedDriver.ConfigProvider;
-import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
 import org.openqa.selenium.WebDriver;
 
 import java.io.IOException;

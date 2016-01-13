@@ -1,13 +1,13 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="ParallelTests" parallel="tests">
-    <test name="Test In FireFox" >
+    <test name="Test In FireFox1" >
         <parameter name="browser" value="FF" />
         <classes>
             <class name="ylysov.grid1.CGMTestsForGrid2" />
         </classes>
     </test>
-    <test name="Test In Internet Explorer" >
-        <parameter name="browser" value="IE"></parameter>
+    <test name="Test In FireFox2" >
+        <parameter name="browser" value="FF"></parameter>
         <classes>
             <class name="ylysov.grid1.CGMTestsForGrid2"></class>
         </classes>
