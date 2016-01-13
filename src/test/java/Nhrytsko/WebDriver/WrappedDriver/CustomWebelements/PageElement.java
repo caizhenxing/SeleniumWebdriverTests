@@ -60,7 +60,7 @@ public class PageElement implements WebElement{
     }
 
     public List<WebElement> findElements(By by) {
-        RemoteBrowser.waitForDocumentToBeReady();
+        RemoteBrowser.getInstance().waitForDocumentToBeReady();
         RemoteBrowser.waitForAjax();
         webElementList = RemoteBrowser.getInstance().findElements(by);
 
@@ -68,11 +68,11 @@ public class PageElement implements WebElement{
     }
 
     public WebElement findElement(By by) {
-        RemoteBrowser.waitForDocumentToBeReady();
+        RemoteBrowser.getInstance().waitForDocumentToBeReady();
         RemoteBrowser.waitForAjax();
         element = RemoteBrowser.getInstance().findElement(by);
 
-        RemoteBrowser.waitForElement(element);
+        RemoteBrowser.getInstance().waitForElement(element);
         return element;
     }
 

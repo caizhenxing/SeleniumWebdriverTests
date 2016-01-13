@@ -52,7 +52,7 @@ public class LoginPage extends PageBase {
     public String getWarningMessage(){
         RemoteBrowser.waitForAjax();
         WebElement warningMessage = RemoteBrowser.getInstance().findElement(By.xpath("//div[@class='message-text ng-binding']"));
-        RemoteBrowser.waitForElement(warningMessage);
+        RemoteBrowser.getInstance().waitForElement(warningMessage);
 
         return warningMessage.getText();
     }

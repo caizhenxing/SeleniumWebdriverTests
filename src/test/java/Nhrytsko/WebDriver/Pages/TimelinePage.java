@@ -33,22 +33,22 @@ public class TimelinePage  extends PageBase {
     private WebElement drugHeader;
 
     public TimelinePage clickMedicationsButton(){
-        RemoteBrowser.waitForElement(this.medicationsButton);
+        RemoteBrowser.getInstance().waitForElement(this.medicationsButton);
         medicationsButton.click();
         return this;
     }
 
     public TimelinePage clickAddNewMedication(){
-        RemoteBrowser.waitForElement(this.addNewMedication);
+        RemoteBrowser.getInstance().waitForElement(this.addNewMedication);
         addNewMedication.click();
         return this;
     }
 
     public TimelinePage selectStandardMedication(){
         try {
-            RemoteBrowser.waitForElement(this.standardMedication);
+            RemoteBrowser.getInstance().waitForElement(this.standardMedication);
             standardMedication.click();
-            RemoteBrowser.waitForElement(this.drugHeader);
+            RemoteBrowser.getInstance().waitForElement(this.drugHeader);
         }
         catch (ElementNotFoundException e) {System.out.println("Service not found");}
         return this;
@@ -56,9 +56,9 @@ public class TimelinePage  extends PageBase {
 
     public TimelinePage selectInjectionMedication(){
         try {
-            RemoteBrowser.waitForElement(this.injectionMedication);
+            RemoteBrowser.getInstance().waitForElement(this.injectionMedication);
             injectionMedication.click();
-            RemoteBrowser.waitForElement(this.drugHeader);
+            RemoteBrowser.getInstance().waitForElement(this.drugHeader);
         }
         catch (ElementNotFoundException e) {System.out.println("Service not found");}
         return this;
@@ -66,9 +66,9 @@ public class TimelinePage  extends PageBase {
 
     public TimelinePage selectInfusionMedication(){
         try {
-            RemoteBrowser.waitForElement(this.infusionMedication);
+            RemoteBrowser.getInstance().waitForElement(this.infusionMedication);
             infusionMedication.click();
-            RemoteBrowser.waitForElement(this.drugHeader);
+            RemoteBrowser.getInstance().waitForElement(this.drugHeader);
         }
         catch (ElementNotFoundException e) {System.out.println("Service not found");}
         return this;

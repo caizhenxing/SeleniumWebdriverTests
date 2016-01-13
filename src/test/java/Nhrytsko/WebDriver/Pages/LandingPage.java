@@ -29,7 +29,7 @@ public class LandingPage extends PageBase {
     int webElements;
 
     public LandingPage enterEpisode(String patientName) {
-        RemoteBrowser.waitForElement(this.episodeInput);
+        RemoteBrowser.getInstance().waitForElement(this.episodeInput);
         episodeInput.click();
         episodeInput.sendKeys(patientName);
        //        RemoteBrowser.waitForAllElements(searchResults);
@@ -38,10 +38,10 @@ public class LandingPage extends PageBase {
     }
     //region Vol Search Patient
     public LandingPage searchPatient() throws IOException {
-        RemoteBrowser.waitForElement(this.episodeInput);
+        RemoteBrowser.getInstance().waitForElement(this.episodeInput);
         episodeInput.click();
         episodeInput.sendKeys(ConfigProvider.getPatientData());
-        RemoteBrowser.waitForAllElements(searchResults);
+        RemoteBrowser.getInstance().waitForAllElements(searchResults);
         return this;
     }
     //endregion

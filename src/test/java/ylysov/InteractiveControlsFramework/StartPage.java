@@ -19,7 +19,7 @@ public class StartPage {
    public StartPage(){this.driver = driver ;}
 
     public StartPage selectDropdownList(){
-        RemoteBrowser.waitForElement(dropdownList);
+        RemoteBrowser.getInstance().waitForElement(dropdownList);
         dropdownList.click();
         return this;
     }

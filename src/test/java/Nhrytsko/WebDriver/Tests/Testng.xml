@@ -3,10 +3,10 @@
 <suite name="SmokeTests" parallel="tests">
     <test name="mainPageTests">
         <parameter name="hub" value="localhost" />
-        <parameter name="browserName" value="Chrome" />
+        <parameter name="browserName" value="Firefox" />
         <classes>
-            <class name="Nhrytsko.WebDriver.Tests.LoginPageTestSuite" />
             <class name="Nhrytsko.WebDriver.Tests.MainPageTestSuite" />
+            <class name="Nhrytsko.WebDriver.Tests.LoginPageTestSuite" />
         </classes>
     </test>
 </suite>

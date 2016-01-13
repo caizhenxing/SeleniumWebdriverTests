@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 public class RemoteBrowser {
     private static volatile RemoteBrowser instance;
-    private WebDriver webDriver;
+    private static WebDriver webDriver;
 
     private static String browserName;
     private static String machine;
@@ -40,28 +40,12 @@ public class RemoteBrowser {
         return instance;
     }
 
-    public static void setCapabilities(String hub, String browserVersion){
-        browserName = browserVersion;
-        machine = hub;
-    }
-
-    public void jsClick(WebElement element){
-        JavascriptExecutor jse = (JavascriptExecutor) getWebDriver();
-        jse.executeScript("arguments[0].click();", element);
-    }
-
-    public void startBrowser(String hub, String browserName){
-        RemoteBrowser.setCapabilities(hub, browserName);
-        getWebDriver();
-        webDriver.manage().window().maximize();
-    }
-
     private WebDriver getWebDriver(){
         count++;
 
         // 1. WebDriver instance is not created yet
-        if (webDriver != null){
-            return webDriver;
+        if (webDriver == null){
+            return newWebDriver();
         }
 
         // 2. Different flavour of WebDriver is required
@@ -70,7 +54,7 @@ public class RemoteBrowser {
             quit();
             key = newKey;
             return newWebDriver();
-    }
+        }
         // 3. Browser is dead
         try {
             webDriver.getCurrentUrl();
@@ -86,7 +70,23 @@ public class RemoteBrowser {
         }
 
         //5. Use existing WebDriver instance
-        return newWebDriver();
+        return webDriver;
+    }
+
+    private static void setCapabilities(String hub, String browserVersion){
+        browserName = browserVersion;
+        machine = hub;
+    }
+
+    public void jsClick(WebElement element){
+        JavascriptExecutor jse = (JavascriptExecutor) webDriver;
+        jse.executeScript("arguments[0].click();", element);
+    }
+
+    public void startBrowser(String hub, String browserName){
+        RemoteBrowser.setCapabilities(hub, browserName);
+        instance.getWebDriver();
+        webDriver.manage().window().maximize();
     }
 
     private WebDriver newWebDriver(){
@@ -98,12 +98,20 @@ public class RemoteBrowser {
         return webDriver;
         }
 
-    public void quit(){
+    public static void quit(){
         if (webDriver != null) try {
             webDriver.quit();
             webDriver = null;
             key = null;
         } catch (WebDriverException ex) {}
+    }
+
+    static {
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            public void run() {
+                quit();
+            }
+        });
     }
 
     private WebDriver startLocalWebDriver(){
@@ -136,31 +144,31 @@ public class RemoteBrowser {
     }
 
     public void navigate(URL url) {
-        instance.getWebDriver().navigate().to(url);
+        webDriver.navigate().to(url);
     }
 
     public List<WebElement> findElements(By by) {
         waitForElement(by);
-        return instance.getWebDriver().findElements(by);
+        return webDriver.findElements(by);
     }
 
     public WebElement findElement(By by) {
         waitForElement(by);
-        return instance.getWebDriver().findElement(by);
+        return webDriver.findElement(by);
     }
 
-    public static void waitForElement(WebElement element){
-        WebDriverWait wait = new WebDriverWait(instance.getWebDriver(), ConfigProvider.getPageLoadTimeout());
+    public void waitForElement(WebElement element){
+        WebDriverWait wait = new WebDriverWait(getWebDriver(), ConfigProvider.getPageLoadTimeout());
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    public static void waitForElement (By selector){
-        WebDriverWait wait = new WebDriverWait(instance.getWebDriver(), ConfigProvider.getPageLoadTimeout());
+    public void waitForElement (By selector){
+        WebDriverWait wait = new WebDriverWait(getWebDriver(), ConfigProvider.getPageLoadTimeout());
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(selector));
     }
 
-    public static void waitForAllElements(List<WebElement> elements) {
-        WebDriverWait wait = new WebDriverWait(instance.getWebDriver(), ConfigProvider.getPageLoadTimeout());
+    public void waitForAllElements(List<WebElement> elements) {
+        WebDriverWait wait = new WebDriverWait(getWebDriver(), ConfigProvider.getPageLoadTimeout());
         wait.until(ExpectedConditions.visibilityOfAllElements(elements));
     }
 

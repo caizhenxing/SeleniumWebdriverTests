@@ -20,7 +20,7 @@ public class MainPageTestSuite extends TestBase {
     public void testClassSetup(String hub, String browserName){
         PageBase.startBrowser(hub, browserName);
         this.pages = new PageBase();
-        this.loginPage = new LoginPage();
+        this.loginPage = this.pages.goToLoginPage();
         this.mainPage = this.loginPage.logInAs(ConfigProvider.getValidUserName(), ConfigProvider.getValidUserPassword()).proceedWithMainPage();
     }
 

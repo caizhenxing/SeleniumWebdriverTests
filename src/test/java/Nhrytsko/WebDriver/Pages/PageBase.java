@@ -18,7 +18,7 @@ public class PageBase {
 
     public LoginPage goToLoginPage(){
         RemoteBrowser.getInstance().navigate(ConfigProvider.getBaseURL());
-        RemoteBrowser.waitForDocumentToBeReady();
+        RemoteBrowser.getInstance().waitForDocumentToBeReady();
         RemoteBrowser.waitForAjax();
         return new LoginPage();
     }

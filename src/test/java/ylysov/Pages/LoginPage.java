@@ -53,13 +53,13 @@ public class LoginPage extends PageBase2 {
     }
 
     public boolean logInButtonIsDisplayed() {
-        RemoteBrowser.waitForElement(this.loginButton);
+        RemoteBrowser.getInstance().waitForElement(this.loginButton);
         return this.loginButton.isDisplayed();
     }
 
     public String getWarningMessage() throws InterruptedException {
         Thread.sleep(1000);
-        RemoteBrowser.waitForElement(this.warningMessage);
+        RemoteBrowser.getInstance().waitForElement(this.warningMessage);
         return this.warningMessage.getText();
     }
     //endregion

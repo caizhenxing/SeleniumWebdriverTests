@@ -12,7 +12,7 @@ public class EpisodePage extends PageBase {
     private WebElement timelineTab;
 
     public EpisodePage selectTimelineTab(){
-        RemoteBrowser.waitForElement(this.timelineTab);
+        RemoteBrowser.getInstance().waitForElement(this.timelineTab);
         timelineTab.click();
         return this;
     }

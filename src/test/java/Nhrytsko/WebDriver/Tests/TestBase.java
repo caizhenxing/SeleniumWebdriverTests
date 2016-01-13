@@ -15,8 +15,8 @@ public class TestBase {
         ConfigProvider.setIEDriverPath();
     }
 
-    @AfterSuite (alwaysRun = true)
+    @AfterSuite(alwaysRun = true)
     public void tearDown(){
-        RemoteBrowser.getInstance().quit();
+        RemoteBrowser.quit();
     }
 }
