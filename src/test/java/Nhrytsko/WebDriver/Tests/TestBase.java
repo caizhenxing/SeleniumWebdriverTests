@@ -1,13 +1,12 @@
 package Nhrytsko.WebDriver.Tests;
 
-import Nhrytsko.WebDriver.Pages.LoginPage;
+import Nhrytsko.WebDriver.Pages.PageBase;
 import Nhrytsko.WebDriver.WrappedDriver.ConfigProvider;
 import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
-import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeSuite;
 
 public class TestBase {
-    public LoginPage loginPage;
 
     @BeforeSuite(alwaysRun = true)
     public void setUp(){
@@ -16,8 +15,8 @@ public class TestBase {
         RemoteBrowser.getInstance().startSeleniumGrid();
     }
 
-    @AfterSuite(alwaysRun = true)
-    public void tearDown(){
-        RemoteBrowser.quit();
+    @AfterClass
+    public void classTearDown(){
+        PageBase.closeBrowser();
     }
 }

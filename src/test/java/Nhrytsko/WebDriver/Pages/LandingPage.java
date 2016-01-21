@@ -32,7 +32,7 @@ public class LandingPage extends PageBase {
         RemoteBrowser.getInstance().waitForElement(this.episodeInput);
         episodeInput.click();
         episodeInput.sendKeys(patientName);
-       //        RemoteBrowser.waitForAllElements(searchResults);
+       //        DriverFactory.waitForAllElements(searchResults);
         RemoteBrowser.implicitWait(10);
         return this;
     }

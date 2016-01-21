@@ -55,6 +55,6 @@ public class CGMLoginTest extends TestBase{
     // should be removed
     @AfterSuite (alwaysRun = true)
     public void tearDown(){
-        RemoteBrowser.quit();
+        RemoteBrowser.getInstance().quit();
     }
 }

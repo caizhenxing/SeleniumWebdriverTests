@@ -10,10 +10,10 @@ import org.testng.annotations.Test;
 
 public class LoginPageTestSuite extends TestBase {
 
-    PageBase pages;
     LoginPage loginPage;
+    String browserName;
 
-    @DataProvider(name = "data-provider", parallel = false)
+    @DataProvider(name = "data-provider")
     public Object [] [] data(){
         return new Object[][]{
                 {"g2his", "g3his"},
@@ -23,19 +23,18 @@ public class LoginPageTestSuite extends TestBase {
 
     @BeforeClass
     @Parameters(value = {"hub", "browserName"})
-    public void testClassSetup(String hub, String browserName){
-        PageBase.startBrowser(hub, browserName);
-        this.pages = new PageBase();
-        this.pages.goToLoginPage();
-        this.loginPage = new LoginPage();
+    public void classSetUp(String hub, String browserName){
+        this.loginPage = PageBase.startBrowser(hub,browserName).goToLoginPage();
+        this.browserName = browserName;
     }
 
     @Test (groups = {"group2"}, dataProvider = "data-provider")
     public void userCannotLogInWithInvalidCredentials(String userName, String userPassword) {
-            this.loginPage.logInAs(userName, userPassword);
+        this.loginPage.logInAs(userName, userPassword);
 
         String warningMessage = this.loginPage.getWarningMessage();
 
         Assert.assertEquals(warningMessage, "Login failed - Invalid user name or bad password.", "Messages are not equal");
+        System.out.println("Test is running th thread #"+Thread.currentThread().getId() + " in browser " + this.browserName);
     }
 }

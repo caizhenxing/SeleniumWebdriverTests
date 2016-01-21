@@ -1,6 +1,9 @@
 package Nhrytsko.WebDriver.WrappedDriver;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -17,127 +20,38 @@ import java.net.URL;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+
 public class RemoteBrowser {
-    private static volatile RemoteBrowser instance;
-    private static WebDriver webDriver;
+    private RemoteBrowser(){}
 
     private static String browserName;
-    private static String hub;
+    private static String hubName;
     private static int count = 0;
     private static int restartFrequency = Integer.MAX_VALUE;
     private static String key = null;
     private static String defaultHub = ConfigProvider.getDefaultHubURL();
-
-    public static RemoteBrowser getInstance() {
-
-        RemoteBrowser driverInstance = instance;
-
-        if (driverInstance == null) {
-            synchronized (RemoteBrowser.class) {
-                driverInstance = instance;
-                if (driverInstance == null) {
-                    instance =  new RemoteBrowser();
-                }
-            }
-        }
-        return instance;
-    }
-
-    private WebDriver getWebDriver(){
-        count++;
-
-        // 1. WebDriver instance is not created yet
-        if (webDriver == null){
-            return newWebDriver();
-        }
-
-        // 2. Different flavour of WebDriver is required
-        String newKey = hub + ": " + browserName;
-        if (!newKey.equals(key)){
-            quit();
-            key = newKey;
-            return newWebDriver();
-        }
-        // 3. Browser is dead
-        try {
-            webDriver.getCurrentUrl();
-        } catch (Throwable t){
-            t.printStackTrace();
-            return newWebDriver();
-        }
-
-        // 4. It's time to restart
-        if (count >= restartFrequency){
-            quit();
-            return newWebDriver();
-        }
-
-        //5. Use existing WebDriver instance
-        return webDriver;
-    }
+    private static WebDriver webDriver;
+    private static RemoteBrowser instance = new RemoteBrowser();
 
     private static void setCapabilities(String hub, String browserVersion){
         browserName = browserVersion;
-        RemoteBrowser.hub = hub;
+        hubName = hub;
     }
 
-    public void jsClick(WebElement element){
-        JavascriptExecutor jse = (JavascriptExecutor) webDriver;
-        jse.executeScript("arguments[0].click();", element);
-    }
-
-    public void startBrowser(String hub, String browserName){
-        RemoteBrowser.setCapabilities(hub, browserName);
-        instance.getWebDriver();
-        webDriver.manage().window().maximize();
-    }
-
-    public void startSeleniumGrid (){
-        System.out.println("SeleniumGrid is started form: " + ConfigProvider.getSeleniumGridPath());
-
-        ProcessBuilder pb = new ProcessBuilder(ConfigProvider.getGridBatPath());
-        pb.directory(new File(ConfigProvider.getSeleniumGridPath()));
-        try {
-            Process p = pb.start();
-            Thread.sleep(4000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+    private WebDriver singletonWebDriverHolder(){
+        if (webDriver == null){
+            webDriver = createDriverInstance();
+            return webDriver;
         }
+        return webDriver;
     }
 
-    public static void setDefaultHub(String newDefaultHub) {
-        defaultHub = newDefaultHub;
-    }
+    private WebDriver createDriverInstance(){
+        webDriver = (hubName.equalsIgnoreCase("localhost"))? startLocalWebDriver(): startRemoteWebDriver();
 
-    public static void setRestartFrequency(int newRestartFrequency){
-        restartFrequency = newRestartFrequency;
-    }
-
-    private WebDriver newWebDriver(){
-
-        webDriver = (hub.equalsIgnoreCase("localhost"))? startLocalWebDriver(): startRemoteWebDriver();
-
-        key = hub + ": " + browserName;
+        key = hubName + ": " + browserName;
         count = 0;
         return webDriver;
-        }
-
-    public static void quit(){
-        if (webDriver != null) try {
-            webDriver.quit();
-            webDriver = null;
-            key = null;
-        } catch (WebDriverException ex) {}
-    }
-
-    static {
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            public void run() {
-                quit();
-            }
-        });
     }
 
     private WebDriver startLocalWebDriver(){
@@ -156,17 +70,72 @@ public class RemoteBrowser {
 
         DriverBrowserVersions browserVersions = DriverBrowserVersions.valueOf(browserName);
 
-                try {
-                    switch (browserVersions){
-                        case IE: webDriver = new RemoteWebDriver(new URL(hub), DesiredCapabilities.internetExplorer());
-                        case Chrome: webDriver = new RemoteWebDriver(new URL(hub), DesiredCapabilities.chrome());
-                        case Firefox: webDriver = new RemoteWebDriver(new URL(hub), DesiredCapabilities.firefox());
-                    }
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                }
+        try {
+            switch (browserVersions){
+                case IE: webDriver = new RemoteWebDriver(new URL(hubName), DesiredCapabilities.internetExplorer()); break;
+                case Chrome: webDriver = new RemoteWebDriver(new URL(hubName), DesiredCapabilities.chrome()); break;
+                case Firefox: webDriver = new RemoteWebDriver(new URL(hubName), DesiredCapabilities.firefox()); break;
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
 
         return webDriver;
+    }
+
+    public void startBrowser(String hub, String browserName){
+        setCapabilities(hub, browserName);
+        instance.getWebDriver();
+        webDriver.manage().window().maximize();
+    }
+
+    public static RemoteBrowser getInstance(){
+        return instance;
+    }
+
+    public WebDriver getWebDriver(){
+        return driver.get();
+    }
+
+    ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>(){
+        @Override
+        protected WebDriver initialValue(){
+            webDriver = singletonWebDriverHolder();
+            return webDriver;
+        }
+    };
+
+    public void startSeleniumGrid (){
+        System.out.println("SeleniumGrid is started form: " + ConfigProvider.getSeleniumGridPath());
+
+        ProcessBuilder pb = new ProcessBuilder(ConfigProvider.getGridBatPath());
+        pb.directory(new File(ConfigProvider.getSeleniumGridPath()));
+        try {
+            Process p = pb.start();
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void quit(){
+        getWebDriver().quit();
+        driver.remove();
+    }
+
+    public void jsClick(WebElement element){
+        JavascriptExecutor jse = (JavascriptExecutor) webDriver;
+        jse.executeScript("arguments[0].click();", element);
+    }
+
+    public static void setDefaultHub(String newDefaultHub) {
+        defaultHub = newDefaultHub;
+    }
+
+    public static void setRestartFrequency(int newRestartFrequency){
+        restartFrequency = newRestartFrequency;
     }
 
     public void navigate(URL url) {
@@ -235,4 +204,5 @@ public class RemoteBrowser {
             }
         }
     }
+
 }

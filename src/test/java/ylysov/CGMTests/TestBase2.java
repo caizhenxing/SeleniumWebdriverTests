@@ -24,7 +24,7 @@ public class TestBase2 {
 
     @AfterSuite(alwaysRun = true)
     public void tearDown(){
-        RemoteBrowser.quit();
+        RemoteBrowser.getInstance().quit();
     }
 }
 

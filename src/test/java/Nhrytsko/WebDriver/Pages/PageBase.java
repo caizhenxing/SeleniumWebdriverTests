@@ -12,14 +12,20 @@ public class PageBase {
 
     //region Methods
 
-    public static void startBrowser(String hub, String browserName){
+    public static PageBase startBrowser(String hub, String browserName){
         RemoteBrowser.getInstance().startBrowser(hub, browserName);
+        return new PageBase();
+    }
+
+    public static void closeBrowser(){
+        RemoteBrowser.getInstance().quit();
     }
 
     public LoginPage goToLoginPage(){
         RemoteBrowser.getInstance().navigate(ConfigProvider.getBaseURL());
+        RemoteBrowser.implicitWait(30);
         RemoteBrowser.getInstance().waitForDocumentToBeReady();
-        RemoteBrowser.waitForAjax();
+        RemoteBrowser.getInstance().waitForAjax();
         return new LoginPage();
     }
 
