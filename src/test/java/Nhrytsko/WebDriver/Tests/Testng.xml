@@ -2,17 +2,10 @@
 
 <suite name="SmokeTests" parallel="tests">
     <test name="IE_Tests">
-        <parameter name="hub" value="http://localhost:4444/wd/hub" />
-        <parameter name="browserName" value="IE" />
+        <parameter name="hub" value="local" />
+        <parameter name="browserName" value="Chrome" />
         <classes>
             <class name="Nhrytsko.WebDriver.Tests.LoginPageTestSuite" />
-        </classes>
-    </test>
-
-    <test name="Firefox_Tests">
-        <parameter name="hub" value="localhost" />
-        <parameter name="browserName" value="Firefox" />
-        <classes>
             <class name="Nhrytsko.WebDriver.Tests.MainPageTestSuite" />
         </classes>
     </test>

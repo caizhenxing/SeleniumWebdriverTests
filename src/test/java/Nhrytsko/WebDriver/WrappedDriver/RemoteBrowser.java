@@ -15,7 +15,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -39,15 +38,41 @@ public class RemoteBrowser {
     }
 
     private WebDriver singletonWebDriverHolder(){
+        count++;
+
+        // 1. WebDriver instance is not created yet
         if (webDriver == null){
             webDriver = createDriverInstance();
             return webDriver;
         }
+
+        // 2. Different flavour of WebDriver is required
+        String newKey = hubName + ": " + browserName;
+        if (!newKey.equals(key)){
+            quit();
+            key = newKey;
+            return createDriverInstance();
+        }
+        // 3. Browser is dead
+        try {
+            webDriver.getCurrentUrl();
+        } catch (Throwable t){
+            t.printStackTrace();
+            return createDriverInstance();
+        }
+
+        // 4. It's time to restart
+        if (count >= restartFrequency){
+            quit();
+            return createDriverInstance();
+        }
+
+        //5. Use existing WebDriver instance
         return webDriver;
     }
 
     private WebDriver createDriverInstance(){
-        webDriver = (hubName.equalsIgnoreCase("localhost"))? startLocalWebDriver(): startRemoteWebDriver();
+            webDriver = (hubName.equalsIgnoreCase("local")) ? startLocalWebDriver() : startRemoteWebDriver();
 
         key = hubName + ": " + browserName;
         count = 0;
@@ -55,41 +80,61 @@ public class RemoteBrowser {
     }
 
     private WebDriver startLocalWebDriver(){
-        DriverBrowserVersions browserVersions = DriverBrowserVersions.valueOf(browserName);
+        try{
+            DriverBrowserVersions browserVersions = DriverBrowserVersions.valueOf(browserName);
 
-        switch (browserVersions){
-            case IE: webDriver = new InternetExplorerDriver();break;
-            case Firefox: webDriver = new FirefoxDriver();break;
-            case Chrome: webDriver = new ChromeDriver();break;
-        }
-
+            switch (browserVersions) {
+                case IE:
+                    webDriver = new InternetExplorerDriver();
+                    break;
+                case Firefox:
+                    webDriver = new FirefoxDriver();
+                    break;
+                case Chrome:
+                    webDriver = new ChromeDriver();
+                    break;
+            }
+        }catch (EnumConstantNotPresentException e){}
         return webDriver;
     }
 
     private WebDriver startRemoteWebDriver(){
 
+        startSeleniumGrid();
+    try{
         DriverBrowserVersions browserVersions = DriverBrowserVersions.valueOf(browserName);
 
-        try {
-            switch (browserVersions){
-                case IE: webDriver = new RemoteWebDriver(new URL(hubName), DesiredCapabilities.internetExplorer()); break;
-                case Chrome: webDriver = new RemoteWebDriver(new URL(hubName), DesiredCapabilities.chrome()); break;
-                case Firefox: webDriver = new RemoteWebDriver(new URL(hubName), DesiredCapabilities.firefox()); break;
-            }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
+        switch (browserVersions){
+            case IE: webDriver = new RemoteWebDriver(URLBuilder.getRemoteSeleniumServerUrl(hubName), DesiredCapabilities.internetExplorer()); break;
+            case Chrome: webDriver = new RemoteWebDriver(URLBuilder.getRemoteSeleniumServerUrl(hubName), DesiredCapabilities.chrome()); break;
+            case Firefox: webDriver = new RemoteWebDriver(URLBuilder.getRemoteSeleniumServerUrl(hubName), DesiredCapabilities.firefox()); break;
         }
-
+    }catch (EnumConstantNotPresentException e){}
         return webDriver;
     }
 
     public void startBrowser(String hub, String browserName){
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         setCapabilities(hub, browserName);
         instance.getWebDriver();
         webDriver.manage().window().maximize();
     }
 
     public static RemoteBrowser getInstance(){
+        RemoteBrowser driverInstance = instance;
+
+        if (driverInstance == null) {
+            synchronized (RemoteBrowser.class) {
+                driverInstance = instance;
+                if (driverInstance == null) {
+                    instance =  new RemoteBrowser();
+                }
+            }
+        }
         return instance;
     }
 
@@ -139,7 +184,11 @@ public class RemoteBrowser {
     }
 
     public void navigate(URL url) {
+        try{
         webDriver.navigate().to(url);
+        } catch (Exception e ){
+            System.out.println("Hub name is incorrectly set");
+        }
     }
 
     public List<WebElement> findElements(By by) {
@@ -153,16 +202,19 @@ public class RemoteBrowser {
     }
 
     public void waitForElement(WebElement element){
+        implicitWait(30);
         WebDriverWait wait = new WebDriverWait(getWebDriver(), ConfigProvider.getPageLoadTimeout());
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
     public void waitForElement (By selector){
+        implicitWait(30);
         WebDriverWait wait = new WebDriverWait(getWebDriver(), ConfigProvider.getPageLoadTimeout());
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(selector));
     }
 
     public void waitForAllElements(List<WebElement> elements) {
+        implicitWait(30);
         WebDriverWait wait = new WebDriverWait(getWebDriver(), ConfigProvider.getPageLoadTimeout());
         wait.until(ExpectedConditions.visibilityOfAllElements(elements));
     }

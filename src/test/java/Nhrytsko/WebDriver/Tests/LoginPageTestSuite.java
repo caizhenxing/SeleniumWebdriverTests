@@ -35,6 +35,6 @@ public class LoginPageTestSuite extends TestBase {
         String warningMessage = this.loginPage.getWarningMessage();
 
         Assert.assertEquals(warningMessage, "Login failed - Invalid user name or bad password.", "Messages are not equal");
-        System.out.println("Test is running th thread #"+Thread.currentThread().getId() + " in browser " + this.browserName);
+        System.out.println("Test is running the thread #"+Thread.currentThread().getId() + " in browser " + this.browserName);
     }
 }

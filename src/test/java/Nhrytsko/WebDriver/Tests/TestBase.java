@@ -2,8 +2,7 @@ package Nhrytsko.WebDriver.Tests;
 
 import Nhrytsko.WebDriver.Pages.PageBase;
 import Nhrytsko.WebDriver.WrappedDriver.ConfigProvider;
-import Nhrytsko.WebDriver.WrappedDriver.RemoteBrowser;
-import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
 public class TestBase {
@@ -12,10 +11,9 @@ public class TestBase {
     public void setUp(){
         ConfigProvider.setChromeDriverPath();
         ConfigProvider.setIEDriverPath();
-        RemoteBrowser.getInstance().startSeleniumGrid();
     }
 
-    @AfterClass
+    @AfterSuite
     public void classTearDown(){
         PageBase.closeBrowser();
     }
