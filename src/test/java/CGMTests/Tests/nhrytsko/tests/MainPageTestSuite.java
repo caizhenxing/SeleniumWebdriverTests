@@ -15,9 +15,9 @@ public class MainPageTestSuite extends TestBase {
     String browserName;
 
     @BeforeClass
-    @Parameters(value = {"hub", "driverName"})
-    public void testClassSetup(String hub, String browserName){
-        this.mainPage = PageBase.startBrowser(hub,browserName).goToLoginPage()
+    @Parameters(value = {"hub", "driverName", "port"})
+    public void classSetUp(String hub, String browserName, String port){
+        this.mainPage = PageBase.startBrowser(hub, browserName, port).goToLoginPage()
                 .logInAs(ConfigProvider.getValidUserName(), ConfigProvider.getValidUserPassword()).proceedWithMainPage();
         this.browserName = browserName;
     }

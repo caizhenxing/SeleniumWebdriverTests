@@ -29,7 +29,6 @@ public class RemoteBrowser {
     private static int count = 0;
     private static int restartFrequency = Integer.MAX_VALUE;
     private static String key = null;
-    private static String defaultHub = ConfigProvider.getDefaultHubURL();
     private static WebDriver webDriver;
     private static DesiredCapabilities capabilities;
     private static RemoteBrowser instance = new RemoteBrowser();
@@ -100,6 +99,7 @@ public class RemoteBrowser {
 
     private DesiredCapabilities setInternetExplorerCapabilities() {
         capabilities = DesiredCapabilities.internetExplorer();
+        System.setProperty("webdriver.chrome.driver", ConfigProvider.getChromeDriverPath());
 
         return capabilities;
     }
@@ -112,7 +112,7 @@ public class RemoteBrowser {
 
     private DesiredCapabilities setChromeCapabilities() {
         capabilities = DesiredCapabilities.chrome();
-
+        System.setProperty("webdriver.ie.driver", ConfigProvider.getIEDriverPath());
         return capabilities;
     }
 
@@ -133,8 +133,7 @@ public class RemoteBrowser {
     }
 
     private WebDriver startRemoteWebDriver(){
-
-        startSeleniumGrid();
+        startSeleniumNode();
     try{
         DriverVersions browserVersions = DriverVersions.valueOf(driverName);
 
@@ -197,13 +196,13 @@ public class RemoteBrowser {
         }
     };
 
-    public void startSeleniumGrid (){
+    public static void startSeleniumGrid (){
         System.out.println("SeleniumGrid is started form: " + ConfigProvider.getSeleniumGridPath());
 
-        ProcessBuilder pb = new ProcessBuilder(ConfigProvider.getGridBatPath());
-        pb.directory(new File(ConfigProvider.getSeleniumGridPath()));
+        ProcessBuilder gridBatFile = new ProcessBuilder(ConfigProvider.getGridBatPath());
+        gridBatFile.directory(new File(ConfigProvider.getSeleniumGridPath()));
         try {
-            Process p = pb.start();
+            Process seleniumGridProcess = gridBatFile.start();
             Thread.sleep(4000);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -211,6 +210,21 @@ public class RemoteBrowser {
             e.printStackTrace();
         }
     }
+
+    public static void startSeleniumNode (){
+        ProcessBuilder nodeBatFile = new ProcessBuilder(ConfigProvider.getNodeBatPath(hubName));
+        nodeBatFile.directory(new File(ConfigProvider.getSeleniumGridPath()));
+        try {
+            Process seleniumNodeProcess = nodeBatFile.start();
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     public void quit(){
         getWebDriver().quit();
@@ -220,10 +234,6 @@ public class RemoteBrowser {
     public void jsClick(WebElement element){
         JavascriptExecutor jse = (JavascriptExecutor) webDriver;
         jse.executeScript("arguments[0].click();", element);
-    }
-
-    public static void setDefaultHub(String newDefaultHub) {
-        defaultHub = newDefaultHub;
     }
 
     public static void setRestartFrequency(int newRestartFrequency){

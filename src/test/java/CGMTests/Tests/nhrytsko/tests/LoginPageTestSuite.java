@@ -23,9 +23,9 @@ public class LoginPageTestSuite extends TestBase {
     }
 
     @BeforeClass
-    @Parameters(value = {"hub", "driverName"})
-    public void classSetUp(String hub, String browserName){
-        this.loginPage = PageBase.startBrowser(hub,browserName).goToLoginPage();
+    @Parameters(value = {"hub", "driverName", "port"})
+    public void classSetUp(String hub, String browserName, String port){
+        this.loginPage = PageBase.startBrowser(hub, browserName, port).goToLoginPage();
         this.browserName = browserName;
     }
 

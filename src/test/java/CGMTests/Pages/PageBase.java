@@ -12,8 +12,8 @@ public class PageBase {
 
     //region Methods
 
-    public static PageBase startBrowser(String hub, String browserName){
-        RemoteBrowser.getInstance().startBrowser(hub, browserName);
+    public static PageBase startBrowser(String hub, String browserName, String port){
+        RemoteBrowser.getInstance().startBrowser(hub, browserName, port);
         return new PageBase();
     }
 

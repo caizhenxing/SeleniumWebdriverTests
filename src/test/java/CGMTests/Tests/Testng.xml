@@ -7,7 +7,7 @@
         <!--if test is running remotely on desktop => set hub=localhost, driverName=chrome or driverName=firefox or driverName=ie, port = 4444-->
         <!--if test is running remotely on mobile device set hub=127.0.0.1, driverName=Android, port = 4723 -->
         <parameter name="hub" value="localhost" />
-        <parameter name="driverName" value="chrome" />
+        <parameter name="driverName" value="firefox" />
         <parameter name="port" value="4444" />
         <classes>
             <class name="CGMTests.Tests.nhrytsko.tests.LoginPageTestSuite" />

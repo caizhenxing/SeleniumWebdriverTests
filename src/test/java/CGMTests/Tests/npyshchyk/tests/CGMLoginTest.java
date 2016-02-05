@@ -1,7 +1,6 @@
 package CGMTests.Tests.npyshchyk.tests;
 
 import CGMTests.Pages.LoginPage;
-import CGMTests.Pages.PageBase;
 import CGMTests.Tests.TestBase;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -17,7 +16,7 @@ public class CGMLoginTest extends TestBase{
     @BeforeClass
     @Parameters(value = {"hub", "browserName"})
     public void classSetUp(String hub, String browserName){
-        this.loginPage = PageBase.startBrowser(hub,browserName).goToLoginPage();
+        //this.loginPage = PageBase.startBrowser(hub,browserName).goToLoginPage();
     }
 
     @Test

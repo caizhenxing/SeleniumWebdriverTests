@@ -154,7 +154,13 @@ public class ConfigProvider {
         return gridBatPath;
     }
 
-    public static void setChromeDriverPath() {
+    public static String getNodeBatPath(String nodeName){
+        String name = nodeName.substring(0,1).toUpperCase() + nodeName.substring(1);
+        String nodeBatPath = getSeleniumGridPath() + "Start"+name+"Node.bat";
+        return nodeBatPath;
+    }
+
+    public static String getChromeDriverPath() {
         String chromeDriverPath = null;
         try {
             chromeDriverPath = getSolutionFolderPath()+
@@ -162,10 +168,10 @@ public class ConfigProvider {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+        return chromeDriverPath;
     }
 
-    public static void setIEDriverPath() {
+    public static String getIEDriverPath() {
         String ieDriverPath = null;
         try {
             ieDriverPath = getSolutionFolderPath()+
@@ -173,10 +179,6 @@ public class ConfigProvider {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.setProperty("webdriver.ie.driver", ieDriverPath);
-    }
-
-    public static String getDefaultHubURL() {
-        return System.getProperty("defaultHubURL");
+        return ieDriverPath;
     }
 }

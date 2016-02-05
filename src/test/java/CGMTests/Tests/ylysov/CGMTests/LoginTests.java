@@ -1,7 +1,6 @@
 package CGMTests.Tests.ylysov.CGMTests;
 
 import CGMTests.Pages.LoginPage;
-import CGMTests.Pages.PageBase;
 import CGMTests.Tests.TestBase;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -25,7 +24,7 @@ public class LoginTests extends TestBase {
     @BeforeClass
     @Parameters(value = {"hub", "browserName"})
     public void classSetUp(String hub, String browserName){
-        this.loginPage = PageBase.startBrowser(hub,browserName).goToLoginPage();
+        //this.loginPage = PageBase.startBrowser(hub,browserName).goToLoginPage();
         this.browserName = browserName;
     }
 
