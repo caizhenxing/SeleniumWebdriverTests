@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="SmokeTests" parallel="tests">
+    <test name="IE_Tests">
+
+        <!--if test is running on local machine => set hub=local, driverName=Chrome or driverName=Firefox or driverName=IE, port = null-->
+        <!--if test is running remotely on desktop => set hub=localhost, driverName=chrome or driverName=firefox or driverName=ie, port = 4444-->
+        <!--if test is running remotely on mobile device set hub=127.0.0.1, driverName=Android, port = 4723 -->
+        <parameter name="hub" value="localhost" />
+        <parameter name="driverName" value="chrome" />
+        <parameter name="port" value="4444" />
+        <classes>
+            <class name="CGMTests.Tests.nhrytsko.tests.LoginPageTestSuite" />
+            <class name="CGMTests.Tests.nhrytsko.tests.MainPageTestSuite" />
+        </classes>
+    </test>
+</suite>
