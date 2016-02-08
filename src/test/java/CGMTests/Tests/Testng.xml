@@ -6,20 +6,16 @@
         <!--Desktop-->
         <!--if test is running on local machine => set hub=local, port = null-->
         <!--if test is running remotely => set hub=localhost, port = 4444-->
-        <!--if test is running in Chrome browser => set driverName=Chrome-->
-        <!--if test is running in Firefox browser => set driverName=Firefox-->
-        <!--if test is running in Internet Explorer browser => set driverName=IE-->
+        <!--if test is running in Chrome browser => set driverName=chrome-->
+        <!--if test is running in Firefox browser => set driverName=firefox-->
+        <!--if test is running in Internet Explorer browser => set driverName=ie-->
 
-        <!--Mobile-->
-        <!--if test is running on mobile device set hub=127.0.0.1, driverName=Android, port = 4723 -->
-
-        <parameter name="hub" value="127.0.0.1" />
-        <parameter name="driverName" value="Android" />
-        <parameter name="port" value="4723" />
+        <parameter name="hub" value="local" />
+        <parameter name="driverName" value="ie" />
+        <parameter name="port" value="4444" />
         <classes>
-            <!--class name="CGMTests.Tests.nhrytsko.tests.LoginPageTestSuite" /-->
-            <!--class name="CGMTests.Tests.nhrytsko.tests.MainPageTestSuite" /-->
-            <class name="MobileAndroidTests.AndroidMobileTestSuite" />
+            <class name="CGMTests.Tests.nhrytsko.tests.LoginPageTestSuite" />
+            <class name="CGMTests.Tests.nhrytsko.tests.MainPageTestSuite" />
         </classes>
     </test>
 </suite>

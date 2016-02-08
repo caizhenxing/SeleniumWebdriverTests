@@ -81,16 +81,16 @@ public class RemoteBrowser {
 
             switch (browserVersions) {
                 case ie:
-                    webDriver = new InternetExplorerDriver();
                     setInternetExplorerCapabilities();
+                    webDriver = new InternetExplorerDriver();
                     break;
                 case firefox:
-                    webDriver = new FirefoxDriver();
                     setFirefoxCapabilities();
+                    webDriver = new FirefoxDriver();
                     break;
                 case chrome:
-                    webDriver = new ChromeDriver();
                     setChromeCapabilities();
+                    webDriver = new ChromeDriver();
                     break;
             }
         }catch (EnumConstantNotPresentException e){}
@@ -99,7 +99,7 @@ public class RemoteBrowser {
 
     private DesiredCapabilities setInternetExplorerCapabilities() {
         capabilities = DesiredCapabilities.internetExplorer();
-        System.setProperty("webdriver.chrome.driver", ConfigProvider.getChromeDriverPath());
+        System.setProperty("webdriver.ie.driver", ConfigProvider.getIEDriverPath());
 
         return capabilities;
     }
@@ -111,8 +111,9 @@ public class RemoteBrowser {
     }
 
     private DesiredCapabilities setChromeCapabilities() {
+        System.setProperty("webdriver.chrome.driver", ConfigProvider.getChromeDriverPath());
         capabilities = DesiredCapabilities.chrome();
-        System.setProperty("webdriver.ie.driver", ConfigProvider.getIEDriverPath());
+
         return capabilities;
     }
 
@@ -133,6 +134,7 @@ public class RemoteBrowser {
     }
 
     private RemoteWebDriver startRemoteWebDriver(){
+        startSeleniumGrid();
         startSeleniumNode();
     try{
         DriverVersions browserVersions = DriverVersions.valueOf(driverName);
