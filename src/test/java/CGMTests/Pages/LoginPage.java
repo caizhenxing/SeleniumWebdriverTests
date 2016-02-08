@@ -8,7 +8,7 @@ import WrappedDriver.RemoteBrowser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class LoginPage extends PageBase {
+public class LoginPage extends WebPageBase {
 
     private PageElement userName = new Input(SearchCriteria.Xpath, "//input[@ng-model='loginData.userName']");
 
@@ -16,12 +16,12 @@ public class LoginPage extends PageBase {
 
     private PageElement loginButton = new Button(SearchCriteria.Id, "btnLogin");
 
-    public PageBase logInAs(String userName, String password){
+    public WebPageBase logInAs(String userName, String password){
                 enterUserName(userName)
                 .enterUserPassword(password)
                 .clickLoginButton();
 
-        return new PageBase();
+        return new WebPageBase();
     }
 
     //region Methods

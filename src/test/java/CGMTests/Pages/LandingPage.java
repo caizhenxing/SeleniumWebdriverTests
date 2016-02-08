@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
-public class LandingPage extends PageBase {
+public class LandingPage extends WebPageBase {
 
     private WebElement episodeInput = super.driver.findElement(By.xpath("//cgm-search-field[@class='cgm-autocomplete" +
             " cgm-search-field cgm-autocomplete-empty ng-valid']"));

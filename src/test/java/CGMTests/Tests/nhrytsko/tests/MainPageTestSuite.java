@@ -1,6 +1,6 @@
 package CGMTests.Tests.nhrytsko.tests;
 
-import CGMTests.Pages.PageBase;
+import CGMTests.Pages.WebPageBase;
 import CGMTests.Pages.MainPage;
 import CGMTests.Tests.TestBase;
 import WrappedDriver.ConfigProvider;
@@ -17,7 +17,7 @@ public class MainPageTestSuite extends TestBase {
     @BeforeClass
     @Parameters(value = {"hub", "driverName", "port"})
     public void classSetUp(String hub, String browserName, String port){
-        this.mainPage = PageBase.startBrowser(hub, browserName, port).goToLoginPage()
+        this.mainPage = WebPageBase.startBrowser(hub, browserName, port).goToStartPage()
                 .logInAs(ConfigProvider.getValidUserName(), ConfigProvider.getValidUserPassword()).proceedWithMainPage();
         this.browserName = browserName;
     }

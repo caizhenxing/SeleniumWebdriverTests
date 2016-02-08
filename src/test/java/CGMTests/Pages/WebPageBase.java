@@ -4,7 +4,7 @@ import WrappedDriver.ConfigProvider;
 import WrappedDriver.RemoteBrowser;
 import org.openqa.selenium.WebDriver;
 
-public class PageBase {
+public class WebPageBase {
     //region Fields
 
     public WebDriver driver;
@@ -12,16 +12,16 @@ public class PageBase {
 
     //region Methods
 
-    public static PageBase startBrowser(String hub, String browserName, String port){
+    public static WebPageBase startBrowser(String hub, String browserName, String port){
         RemoteBrowser.getInstance().startBrowser(hub, browserName, port);
-        return new PageBase();
+        return new WebPageBase();
     }
 
     public static void closeBrowser(){
         RemoteBrowser.getInstance().quit();
     }
 
-    public LoginPage goToLoginPage(){
+    public LoginPage goToStartPage(){
         RemoteBrowser.getInstance().navigate(ConfigProvider.getBaseURL());
         RemoteBrowser.getInstance().waitForDocumentToBeReady();
         RemoteBrowser.getInstance().waitForAjax();
@@ -58,6 +58,5 @@ public class PageBase {
         RemoteBrowser.implicitWait(10);
         return new EpisodePage();
     }
-
     //endregion
 }

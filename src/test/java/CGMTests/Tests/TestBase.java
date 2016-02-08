@@ -1,6 +1,6 @@
 package CGMTests.Tests;
 
-import CGMTests.Pages.PageBase;
+import CGMTests.Pages.WebPageBase;
 import WrappedDriver.RemoteBrowser;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
@@ -14,6 +14,6 @@ public class TestBase {
 
     @AfterSuite
     public void classTearDown(){
-        PageBase.closeBrowser();
+        WebPageBase.closeBrowser();
     }
 }

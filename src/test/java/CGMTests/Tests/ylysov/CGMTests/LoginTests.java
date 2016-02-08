@@ -24,7 +24,7 @@ public class LoginTests extends TestBase {
     @BeforeClass
     @Parameters(value = {"hub", "browserName"})
     public void classSetUp(String hub, String browserName){
-        //this.loginPage = PageBase.startBrowser(hub,browserName).goToLoginPage();
+        //this.loginPage = WebPageBase.startBrowser(hub,browserName).goToStartPage();
         this.browserName = browserName;
     }
 

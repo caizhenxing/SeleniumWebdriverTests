@@ -29,11 +29,11 @@ public class RemoteBrowser {
     private static int count = 0;
     private static int restartFrequency = Integer.MAX_VALUE;
     private static String key = null;
-    private static WebDriver webDriver;
+    private static RemoteWebDriver webDriver;
     private static DesiredCapabilities capabilities;
     private static RemoteBrowser instance = new RemoteBrowser();
 
-    private WebDriver singletonWebDriverHolder(){
+    private RemoteWebDriver singletonWebDriverHolder(){
         count++;
 
         // 1. WebDriver instance is not created yet
@@ -67,7 +67,7 @@ public class RemoteBrowser {
         return webDriver;
     }
 
-    private WebDriver createDriverInstance(){
+    private RemoteWebDriver createDriverInstance(){
             webDriver = (hubName.equalsIgnoreCase("local")) ? startLocalWebDriver() : startRemoteWebDriver();
 
         key = hubName + ": " + driverName;
@@ -75,7 +75,7 @@ public class RemoteBrowser {
         return webDriver;
     }
 
-    private WebDriver startLocalWebDriver(){
+    private RemoteWebDriver startLocalWebDriver(){
         try{
             DriverVersions browserVersions = DriverVersions.valueOf(driverName);
 
@@ -117,7 +117,7 @@ public class RemoteBrowser {
     }
 
     private DesiredCapabilities setAndroidCapabilities() {
-        File appDir = new File("D:\\OneDrive\\Education\\Samples\\ApiumTests\\apps");
+        File appDir = new File("D:\\OneDrive\\Education\\Samples\\SeleniumWebdriverTests\\src\\apps");
         File app = new File(appDir, "Calendar.apk");
 
         capabilities = DesiredCapabilities.android();
@@ -132,7 +132,7 @@ public class RemoteBrowser {
         return capabilities;
     }
 
-    private WebDriver startRemoteWebDriver(){
+    private RemoteWebDriver startRemoteWebDriver(){
         startSeleniumNode();
     try{
         DriverVersions browserVersions = DriverVersions.valueOf(driverName);
@@ -184,13 +184,13 @@ public class RemoteBrowser {
         return instance;
     }
 
-    public WebDriver getWebDriver(){
+    public RemoteWebDriver getWebDriver(){
         return driver.get();
     }
 
-    ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>(){
+    ThreadLocal<RemoteWebDriver> driver = new ThreadLocal<RemoteWebDriver>(){
         @Override
-        protected WebDriver initialValue(){
+        protected RemoteWebDriver initialValue(){
             webDriver = singletonWebDriverHolder();
             return webDriver;
         }

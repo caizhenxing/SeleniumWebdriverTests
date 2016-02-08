@@ -4,7 +4,7 @@ package CGMTests.Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class AllFeaturesPage extends PageBase {
+public class AllFeaturesPage extends WebPageBase {
 
    // private WebElement landingPageButton = super.driver.findElement(By.xpath("//a[contains(.,'Landing Page')]"));
 

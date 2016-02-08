@@ -4,7 +4,7 @@ package CGMTests.Tests.ovol.tests;
 
 import CGMTests.Pages.LoginPage;
 import CGMTests.Pages.MainPage;
-import CGMTests.Pages.PageBase;
+import CGMTests.Pages.WebPageBase;
 import CGMTests.Tests.TestBase;
 import WrappedDriver.ConfigProvider;
 import WrappedDriver.RemoteBrowser;
@@ -23,7 +23,7 @@ import java.io.IOException;
 
 
 public class CGMLoginTests extends TestBase {
-    PageBase pages;
+    WebPageBase pages;
     MainPage mainPage;
     LoginPage loginPage;
 

@@ -1,7 +1,7 @@
 package CGMTests.Tests.nhrytsko.tests;
 
 import CGMTests.Pages.LoginPage;
-import CGMTests.Pages.PageBase;
+import CGMTests.Pages.WebPageBase;
 import CGMTests.Tests.TestBase;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -25,7 +25,7 @@ public class LoginPageTestSuite extends TestBase {
     @BeforeClass
     @Parameters(value = {"hub", "driverName", "port"})
     public void classSetUp(String hub, String browserName, String port){
-        this.loginPage = PageBase.startBrowser(hub, browserName, port).goToLoginPage();
+        this.loginPage = WebPageBase.startBrowser(hub, browserName, port).goToStartPage();
         this.browserName = browserName;
     }
 

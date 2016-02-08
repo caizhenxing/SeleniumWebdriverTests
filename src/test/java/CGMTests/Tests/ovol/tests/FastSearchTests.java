@@ -1,6 +1,7 @@
 package CGMTests.Tests.ovol.tests;
 
 import CGMTests.Pages.*;
+import CGMTests.Pages.WebPageBase;
 import CGMTests.Tests.TestBase;
 import WrappedDriver.ConfigProvider;
 import org.testng.Assert;
@@ -10,7 +11,7 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 
 public class FastSearchTests extends TestBase{
-    PageBase pageBase;
+    WebPageBase pageBase;
     LoginPage loginPage;
     MainPage mainPage;
     AllFeaturesPage allFeaturesPage;

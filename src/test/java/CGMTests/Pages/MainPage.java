@@ -4,7 +4,7 @@ import WrappedDriver.CustomWebelements.Button;
 import WrappedDriver.CustomWebelements.PageElement;
 import WrappedDriver.CustomWebelements.SearchCriteria;
 
-public class MainPage extends PageBase {
+public class MainPage extends WebPageBase {
 
     //endregion
 
