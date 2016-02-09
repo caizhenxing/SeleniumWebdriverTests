@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 public class AllFeaturesPage extends WebPageBase {
 
-   // private WebElement landingPageButton = super.driver.findElement(By.xpath("//a[contains(.,'Landing Page')]"));
+   // private WebElement landingPageButton = super.androidDriver.findElement(By.xpath("//a[contains(.,'Landing Page')]"));
 
     public LandingPage clickLandingPageButton(){
         WebElement landingPageButton = super.driver.findElement(By.xpath("//a[contains(.,'Landing Page')]"));

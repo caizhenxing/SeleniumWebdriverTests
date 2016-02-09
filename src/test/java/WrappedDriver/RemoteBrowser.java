@@ -115,8 +115,7 @@ public class RemoteBrowser {
     }
 
     private DesiredCapabilities setAndroidCapabilities() {
-        File appDir = new File("D:\\OneDrive\\Education\\Samples\\SeleniumWebdriverTests\\src\\apps");
-        File app = new File(appDir, "Calendar.apk");
+        File app = new File(ConfigProvider.getAppsDirectoryPath(), ConfigProvider.getAppFile());
 
         capabilities = DesiredCapabilities.android();
         capabilities.setCapability("deviceName", "TestDevice");

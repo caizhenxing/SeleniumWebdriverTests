@@ -181,4 +181,59 @@ public class ConfigProvider {
         }
         return ieDriverPath;
     }
+
+    public static String getAndroidSDKPath(){
+        String androidSDKPath = null;
+        try {
+            androidSDKPath = ConfigurationParameters().getProperty("androidSDKPath");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return androidSDKPath;
+    }
+
+    public static String launchAVD(){
+        String AVDname = null;
+        try {
+            AVDname = ConfigurationParameters().getProperty("launchAVD");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return AVDname;
+    }
+
+    public static String getNodeJsPath(){
+        String nodeJsPath = null;
+        try {
+            nodeJsPath = ConfigurationParameters().getProperty("nodeJsPath");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return nodeJsPath;
+    }
+
+    public static String getAppiumJsPath(){
+        String appiumJsPath = null;
+        try {
+            appiumJsPath = ConfigurationParameters().getProperty("appiumJsPath");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return appiumJsPath;
+    }
+
+    public static String getAppsDirectoryPath() {
+        String appDir = getSolutionFolderPath() + "\\src\\apps\\";
+        return appDir;
+    }
+
+    public static String getAppFile() {
+        try {
+            return ConfigurationParameters().getProperty("androidApp");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
