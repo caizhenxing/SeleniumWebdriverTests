@@ -3,19 +3,16 @@
     [
         {
             "browserName": "firefox",
-            "version": "ANY",
-            "platform": "WINDOWS",
-            "maxInstances": 1
+            "maxInstances": 5
+            
         },
         {
             "browserName": "chrome",
-            "maxInstances": 1,
-            "platform": "WINDOWS"
+            "maxInstances": 5
         },
         {
             "browserName": "internet explorer",
-            "maxInstances": 1,
-            "platform": "WINDOWS"
+            "maxInstances": 1
         }
     ],
   "configuration": 
@@ -30,6 +27,6 @@
             "register":true,
             "cleanUpCycle":2000,
             "timeout":30000,
-            "maxSession":1
+            "maxSession":5
             }
 }

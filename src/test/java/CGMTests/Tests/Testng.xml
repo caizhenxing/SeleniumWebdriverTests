@@ -5,13 +5,13 @@
 
         <!--Desktop-->
         <!--if test is running on local machine => set hub=local, port = null-->
-        <!--if test is running remotely => set hub=localhost, port = 4444-->
+        <!--if test is running remotely => set hub=<ip machine where hub is running>, port = 4444-->
         <!--if test is running in Chrome browser => set driverName=chrome-->
         <!--if test is running in Firefox browser => set driverName=firefox-->
         <!--if test is running in Internet Explorer browser => set driverName=ie-->
 
-        <parameter name="hub" value="local" />
-        <parameter name="driverName" value="ie" />
+        <parameter name="hub" value="localhost" />
+        <parameter name="driverName" value="chrome" />
         <parameter name="port" value="4444" />
         <classes>
             <class name="CGMTests.Tests.nhrytsko.tests.LoginPageTestSuite" />

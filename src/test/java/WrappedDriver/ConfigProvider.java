@@ -142,7 +142,7 @@ public class ConfigProvider {
     public static String getSeleniumGridPath(){
         String seleniumGridPath = null;
         try {
-            seleniumGridPath = getSolutionFolderPath() + ConfigurationParameters().getProperty("seleniumServerPath");
+            seleniumGridPath =getSolutionFolderPath() + ConfigurationParameters().getProperty("seleniumServerPath");
         } catch (IOException e) {
             e.printStackTrace();
         }

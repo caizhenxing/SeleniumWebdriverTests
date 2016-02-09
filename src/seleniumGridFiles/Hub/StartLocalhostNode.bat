@@ -1,1 +1,1 @@
-start java -jar selenium-server-standalone-2.48.2.jar -role node -hub http://localhost:4444/grid/register -nodeConfig LocalhostNodeConfiguration.json
+start java -jar selenium-server-standalone-2.48.2.jar -role node -nodeConfig LocalhostNodeConfiguration.json -Dwebdriver.chrome.driver=D:/OneDrive/Education/Samples/SeleniumWebdriverTests/src/seleniumGridFiles/Drivers/chromedriver_win32/chromedriver.exe -Dwebdriver.ie.driver=D:/OneDrive/Education/Samples/SeleniumWebdriverTests/src/seleniumGridFiles/Drivers/IEDriver/IEDriverServer.exe

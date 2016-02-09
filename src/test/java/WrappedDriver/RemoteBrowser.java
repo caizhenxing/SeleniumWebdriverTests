@@ -14,7 +14,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -99,7 +98,6 @@ public class RemoteBrowser {
 
     private DesiredCapabilities setInternetExplorerCapabilities() {
         capabilities = DesiredCapabilities.internetExplorer();
-        System.setProperty("webdriver.ie.driver", ConfigProvider.getIEDriverPath());
 
         return capabilities;
     }
@@ -111,7 +109,6 @@ public class RemoteBrowser {
     }
 
     private DesiredCapabilities setChromeCapabilities() {
-        System.setProperty("webdriver.chrome.driver", ConfigProvider.getChromeDriverPath());
         capabilities = DesiredCapabilities.chrome();
 
         return capabilities;
@@ -134,8 +131,7 @@ public class RemoteBrowser {
     }
 
     private RemoteWebDriver startRemoteWebDriver(){
-        startSeleniumGrid();
-        startSeleniumNode();
+
     try{
         DriverVersions browserVersions = DriverVersions.valueOf(driverName);
 
@@ -197,36 +193,6 @@ public class RemoteBrowser {
             return webDriver;
         }
     };
-
-    public static void startSeleniumGrid (){
-        System.out.println("SeleniumGrid is started form: " + ConfigProvider.getSeleniumGridPath());
-
-        ProcessBuilder gridBatFile = new ProcessBuilder(ConfigProvider.getGridBatPath());
-        gridBatFile.directory(new File(ConfigProvider.getSeleniumGridPath()));
-        try {
-            Process seleniumGridProcess = gridBatFile.start();
-            Thread.sleep(4000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void startSeleniumNode (){
-        ProcessBuilder nodeBatFile = new ProcessBuilder(ConfigProvider.getNodeBatPath(hubName));
-        nodeBatFile.directory(new File(ConfigProvider.getSeleniumGridPath()));
-        try {
-            Process seleniumNodeProcess = nodeBatFile.start();
-            Thread.sleep(4000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
 
     public void quit(){
         getWebDriver().quit();
