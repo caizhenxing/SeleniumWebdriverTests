@@ -14,9 +14,9 @@ import org.testng.annotations.Parameters;
  * Created by ylysov on 09.02.2016.
  */
 public class AndroidTestBase {
-    protected RemoteWebDriver androidDriver;
 
-  AppiumDriverLocalService  service;
+    protected RemoteWebDriver androidDriver;
+    protected AppiumDriverLocalService  service;
 
     @BeforeClass
     @Parameters(value = {"hub", "driverName", "port"})
