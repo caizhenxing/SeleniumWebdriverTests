@@ -31,10 +31,9 @@ public class AndroidTestBase {
     public void cleanUp() {
         androidDriver.quit();
         stopAppiumServer();
-        //avd close
+        closeVirtualDevice();
         // avd manager close
     }
-
 
     protected  void  startAVDManager(){
         ProcessBuilder pb = new ProcessBuilder(ConfigProvider.getAndroidSDKPath() + "AVD Manager.exe");
@@ -72,5 +71,16 @@ public class AndroidTestBase {
     protected  void initializeDriver(String hub, String driverVersion, String port)  {
         RemoteBrowser.getInstance().startBrowser(hub, driverVersion, port);
         androidDriver = RemoteBrowser.getInstance().getWebDriver();
+    }
+
+    protected  void closeVirtualDevice(){
+        String Dir =  ConfigProvider.getAndroidSDKPath() + "platform-tools/";
+        String Command = ConfigProvider.closeAVD();
+
+        try {
+            Process pp =Runtime.getRuntime().exec(Dir + Command);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

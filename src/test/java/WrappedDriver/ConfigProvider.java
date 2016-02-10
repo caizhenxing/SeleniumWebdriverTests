@@ -202,6 +202,16 @@ public class ConfigProvider {
         return AVDname;
     }
 
+    public static String closeAVD(){
+        String closeAVD = null;
+        try {
+            closeAVD = ConfigurationParameters().getProperty("closeAVD");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return closeAVD;
+    }
+
     public static String getNodeJsPath(){
         String nodeJsPath = null;
         try {
