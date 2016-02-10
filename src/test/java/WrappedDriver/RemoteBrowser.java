@@ -115,7 +115,7 @@ public class RemoteBrowser {
     }
 
     private DesiredCapabilities setAndroidCapabilities() {
-        File app = new File(ConfigProvider.getAppsDirectoryPath(), ConfigProvider.getAppFile());
+        File app = new File(ConfigProvider.getAppsDirectoryPath(), ConfigProvider.getAndroidApp());
 
         capabilities = DesiredCapabilities.android();
         capabilities.setCapability("deviceName", "TestDevice");
@@ -125,6 +125,22 @@ public class RemoteBrowser {
         capabilities.setCapability("app", app.getAbsolutePath());
         capabilities.setCapability("appPackage", "am.sunrise.android.calendar");
         capabilities.setCapability("appActivity", "am.sunrise.android.calendar.ui.HomeActivity");
+
+        return capabilities;
+    }
+
+    private DesiredCapabilities setIOSCapabilities() {
+        File app = new File(MacConfigProvider.getAppsDirectoryPath(), ConfigProvider.getIOSApp());
+
+        capabilities = DesiredCapabilities.iphone();
+        capabilities.setCapability("appium-version", "1.0");
+        capabilities.setCapability("platformName", "iOS");
+        capabilities.setCapability("platformVersion", "8.4");
+        capabilities.setCapability("deviceName", "iPhone 6");
+        capabilities.setCapability("takesScreenshot", true);
+        capabilities.setCapability("app", app.getAbsolutePath());
+//        capabilities.setCapability("appPackage", "am.sunrise.android.calendar");
+//        capabilities.setCapability("appActivity", "am.sunrise.android.calendar.ui.HomeActivity");
 
         return capabilities;
     }
@@ -147,6 +163,10 @@ public class RemoteBrowser {
             case Android:
                 capabilities = setAndroidCapabilities();
                 webDriver = new RemoteWebDriver(URLBuilder.getRemoteServerUrl(hubName, portNumber), capabilities); break;
+            case iOS:
+                capabilities = setIOSCapabilities();
+                webDriver = new RemoteWebDriver(URLBuilder.getRemoteServerUrl(hubName, portNumber), capabilities); break;
+
         }
     }catch (EnumConstantNotPresentException e){}
         return webDriver;

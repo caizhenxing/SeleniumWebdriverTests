@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="iOSTests" parallel="tests">
+    <test name="Calendar_Tests">
+
+        <!--Mobile-->
+        <!--Tests for iOS should be run from MacOS IDE,check java JDK version - you may need to update to 1.8 -->
+        <!--Manually start Appium server before running tests -->
+        <!--if test is running on mobile device set hub=127.0.0.1, driverName=Android or iOS, port = 4723 -->
+
+        <parameter name="hub" value="127.0.0.1" />
+        <parameter name="driverName" value="iOS" />
+        <parameter name="port" value="4723" />
+        <classes>
+            <class name="MobileIOSTests.IOSTests" />
+        </classes>
+    </test>
+</suite>

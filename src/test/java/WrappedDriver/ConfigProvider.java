@@ -134,7 +134,7 @@ public class ConfigProvider {
         return null;
     }
 
-    private static String getSolutionFolderPath(){
+    protected static String getSolutionFolderPath(){
         String folderPath = System.getProperty("user.dir");
         return folderPath;
     }
@@ -237,9 +237,18 @@ public class ConfigProvider {
         return appDir;
     }
 
-    public static String getAppFile() {
+    public static String getAndroidApp()  {
         try {
             return ConfigurationParameters().getProperty("androidApp");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String getIOSApp()  {
+        try {
+            return ConfigurationParameters().getProperty("iOSApp");
         } catch (IOException e) {
             e.printStackTrace();
         }

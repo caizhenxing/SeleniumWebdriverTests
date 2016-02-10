@@ -4,5 +4,6 @@ public enum DriverVersions {
     ie,
     firefox,
     chrome,
-    Android
+    Android,
+    iOS
 }
